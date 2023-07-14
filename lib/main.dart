@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:your_choice_app/src/controller/sigin_controller.dart';
+import 'package:your_choice_app/src/view/auth_views/auth_landing_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/forgotscreen/forgotpassword_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/forgotscreen/forgotpass_verification_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/forgotscreen/password_create_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/forgotscreen/password_sucess_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/onbording11.dart';
+import 'package:your_choice_app/src/view/auth_views/register_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/registred_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/regverified_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/signin_screen.dart';
+import 'package:your_choice_app/src/view/home_view/instanttopup_screen.dart';
+import 'package:your_choice_app/src/view/splash_screen/splash_screen.dart';
 
-import 'src/view/home_view/home_view.dart';
+import 'src/view/home_view/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  Get.put(SiginController());
+  runApp(const MyApp(),);
 }
 
 class MyApp extends StatelessWidget {
@@ -13,12 +28,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Your choice',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomeView(),
+    debugShowCheckedModeBanner: false,
+     initialRoute: "/",
+
+
+      routes: {
+          "/": (context) => SplashScreen(),
+        "/onbording":(context) => OnbordingScreen(),
+        "/home":(context) => HomeScreen(),
+        '/authlanding':(context) => AuthLandingScreen(),
+        '/siginhome':(context) => SigninScreen(),
+        '/forgotscreen':(context) => ForgotPasswordScreen(),
+        '/forgotverification':(context) => ForgotPassVerificationScreen(),
+        '/passwordcreate':(context) => PasswordCreateScreen(),
+        '/passwordsucess':(context) => PasswordSucessScreen(),
+        '/registerscreen':(context) => RegisterScreen(),
+        '/registeredscreen':(context) => RegisteredScreen(),
+        '/registerverifiedscreen':(context) => RegisterverifiedScreen(),
+        '/instaptop':(context) => InstantTopupScreen(),
+      },
     );
   }
 }
