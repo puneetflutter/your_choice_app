@@ -111,7 +111,7 @@ class _RegisterverifiedScreenState extends State<RegisterverifiedScreen> {
               )
             ),
             onPressed: (){
-              //Navigator.of(context).pushReplacementNamed('/passwordcreate');
+              Navigator.of(context).pushReplacementNamed("/home");
             }, 
            child:Text('Done',
            style: TextStyle(

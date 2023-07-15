@@ -31,7 +31,8 @@ class _AuthLandingScreenState extends State<AuthLandingScreen> {
                               onPressed: (){
                                 Navigator.of(context).pushReplacementNamed("/onbording");
                               }, 
-                            icon: Icon(Icons.arrow_back_ios)),
+                            icon: Icon(Icons.arrow_back,
+                            color: yblue,)),
                             ],
                           ),
                       ),

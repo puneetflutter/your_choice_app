@@ -9,6 +9,7 @@ Color ywhite = Colors.white;
 Color yindigo = Color(0xFF2E6BB3);
 Color yOrange = Color(0xFFff5003);
 Color ypurpule=Color(0xff222D65);
+Color yblueversion=Color(0xff179BD7);
 
 const SizedBox ysizedbox20 = SizedBox(height: 20);
 const SizedBox ysizedbox10 = SizedBox(height: 10);

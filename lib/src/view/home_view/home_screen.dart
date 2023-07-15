@@ -14,9 +14,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
   final navigationCOntroller=Get.find<SiginController>();
   @override
   Widget build(BuildContext context) {
+
     var size = MediaQuery.of(context).size;
     return Container(
       height: 1000,
@@ -86,8 +89,86 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.of(context).pushReplacementNamed('/instaptop');
                           },
                           child: Image.asset('assets/images/instopupimage.png')),
-                        Image.asset('assets/images/paymentlinkimage.png'),
-                        Image.asset('assets/images/homewhatsappimage.png')
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).pushReplacementNamed('/paymentlink');
+                          },
+                          child: Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: ywhite
+                            ),
+                            child: Image.asset('assets/images/paymentlinkimage.png'))),
+                        GestureDetector(
+                          onTap: (){
+                            showModalBottomSheet(
+                              shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+  ),
+                              context: context, 
+                            builder: (context){
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 10,right:10),
+                                child: Container(
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    color: ywhite,
+                                    
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      ysizedbox10,
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text('Open With',
+                                          style: primaryFontsemiBold.copyWith(
+                                            color: yblue,
+                                            fontSize: 20
+                                          ),),
+                                          Image.asset('assets/images/wrongwhatsappimage.png',
+                                          color: Colors.black,
+                                          height: 17,
+                                          width: 17,
+                                          fit:BoxFit.fitHeight ,)
+                              
+                                        ],
+                                      ),
+                                      ysizedbox20,
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Image.asset('assets/images/whatsapplogoimage.png'),
+                                          Image.asset('assets/images/gbwhatsapplogoimage.png')
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text('Whatsapp',
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                              color: yindigo
+                                            ),),
+                                            Text('GB Whatsapp',
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                              color: yindigo
+                                            ),)
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            });
+                          },
+                          child: Image.asset('assets/images/homewhatsappimage.png'))
                       ],
                      ),
                      ysizedbox10,
@@ -146,7 +227,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Column(children:[
-                                 Image.asset('assets/images/ptopimage.png'),
+                                 GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pushReplacementNamed('/ptopscreen');
+                                  },
+                                  child: Image.asset('assets/images/ptopimage.png')),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: Text('P to P',

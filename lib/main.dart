@@ -11,7 +11,13 @@ import 'package:your_choice_app/src/view/auth_views/register_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/registred_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/regverified_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/signin_screen.dart';
-import 'package:your_choice_app/src/view/home_view/instanttopup_screen.dart';
+import 'package:your_choice_app/src/view/home_view/payment_link/payment_link_screen.dart';
+import 'package:your_choice_app/src/view/home_view/ptop_view/ptop_screen.dart';
+import 'package:your_choice_app/src/view/home_view/toupscreen/instanttopup_screen.dart';
+import 'package:your_choice_app/src/view/home_view/toupscreen/paymentsucess_screen.dart';
+import 'package:your_choice_app/src/view/home_view/toupscreen/selectcard_screen.dart';
+import 'package:your_choice_app/src/view/home_view/toupscreen/topup_payment_screen.dart';
+import 'package:your_choice_app/src/view/home_view/toupscreen/topup_screen.dart';
 import 'package:your_choice_app/src/view/splash_screen/splash_screen.dart';
 
 import 'src/view/home_view/home_screen.dart';
@@ -46,6 +52,13 @@ class MyApp extends StatelessWidget {
         '/registeredscreen':(context) => RegisteredScreen(),
         '/registerverifiedscreen':(context) => RegisterverifiedScreen(),
         '/instaptop':(context) => InstantTopupScreen(),
+        '/selectcard':(context) => SelectCardScreen(),
+        '/topupscreen':(context) => TopUpScreen(),
+        '/topuppayment':(context) => TopUpPaymentScreen(),
+        '/paymentsuccess':(context) => paymentSucessScreen(),
+        '/paymentlink':(context) => PaymentLinkScreen(),
+        '/ptopscreen':(context) => PtopScreen()
+
       },
     );
   }

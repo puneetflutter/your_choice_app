@@ -28,7 +28,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         onPressed: (){
                           Navigator.of(context).pop();
                         }, 
-                      icon: Icon(Icons.arrow_back_ios)),
+                      icon: Icon(Icons.arrow_back,
+                      color: yblue,)),
                       ],
                     ),
                 ),

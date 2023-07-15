@@ -36,7 +36,8 @@ class _PasswordCreateScreenState extends State<PasswordCreateScreen> {
                         onPressed: (){
                           Navigator.of(context).pop();
                         }, 
-                      icon: Icon(Icons.arrow_back_ios)),
+                      icon: Icon(Icons.arrow_back,
+                      color: yblue,)),
                       ],
                     ),
                 ),
