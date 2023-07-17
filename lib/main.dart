@@ -11,8 +11,14 @@ import 'package:your_choice_app/src/view/auth_views/register_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/registred_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/regverified_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/signin_screen.dart';
+import 'package:your_choice_app/src/view/home_view/credit_card/credit_card_screen.dart';
 import 'package:your_choice_app/src/view/home_view/payment_link/payment_link_screen.dart';
 import 'package:your_choice_app/src/view/home_view/ptop_view/ptop_screen.dart';
+import 'package:your_choice_app/src/view/home_view/ptop_view/tranfer_summery_screen.dart';
+import 'package:your_choice_app/src/view/home_view/recharge_view/plan_choose_screen.dart';
+import 'package:your_choice_app/src/view/home_view/recharge_view/recharge_screen.dart';
+import 'package:your_choice_app/src/view/home_view/recharge_view/select_prepaid_screen.dart';
+import 'package:your_choice_app/src/view/home_view/recharge_view/select_rechargeplan.dart';
 import 'package:your_choice_app/src/view/home_view/toupscreen/instanttopup_screen.dart';
 import 'package:your_choice_app/src/view/home_view/toupscreen/paymentsucess_screen.dart';
 import 'package:your_choice_app/src/view/home_view/toupscreen/selectcard_screen.dart';
@@ -57,7 +63,13 @@ class MyApp extends StatelessWidget {
         '/topuppayment':(context) => TopUpPaymentScreen(),
         '/paymentsuccess':(context) => paymentSucessScreen(),
         '/paymentlink':(context) => PaymentLinkScreen(),
-        '/ptopscreen':(context) => PtopScreen()
+        '/ptopscreen':(context) => PtopScreen(),
+        '/transfersummery':(context) => TransferSummeryScreen(),
+        '/creditcard':(context) => CreditCardScreen(),
+        '/recharge':(context) => RechargeScreen(),
+        '/selectprepaid':(context) => SlectePrepaidScreen(),
+        '/planchoose':(context) => PlanChooseScreen(),
+        '/selectrecharge':(context) => SelectRechargePlanScreen(),
 
       },
     );

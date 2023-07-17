@@ -240,7 +240,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),),
                                   ),
                             ]),
-                              Column(children:[ Image.asset('assets/images/creditcardimage.png'),
+                              Column(
+                                children:[ 
+                                  GestureDetector(
+                                    onTap: (){
+                                      Navigator.of(context).pushReplacementNamed('/creditcard');
+                                    },
+                                    child: Image.asset('assets/images/creditcardimage.png')),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10),
                                   child: Text('Credit Card',
@@ -250,8 +256,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ]
                               ),
-                              Column(children:[
-                                 Image.asset('assets/images/rechargeimage.png'),
+                              Column(
+                                children:[
+                                 GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pushReplacementNamed( '/recharge');
+                                  },
+                                  child: Image.asset('assets/images/rechargeimage.png')),
                                    Padding(
                                      padding: const EdgeInsets.only(top: 10),
                                      child: Text('Recharge',
