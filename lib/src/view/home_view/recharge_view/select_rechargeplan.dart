@@ -72,18 +72,28 @@ class _SelectRechargePlanScreenState extends State<SelectRechargePlanScreen> {
                                        ),
                                   Column(
                                     children:[
-                                      Container(
-                                        height: 66,
-                                        width: 65,
-                                        decoration: BoxDecoration(
-                                          color: ywhite,
-                                          borderRadius: BorderRadius.circular(18),
-                                          
+                                      InkWell(
+                                        onTap: (){
+
+                                        },
+                                        child: InkWell(
+                                          onTap: (){
+                                            Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                          },
+                                          child: Container(
+                                            height: 66,
+                                            width: 65,
+                                            decoration: BoxDecoration(
+                                              color: ywhite,
+                                              borderRadius: BorderRadius.circular(18),
+                                              
+                                            ),
+                                            child: Center(
+                                              child: Image.asset('assets/icons/containerdth.png'),
+                                            ),
+                                           ),
                                         ),
-                                        child: Center(
-                                          child: Image.asset('assets/icons/containerdth.png'),
-                                        ),
-                                       ),
+                                      ),
                                        //Image.asset('assets/images/containerdth.png'),
                                        ysizedbox10,
                                        Text('DTH',
@@ -95,17 +105,22 @@ class _SelectRechargePlanScreenState extends State<SelectRechargePlanScreen> {
                                 ]),
                                   Column(
                                     children:[
-                                       Container(
-                                        height: 66,
-                                        width: 65,
-                                        decoration: BoxDecoration(
-                                          color: ywhite,
-                                          borderRadius: BorderRadius.circular(18),
-                                          
-                                        ),
-                                        child: Center(
-                                          child: Image.asset('assets/icons/containerpostpaid.png'),
-                                        ),
+                                       InkWell(
+                                        onTap: (){
+                                          Navigator.of(context).pushReplacementNamed('/postpaid');
+                                        },
+                                         child: Container(
+                                          height: 66,
+                                          width: 65,
+                                          decoration: BoxDecoration(
+                                            color: ywhite,
+                                            borderRadius: BorderRadius.circular(18),
+                                            
+                                          ),
+                                          child: Center(
+                                            child: Image.asset('assets/icons/containerpostpaid.png'),
+                                          ),
+                                         ),
                                        ),
                                        ysizedbox10,
                                        Text('Postpaid',
@@ -215,6 +230,57 @@ class _SelectRechargePlanScreenState extends State<SelectRechargePlanScreen> {
               )
             ),
             onPressed: (){
+                   showDialog(context: context,
+                    builder:(context){
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        ),
+                        actions: [
+                          Container(
+                          
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              
+                              children: [
+                                ysizedbox30,
+                                Center(child: Image.asset('assets/images/checkimage.png',
+                                height: 110,
+                                fit: BoxFit.fitHeight,)),
+                                ysizedbox20,
+                                Text('Recharge Successful \nComplate 1GB Data',
+                                style: primaryFontmedium.copyWith(
+                                  height: 1.5,
+                                  color: yblue,
+                                  fontSize: 20
+                                ),),
+                                ysizedbox40,
+                                InkWell(
+                                  onTap: (){
+                                    Navigator.of(context).pushReplacementNamed( '/recharge');
+                                  },
+                                  child: Container(
+                                    height: 45,
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                      color: yindigo,
+                                      borderRadius: BorderRadius.circular(10)
+                                    ),
+                                    child: Center(child: Text('Done',
+                                    style: primaryFontmedium.copyWith(
+                                      color: ywhite,
+                                      fontSize: 17
+                                    ),)),
+                                  ),
+                                ),
+                                ysizedbox10,
+                              ],
+                            ),
+                          )
+                        ],
+                      );
+                    });
+                    
              // Navigator.of(context).pushReplacementNamed('/selectcard');
             }, 
                      child:Text('Pay ₹15',

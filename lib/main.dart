@@ -12,10 +12,18 @@ import 'package:your_choice_app/src/view/auth_views/registred_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/regverified_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/signin_screen.dart';
 import 'package:your_choice_app/src/view/home_view/credit_card/credit_card_screen.dart';
+import 'package:your_choice_app/src/view/home_view/history/history_screen.dart';
+import 'package:your_choice_app/src/view/home_view/newpayee/new_payeescreen.dart';
+import 'package:your_choice_app/src/view/home_view/newpayee/new_paymentdetails.dart';
 import 'package:your_choice_app/src/view/home_view/payment_link/payment_link_screen.dart';
+import 'package:your_choice_app/src/view/home_view/profile/profile_screen.dart';
 import 'package:your_choice_app/src/view/home_view/ptop_view/ptop_screen.dart';
 import 'package:your_choice_app/src/view/home_view/ptop_view/tranfer_summery_screen.dart';
+import 'package:your_choice_app/src/view/home_view/recharge_view/dth_discription_screen.dart';
+import 'package:your_choice_app/src/view/home_view/recharge_view/dth_screen.dart';
 import 'package:your_choice_app/src/view/home_view/recharge_view/plan_choose_screen.dart';
+import 'package:your_choice_app/src/view/home_view/recharge_view/post_detail_screen.dart';
+import 'package:your_choice_app/src/view/home_view/recharge_view/postpaid_screen.dart';
 import 'package:your_choice_app/src/view/home_view/recharge_view/recharge_screen.dart';
 import 'package:your_choice_app/src/view/home_view/recharge_view/select_prepaid_screen.dart';
 import 'package:your_choice_app/src/view/home_view/recharge_view/select_rechargeplan.dart';
@@ -70,6 +78,14 @@ class MyApp extends StatelessWidget {
         '/selectprepaid':(context) => SlectePrepaidScreen(),
         '/planchoose':(context) => PlanChooseScreen(),
         '/selectrecharge':(context) => SelectRechargePlanScreen(),
+        '/dthscreen':(context) => DthScreen(),
+        '/dthdetail':(context) => DthDiscriptionScreen(),
+        '/postpaid':(context) => PostpaidScreen(),
+        '/postdeatail':(context) => PostpaidDetailScreen(),
+        '/newpayee':(context) => NewPayeeScreen(),
+        '/newpaydetail':(context) => NewPaymentDetailScreen(),
+        '/history':(context) => HistoryScreen(),
+        '/profile':(context) => ProfileScreen(),
 
       },
     );

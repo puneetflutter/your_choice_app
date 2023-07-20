@@ -7,5 +7,11 @@ class SiginController extends GetxController{
    RxInt naviIndex=0.obs;
    RxInt selctedtextindex=0.obs;
    RxInt pageshowindex=0.obs;
-
+   RxBool transaction=false.obs;
+   RxBool moneyadd=false.obs;
+   RxBool moneypaid=false.obs;
+   RxInt dropdrownindex=0.obs;
+   RxBool allcategory=false.obs;
+   RxBool businesspay=false.obs;
+   RxBool paymentlink=false.obs;
 }

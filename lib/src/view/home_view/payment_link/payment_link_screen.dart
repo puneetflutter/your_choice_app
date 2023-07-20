@@ -57,7 +57,7 @@ class _PaymentLinkScreenState extends State<PaymentLinkScreen> {
               ),),
     
               Padding(
-                padding: const EdgeInsets.only(left: 20,right: 15,top: 10),
+                padding: const EdgeInsets.only(left: 40,right: 15,top: 10),
                 child: Row(
                   children: [
                     Container(
@@ -111,11 +111,11 @@ class _PaymentLinkScreenState extends State<PaymentLinkScreen> {
               ),
               ysizedbox20,
                Padding(
-                 padding: const EdgeInsets.only(bottom: 10),
+                 padding: const EdgeInsets.only(bottom: 10,left: 20,right: 20),
                  child: ElevatedButton(
                            
                            style: ElevatedButton.styleFrom(
-                             minimumSize: Size(290, 50),
+                             minimumSize: Size(200, 50),
                              backgroundColor: yindigo,
                              shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)
@@ -124,14 +124,11 @@ class _PaymentLinkScreenState extends State<PaymentLinkScreen> {
                            onPressed: (){
                              //Navigator.of(context).pushReplacementNamed('/selectcard');
                            }, 
-                       child:Row(
-                         children: [
-                           Text('Share',
-                           style: TextStyle(
-                               fontSize: 17
-                           ),),
-                           //Icon(Icons.)
-                         ],
+                       child:Center(
+                         child: Text('Share',
+                         style: TextStyle(
+                             fontSize: 17
+                         ),),
                        )),
                ),
             ],

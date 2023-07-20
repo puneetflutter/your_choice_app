@@ -519,6 +519,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () {
                               navigationCOntroller.naviIndex(1);
                               navigationCOntroller.update();
+                              Navigator.of(context).pushReplacementNamed('/newpayee');
                             },
                              child:navigationCOntroller.naviIndex==1? Container(
                               height: 30,
@@ -547,6 +548,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () {
                               navigationCOntroller.naviIndex(2);
                               navigationCOntroller.update();
+                              Navigator.of(context).pushReplacementNamed( '/history');
                             },
                              child:navigationCOntroller.naviIndex==2? Container(
                               height: 30,
@@ -573,6 +575,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: (){
                               navigationCOntroller.naviIndex(3);
                               navigationCOntroller.update();
+                              Navigator.of(context).pushReplacementNamed('/profile');
                             },
                              child:navigationCOntroller.naviIndex==3? Container(
                               height: 30,

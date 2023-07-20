@@ -38,7 +38,11 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
               padding: const EdgeInsets.only(left: 20,top: 20),
               child: Row(
                 children: [
-                  Icon(Icons.arrow_back),
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).pushReplacementNamed('/home');
+                    },
+                    child: Icon(Icons.arrow_back)),
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Row(

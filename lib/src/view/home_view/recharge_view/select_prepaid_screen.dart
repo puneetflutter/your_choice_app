@@ -84,18 +84,23 @@ class _SlectePrepaidScreenState extends State<SlectePrepaidScreen> {
                                          ),
                                     Column(
                                       children:[
-                                        Container(
-                                          height: 66,
-                                          width: 65,
-                                          decoration: BoxDecoration(
-                                            color: ywhite,
-                                            borderRadius: BorderRadius.circular(18),
-                                            
-                                          ),
-                                          child: Center(
-                                            child: Image.asset('assets/icons/containerdth.png'),
-                                          ),
-                                         ),
+                                        InkWell(
+                                          onTap: (){
+                                            Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                          },
+                                          child: Container(
+                                            height: 66,
+                                            width: 65,
+                                            decoration: BoxDecoration(
+                                              color: ywhite,
+                                              borderRadius: BorderRadius.circular(18),
+                                              
+                                            ),
+                                            child: Center(
+                                              child: Image.asset('assets/icons/containerdth.png'),
+                                            ),
+                                           ),
+                                        ),
                                          //Image.asset('assets/images/containerdth.png'),
                                          ysizedbox10,
                                          Text('DTH',
@@ -107,17 +112,22 @@ class _SlectePrepaidScreenState extends State<SlectePrepaidScreen> {
                                   ]),
                                     Column(
                                       children:[
-                                         Container(
-                                          height: 66,
-                                          width: 65,
-                                          decoration: BoxDecoration(
-                                            color: ywhite,
-                                            borderRadius: BorderRadius.circular(18),
-                                            
-                                          ),
-                                          child: Center(
-                                            child: Image.asset('assets/icons/containerpostpaid.png'),
-                                          ),
+                                         InkWell(
+                                          onTap: (){
+                                            Navigator.of(context).pushReplacementNamed('/postpaid');
+                                          },
+                                           child: Container(
+                                            height: 66,
+                                            width: 65,
+                                            decoration: BoxDecoration(
+                                              color: ywhite,
+                                              borderRadius: BorderRadius.circular(18),
+                                              
+                                            ),
+                                            child: Center(
+                                              child: Image.asset('assets/icons/containerpostpaid.png'),
+                                            ),
+                                           ),
                                          ),
                                          ysizedbox10,
                                          Text('Postpaid',
