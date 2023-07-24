@@ -50,7 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                          Padding(
                            padding: const EdgeInsets.only(right: 5),
-                           child: Image.asset('assets/images/notificationimage.png'),
+                           child: GestureDetector(
+                            onTap: (){
+                              Navigator.of(context).pushReplacementNamed('/notification');
+                            },
+                            child: Image.asset('assets/images/notificationimage.png')),
                          ),
                          Padding(
                            padding: const EdgeInsets.only(left: 5),

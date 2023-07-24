@@ -15,8 +15,15 @@ import 'package:your_choice_app/src/view/home_view/credit_card/credit_card_scree
 import 'package:your_choice_app/src/view/home_view/history/history_screen.dart';
 import 'package:your_choice_app/src/view/home_view/newpayee/new_payeescreen.dart';
 import 'package:your_choice_app/src/view/home_view/newpayee/new_paymentdetails.dart';
+import 'package:your_choice_app/src/view/home_view/notification_screen.dart';
 import 'package:your_choice_app/src/view/home_view/payment_link/payment_link_screen.dart';
+import 'package:your_choice_app/src/view/home_view/profile/confirmation_pin_screen.dart';
+import 'package:your_choice_app/src/view/home_view/profile/create_pin_screen.dart';
+import 'package:your_choice_app/src/view/home_view/profile/edit_profile_screen.dart';
+import 'package:your_choice_app/src/view/home_view/profile/password_screen.dart';
 import 'package:your_choice_app/src/view/home_view/profile/profile_screen.dart';
+import 'package:your_choice_app/src/view/home_view/profile/referal_screen.dart';
+import 'package:your_choice_app/src/view/home_view/profile/support_screen.dart';
 import 'package:your_choice_app/src/view/home_view/ptop_view/ptop_screen.dart';
 import 'package:your_choice_app/src/view/home_view/ptop_view/tranfer_summery_screen.dart';
 import 'package:your_choice_app/src/view/home_view/recharge_view/dth_discription_screen.dart';
@@ -86,6 +93,13 @@ class MyApp extends StatelessWidget {
         '/newpaydetail':(context) => NewPaymentDetailScreen(),
         '/history':(context) => HistoryScreen(),
         '/profile':(context) => ProfileScreen(),
+        '/editprofile':(context) => EditProfileScreen(),
+        '/createpin':(context) => CreatePinScreen(),
+        '/confirmationpin':(context) => ConfirmationPinScreen(),
+        '/password':(context) => PasswordScreen(),
+        '/referal':(context) => ReferalScreen(),
+        '/support':(context) => SupportScreen(),
+        '/notification':(context) => NotificationScreen(),
 
       },
     );
