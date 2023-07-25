@@ -24,29 +24,23 @@ class _PasswordCreateScreenState extends State<PasswordCreateScreen> {
         children: [
           Form(
             key: formKey,
-            child: Column(
+            child: Column(mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                   ysizedbox10,
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                    child: Row(
-                      children: [
-                        IconButton(
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        }, 
-                      icon: Icon(Icons.arrow_back,
-                      color: yblue,)),
-                      ],
-                    ),
-                ),
+                   ysizedbox40,
+              Container(
+                  child: Row(
+                    children: [
+                    //   IconButton(
+                    //   onPressed: (){
+                    //     Navigator.of(context).pop();
+                    //   }, 
+                    // icon: Icon(Icons.arrow_back,
+                    // color: yblue,)),
+                    ],
+                  ),
               ),
             ysizedbox40,
-            Padding(
-              padding: const EdgeInsets.only(top: 60),
-              child: Image.asset('assets/images/passwordcreateimage.png'),
-            ),
+            Image.asset('assets/images/passwordcreateimage.png'),
             ysizedbox30,
             Text('Password Create',
             style: primaryFontsemiBold.copyWith(
@@ -143,13 +137,13 @@ class _PasswordCreateScreenState extends State<PasswordCreateScreen> {
                 if(formKey.currentState!.validate()){
                   
                 }
-                Navigator.of(context).pushReplacementNamed('/passwordsucess');
+                Navigator.of(context).pushNamed('/passwordsucess');
               }, 
              child:Text('Submit',
              style: TextStyle(
               fontSize: 17
              ),)),
-             ysizedbox20,
+            // ysizedbox20,
               ],
             ),
           ),

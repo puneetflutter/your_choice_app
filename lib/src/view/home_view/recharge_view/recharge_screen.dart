@@ -54,7 +54,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                               children: [
                                    GestureDetector(
                                     onTap: (){
-                                      Navigator.of(context).pushReplacementNamed('/home');
+                                      Navigator.of(context).pushNamed('/home');
                                     },
                                     child: Image.asset('assets/icons/backarrow.png')),
                                  Text('Recharge Bill',
@@ -98,7 +98,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                 children:[
                                   InkWell(
                                     onTap: (){
-                                      Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                      Navigator.of(context).pushNamed('/dthscreen');
                                     },
                                     child: Container(
                                       height: 66,
@@ -126,7 +126,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                 children:[
                                    InkWell(
                                     onTap: (){
-                                      Navigator.of(context).pushReplacementNamed('/postpaid');
+                                      Navigator.of(context).pushNamed('/postpaid');
                                     },
                                      child: Container(
                                       height: 66,
@@ -310,7 +310,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed('/selectprepaid');
+                              Navigator.of(context).pushNamed('/selectprepaid');
                             },
                             child: Container(
                             height: 100,

@@ -30,7 +30,7 @@ class _SelectRechargePlanScreenState extends State<SelectRechargePlanScreen> {
                                   children: [
                                        GestureDetector(
                                         onTap: (){
-                                          Navigator.of(context).pushReplacementNamed('/home');
+                                          Navigator.of(context).pushNamed('/home');
                                         },
                                         child: Image.asset('assets/icons/backarrow.png')),
                                      Text('Recharge Bill',
@@ -78,7 +78,7 @@ class _SelectRechargePlanScreenState extends State<SelectRechargePlanScreen> {
                                         },
                                         child: InkWell(
                                           onTap: (){
-                                            Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                            Navigator.of(context).pushNamed('/dthscreen');
                                           },
                                           child: Container(
                                             height: 66,
@@ -107,7 +107,7 @@ class _SelectRechargePlanScreenState extends State<SelectRechargePlanScreen> {
                                     children:[
                                        InkWell(
                                         onTap: (){
-                                          Navigator.of(context).pushReplacementNamed('/postpaid');
+                                          Navigator.of(context).pushNamed('/postpaid');
                                         },
                                          child: Container(
                                           height: 66,
@@ -257,7 +257,7 @@ class _SelectRechargePlanScreenState extends State<SelectRechargePlanScreen> {
                                 ysizedbox40,
                                 InkWell(
                                   onTap: (){
-                                    Navigator.of(context).pushReplacementNamed( '/recharge');
+                                    Navigator.of(context).pushNamed( '/recharge');
                                   },
                                   child: Container(
                                     height: 45,
@@ -281,7 +281,7 @@ class _SelectRechargePlanScreenState extends State<SelectRechargePlanScreen> {
                       );
                     });
                     
-             // Navigator.of(context).pushReplacementNamed('/selectcard');
+             // Navigator.of(context).pushNamed('/selectcard');
             }, 
                      child:Text('Pay ₹15',
                      style: TextStyle(

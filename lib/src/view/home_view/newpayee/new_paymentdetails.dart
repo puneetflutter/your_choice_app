@@ -28,7 +28,7 @@ class _NewPaymentDetailScreenState extends State<NewPaymentDetailScreen> {
               children: [
                    GestureDetector(
                       onTap: (){
-                     Navigator.of(context).pushReplacementNamed(  '/newpayee');
+                     Navigator.of(context).pushNamed(  '/newpayee');
                      },
                     child: Image.asset('assets/icons/backarrow.png',color: yblue,)),
 
@@ -198,7 +198,7 @@ class _NewPaymentDetailScreenState extends State<NewPaymentDetailScreen> {
                ysizedbox40,
                 InkWell(
                   onTap: (){
-                    Navigator.of(context).pushReplacementNamed('/newpayee');
+                    Navigator.of(context).pushNamed('/newpayee');
                   },
                   child: Container(
                   height: 58,

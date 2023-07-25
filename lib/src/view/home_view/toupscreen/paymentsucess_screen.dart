@@ -40,7 +40,7 @@ class _paymentSucessScreenState extends State<paymentSucessScreen> {
                 )
               ),
               onPressed: (){
-              Navigator.of(context).pushReplacementNamed( '/home');
+              Navigator.of(context).pushNamed( '/bottumnavbar');
               }, 
                        child:Text('Go Back To Home',
                        style: TextStyle(

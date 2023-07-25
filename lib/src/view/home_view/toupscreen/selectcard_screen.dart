@@ -45,7 +45,7 @@ class _SelectCardScreenState extends State<SelectCardScreen> {
                   children: [
                     GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushReplacementNamed('/instaptop');
+                        Navigator.of(context).pushNamed('/instaptop');
                       },
                       child: Icon(Icons.arrow_back,color: yblue,)),
                     Padding(
@@ -288,7 +288,7 @@ class _SelectCardScreenState extends State<SelectCardScreen> {
                 )
               ),
               onPressed: (){
-              Navigator.of(context).pushReplacementNamed( '/topupscreen');
+              Navigator.of(context).pushNamed( '/topupscreen');
               }, 
                        child:Text('Next',
                        style: TextStyle(

@@ -32,7 +32,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed('/editprofile');
+                              Navigator.of(context).pushNamed('/editprofile');
                             },
                             child: Image.asset('assets/icons/backarrow.png')),
                        Text('Create Pin',
@@ -105,7 +105,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                         ysizedbox40,
                         InkWell(
                           onTap: (){
-                            Navigator.of(context).pushReplacementNamed( '/confirmationpin');
+                            Navigator.of(context).pushNamed( '/confirmationpin');
                           },
                           child: Container(
                             height: 55,

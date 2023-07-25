@@ -18,21 +18,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-               ysizedbox10,
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                    child: Row(
-                      children: [
-                        IconButton(
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        }, 
-                      icon: Icon(Icons.arrow_back,
-                      color: yblue,)),
-                      ],
-                    ),
-                ),
+               ysizedbox40,
+              Container(
+                  child: Row(
+                    children: [
+                    //   IconButton(
+                    //   onPressed: (){
+                    //     Navigator.of(context).pop();
+                    //   }, 
+                    // icon: Icon(Icons.arrow_back,
+                    // color: yblue,)),
+                    ],
+                  ),
               ),
             ysizedbox40,
             Padding(
@@ -82,7 +79,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               )
             ),
             onPressed: (){
-              Navigator.of(context).pushReplacementNamed('/forgotverification');
+              Navigator.of(context).pushNamed('/forgotverification');
             }, 
            child:Text('Reset Password',
            style: TextStyle(
@@ -101,7 +98,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),),
                  GestureDetector(
                   onTap: (){
-                    Navigator.of(context).pushReplacementNamed( '/registerscreen');
+                    Navigator.of(context).pushNamed( '/registerscreen');
                   },
                    child: Text(' Register Now',
                     style: TextStyle(

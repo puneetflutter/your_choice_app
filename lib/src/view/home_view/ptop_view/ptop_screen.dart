@@ -37,7 +37,7 @@ class _PtopScreenState extends State<PtopScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(onPressed: (){
-                            Navigator.of(context).pushReplacementNamed('/home');
+                            Navigator.of(context).pushNamed('/bottumnavbar');
                           },
                            icon: Icon(Icons.arrow_back,
                            color: yblue,)),
@@ -319,7 +319,7 @@ class _PtopScreenState extends State<PtopScreen> {
               ),
               onPressed: (){
 
-                Navigator.of(context).pushReplacementNamed( '/transfersummery');
+                Navigator.of(context).pushNamed( '/transfersummery');
               }, 
              child:Text('Next',
              style: primaryFontsemiBold.copyWith(

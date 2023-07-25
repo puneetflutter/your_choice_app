@@ -49,7 +49,7 @@ class _PostpaidScreenState extends State<PostpaidScreen> {
                                         children: [
                                              GestureDetector(
                                               onTap: (){
-                                                Navigator.of(context).pushReplacementNamed('/home');
+                                                Navigator.of(context).pushNamed('/home');
                                               },
                                               child: Image.asset('assets/icons/backarrow.png')),
                                            Text('PostPaid Bill',
@@ -93,7 +93,7 @@ class _PostpaidScreenState extends State<PostpaidScreen> {
                                           children:[
                                             InkWell(
                                               onTap: (){
-                                                Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                                Navigator.of(context).pushNamed('/dthscreen');
                                               },
                                               child: Container(
                                                 height: 66,
@@ -168,7 +168,7 @@ class _PostpaidScreenState extends State<PostpaidScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed( '/postdeatail');
+                              Navigator.of(context).pushNamed( '/postdeatail');
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

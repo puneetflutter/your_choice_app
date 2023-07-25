@@ -35,7 +35,7 @@ class _SupportScreenState extends State<SupportScreen> {
                                 children: [
                                   InkWell(
                                     onTap: (){
-                                      Navigator.of(context).pushReplacementNamed( '/profile');
+                                      Navigator.of(context).pushNamed( '/profile');
                                     },
                                     child: Image.asset('assets/icons/backarrow.png')),
                                Text('Support',
@@ -196,7 +196,7 @@ class _SupportScreenState extends State<SupportScreen> {
                         ysizedbox40,
                         InkWell(
                           onTap: (){
-                            Navigator.of(context).pushReplacementNamed( '/profile');
+                            Navigator.of(context).pushNamed( '/bottumnavbar');
                           },
                           child: Container(
                             height: 50,

@@ -32,7 +32,7 @@ class _ConfirmationPinScreenState extends State<ConfirmationPinScreen> {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed('/createpin');
+                              Navigator.of(context).pushNamed('/bottumnavbar');
                             },
                             child: Image.asset('assets/icons/backarrow.png')),
                        Text('Confirm Pin',
@@ -106,7 +106,7 @@ class _ConfirmationPinScreenState extends State<ConfirmationPinScreen> {
                         ysizedbox40,
                         InkWell(
                           onTap: (){
-                            Navigator.of(context).pushReplacementNamed('/profile');
+                            Navigator.of(context).pushNamed('/bottumnavbar');
                           },
                           child: Container(
                             height: 55,

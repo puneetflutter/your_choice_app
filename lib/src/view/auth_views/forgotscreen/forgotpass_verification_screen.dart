@@ -21,23 +21,20 @@ class _ForgotPassVerificationScreenState extends State<ForgotPassVerificationScr
       body: SafeArea(
         child: ListView(
           children: [
-            Column(
+            Column(mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                   ysizedbox10,
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                    child: Row(
-                      children: [
-                        IconButton(
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        }, 
-                      icon: Icon(Icons.arrow_back,
-                      color: yblue,)),
-                      ],
-                    ),
-                ),
+        //           ysizedbox40,
+              Container(
+                  child: Row(
+                    children: [
+                    //   IconButton(
+                    //   onPressed: (){
+                    //     Navigator.of(context).pop();
+                    //   }, 
+                    // icon: Icon(Icons.arrow_back,
+                    // color: yblue,)),
+                    ],
+                  ),
               ),
                   ysizedbox40,
                 Padding(
@@ -112,7 +109,7 @@ class _ForgotPassVerificationScreenState extends State<ForgotPassVerificationScr
               )
             ),
             onPressed: (){
-              Navigator.of(context).pushReplacementNamed('/passwordcreate');
+              Navigator.of(context).pushNamed('/passwordcreate');
             }, 
            child:Text('Verify',
            style: TextStyle(
@@ -134,7 +131,7 @@ class _ForgotPassVerificationScreenState extends State<ForgotPassVerificationScr
                   ),)
                 ],
                ),
-               ysizedbox30
+           //    ysizedbox30
               ],
             ),
           ],

@@ -40,7 +40,7 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
                 children: [
                   InkWell(
                     onTap: (){
-                      Navigator.of(context).pushReplacementNamed('/home');
+                      Navigator.of(context).pushNamed('/bottumnavbar');
                     },
                     child: Icon(Icons.arrow_back)),
                   Padding(
@@ -294,7 +294,7 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
               )
             ),
             onPressed: (){
-              Navigator.of(context).pushReplacementNamed('/selectcard');
+              Navigator.of(context).pushNamed('/selectcard');
             }, 
                      child:Text('Next',
                      style: TextStyle(

@@ -30,7 +30,7 @@ class _DthDiscriptionScreenState extends State<DthDiscriptionScreen> {
                                             children: [
                                                  GestureDetector(
                                                   onTap: (){
-                                                    Navigator.of(context).pushReplacementNamed( '/dthscreen');
+                                                    Navigator.of(context).pushNamed( '/dthscreen');
                                                   },
                                                   child: Image.asset('assets/icons/backarrow.png')),
                                                Text('DTH Bill',
@@ -74,7 +74,7 @@ class _DthDiscriptionScreenState extends State<DthDiscriptionScreen> {
                                               children:[
                                                 InkWell(
                                                   onTap: (){
-                                                    Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                                    Navigator.of(context).pushNamed('/dthscreen');
                                                   },
                                                   child: Container(
                                                     height: 66,
@@ -102,7 +102,7 @@ class _DthDiscriptionScreenState extends State<DthDiscriptionScreen> {
                                               children:[
                                                  InkWell(
                                                   onTap: (){
-                                                    Navigator.of(context).pushReplacementNamed('/postpaid');
+                                                    Navigator.of(context).pushNamed('/postpaid');
                                                   },
                                                    child: Container(
                                                     height: 66,
@@ -197,7 +197,7 @@ class _DthDiscriptionScreenState extends State<DthDiscriptionScreen> {
                           ysizedbox40,
                           InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed( '/dthscreen');
+                              Navigator.of(context).pushNamed( '/dthscreen');
                             },
                             child: Container(
                               height: 58,

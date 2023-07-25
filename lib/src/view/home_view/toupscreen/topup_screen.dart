@@ -29,7 +29,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                     padding: const EdgeInsets.only(left: 5),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushReplacementNamed('/selectcard');
+                        Navigator.of(context).pushNamed('/selectcard');
                       },
                       child: Icon(Icons.arrow_back,
                       color: yblue,),
@@ -98,7 +98,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                 )
               ),
               onPressed: (){
-              Navigator.of(context).pushReplacementNamed( '/topuppayment');
+              Navigator.of(context).pushNamed( '/topuppayment');
               }, 
                        child:Text('Proceed',
                        style: TextStyle(

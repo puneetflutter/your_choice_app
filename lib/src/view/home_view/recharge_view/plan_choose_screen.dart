@@ -43,7 +43,7 @@ class _PlanChooseScreenState extends State<PlanChooseScreen> {
                                     children: [
                                          GestureDetector(
                                           onTap: (){
-                                            Navigator.of(context).pushReplacementNamed('/home');
+                                            Navigator.of(context).pushNamed('/home');
                                           },
                                           child: Image.asset('assets/icons/backarrow.png')),
                                        Text('Recharge Bill',
@@ -87,7 +87,7 @@ class _PlanChooseScreenState extends State<PlanChooseScreen> {
                                       children:[
                                         InkWell(
                                           onTap: (){
-                                            Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                            Navigator.of(context).pushNamed('/dthscreen');
                                           },
                                           child: Container(
                                             height: 66,
@@ -115,7 +115,7 @@ class _PlanChooseScreenState extends State<PlanChooseScreen> {
                                       children:[
                                          InkWell(
                                           onTap: (){
-                                            Navigator.of(context).pushReplacementNamed('/postpaid');
+                                            Navigator.of(context).pushNamed('/postpaid');
                                           },
                                            child: Container(
                                             height: 66,
@@ -280,7 +280,7 @@ class _PlanChooseScreenState extends State<PlanChooseScreen> {
                                   ),),
                                   InkWell(
                                     onTap: (){
-                                      Navigator.of(context).pushReplacementNamed('/selectrecharge');
+                                      Navigator.of(context).pushNamed('/selectrecharge');
                                     },
                                     child: Icon(Icons.arrow_forward_ios))
                                ],

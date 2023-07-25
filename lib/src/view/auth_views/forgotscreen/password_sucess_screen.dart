@@ -17,27 +17,24 @@ class _PasswordSucessScreenState extends State<PasswordSucessScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
         children: [
-             ysizedbox10,
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                    child: Row(
-                      children: [
-                        IconButton(
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        }, 
-                      icon: Icon(Icons.arrow_back,color: yblue,)),
-                      ],
-                    ),
-                ),
+             ysizedbox30,
+              Container(
+                  child: Row(
+                    children: [
+                    //   IconButton(
+                    //   onPressed: (){
+                    //     Navigator.of(context).pop();
+                    //   }, 
+                    // icon: Icon(Icons.arrow_back,color: yblue,)),
+                    ],
+                  ),
               ),
           ysizedbox40,
           Center(child: Image.asset('assets/images/passwordsucessimage.png')),
           ysizedbox10,
-          Text('Password change successful',
+          Text('Password change successfull',
           style: TextStyle(
-            fontSize: 18
+            fontSize: 18,fontWeight: FontWeight.w700
           ),),
                ysizedbox40,
               Padding(
@@ -53,14 +50,14 @@ class _PasswordSucessScreenState extends State<PasswordSucessScreen> {
                 ),
                 onPressed: (){
                  
-                  Navigator.of(context).pushReplacementNamed('/registerscreen');
+                  Navigator.of(context).pushNamed('/registerscreen');
                 }, 
                            child:Text('Done',
                            style: TextStyle(
                 fontSize: 17
                            ),)),
               ),
-             ysizedbox20,
+            // ysizedbox20,
         ],
       )),
     );

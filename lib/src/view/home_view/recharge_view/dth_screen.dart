@@ -44,7 +44,7 @@ class _DthScreenState extends State<DthScreen> {
                                         children: [
                                              GestureDetector(
                                               onTap: (){
-                                                Navigator.of(context).pushReplacementNamed('/home');
+                                                Navigator.of(context).pushNamed('/home');
                                               },
                                               child: Image.asset('assets/icons/backarrow.png')),
                                            Text('DTH Bill',
@@ -88,7 +88,7 @@ class _DthScreenState extends State<DthScreen> {
                                           children:[
                                             InkWell(
                                               onTap: (){
-                                                Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                                Navigator.of(context).pushNamed('/dthscreen');
                                               },
                                               child: Container(
                                                 height: 66,
@@ -116,7 +116,7 @@ class _DthScreenState extends State<DthScreen> {
                                           children:[
                                              InkWell(
                                               onTap: (){
-                                                Navigator.of(context).pushReplacementNamed('/postpaid');
+                                                Navigator.of(context).pushNamed('/postpaid');
                                               },
                                                child: Container(
                                                 height: 66,
@@ -180,7 +180,7 @@ class _DthScreenState extends State<DthScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed( '/dthdetail');
+                              Navigator.of(context).pushNamed( '/dthdetail');
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

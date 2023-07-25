@@ -17,24 +17,21 @@ class _RegisteredScreenState extends State<RegisteredScreen> {
       //   leading: 
       // ),
       body: SafeArea(
-        child: Column(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
            // ysizedbox40,
-           ysizedbox10,
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                    child: Row(
-                      children: [
-                        IconButton(
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        }, 
-                      icon: Icon(Icons.arrow_back_ios)),
-                      ],
-                    ),
-                ),
+        ///   ysizedbox10,
+              Container(
+                  child: Row(
+                    children: [
+                    //   IconButton(
+                    //   onPressed: (){
+                    //     Navigator.of(context).pop();
+                    //   }, 
+                    // icon: Icon(Icons.arrow_back_ios)),
+                    ],
+                  ),
               ),
               ysizedbox40,
             Center(
@@ -60,7 +57,7 @@ class _RegisteredScreenState extends State<RegisteredScreen> {
               )
             ),
             onPressed: (){
-              Navigator.of(context).pushReplacementNamed(  '/registerverifiedscreen');
+              Navigator.of(context).pushNamed(  '/registerverifiedscreen');
             }, 
            child:Text('Next',
            style: TextStyle(

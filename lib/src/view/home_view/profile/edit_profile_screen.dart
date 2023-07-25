@@ -35,7 +35,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed('/profile');
+                              Navigator.of(context).pushNamed('/bottumnavbar');
                             },
                             child: Image.asset('assets/icons/backarrow.png')),
                        Text('Profile Edit',

@@ -23,7 +23,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               children: [
                  GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushReplacementNamed('/home');
+                        Navigator.of(context).pushNamed(  '/bottumnavbar');
                       },
                       child: Image.asset('assets/icons/backarrow.png',
                       color: yblue,),),

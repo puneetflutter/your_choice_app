@@ -21,26 +21,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child:ListView(
+        child:ListView(physics: BouncingScrollPhysics(),
           children: [
-            Column(
+            Column(mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                   ysizedbox10,
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                    child: Row(
-                      children: [
-                        IconButton(
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        }, 
-                      icon: Icon(Icons.arrow_back_ios)),
-                      ],
-                    ),
-                ),
+           //        ysizedbox10,
+              Container(
+                  child: Row(
+                    children: [
+                    //   IconButton(
+                    //   onPressed: (){
+                    //     Navigator.of(context).pop();
+                    //   }, 
+                    // icon: Icon(Icons.arrow_back_ios)),
+                    ],
+                  ),
               ),
-                ysizedbox40,
+                ysizedbox20,
                 Image.asset('assets/images/registerimage.png'),
                 ysizedbox30,
                 Text('Register New Account',
@@ -176,7 +173,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               )
             ),
             onPressed: (){
-              Navigator.of(context).pushReplacementNamed( '/registeredscreen');
+              Navigator.of(context).pushNamed( '/registeredscreen');
             }, 
            child:Text('Register Account',
            style: TextStyle(
@@ -192,7 +189,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),),
               GestureDetector(
                 onTap: (){
-                  Navigator.of(context).pushReplacementNamed(   '/siginhome');
+                  Navigator.of(context).pushNamed(   '/siginhome');
                 },
                 child: Text(' Sign in',style: TextStyle(
                   fontSize: 16,
@@ -205,7 +202,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),)
             ],
            ),
-           ysizedbox30,
+           ysizedbox40,
               ],
             ),
 

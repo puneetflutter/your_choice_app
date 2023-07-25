@@ -7,6 +7,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 import 'package:your_choice_app/src/view/home_view/home_screen.dart';
+import 'package:your_choice_app/src/widgets/bottumnav_bar.dart';
 
 
 class OnbordingScreen extends StatefulWidget {
@@ -47,7 +48,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
         backgroundColor: ywhite,
         body: SafeArea(
          
-         child:     Column(
+         child:     Column(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     height: 533,
@@ -101,7 +102,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                                 isPageViewEnabled = true;
                               });
                               if (_pageController.page!.toInt() == 3) {
-                              Navigator.of(context).pushReplacementNamed("/authlanding");
+                              Navigator.of(context).pushNamed("/authlanding");
                               } else {
                                 _pageController.nextPage(
                                   duration: const Duration(milliseconds: 300),
@@ -127,7 +128,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                             ),
                             ysizedbox20,
                             TextButton(onPressed: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen()));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BottumBar()));
                             }, 
                             child: Text('Skip',
                             style: primaryFont.copyWith(

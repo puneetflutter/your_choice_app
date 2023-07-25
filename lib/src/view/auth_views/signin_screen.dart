@@ -21,9 +21,9 @@ final signinController=Get.find<SiginController>();
   Widget build(BuildContext context) {
     return Scaffold(
        body: Obx(() => 
-ListView(
+ListView(physics: BouncingScrollPhysics(),
            children: [
-             Column(
+             Column(mainAxisAlignment: MainAxisAlignment.center,
               children: [
                    ysizedbox10,
                 Padding(
@@ -31,11 +31,11 @@ ListView(
                   child: Container(
                       child: Row(
                         children: [
-                          IconButton(
-                          onPressed: (){
-                            Navigator.of(context).pushReplacementNamed( '/authlanding');
-                          }, 
-                        icon: Icon(Icons.arrow_back_ios)),
+                        //   IconButton(
+                        //   onPressed: (){
+                        //     Navigator.of(context).pushNamed( '/authlanding');
+                        //   }, 
+                        // icon: Icon(Icons.arrow_back_ios)),
                         ],
                       ),
                   ),
@@ -129,7 +129,7 @@ ListView(
               ),
               onPressed: (){
 
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushNamed('/bottumnavbar');
               }, 
              child:Text('Sign in',
              style: TextStyle(
@@ -149,7 +149,7 @@ ListView(
                     signinController.siginIndex(2);
                     signinController.update();
             
-                //Navigator.of(context).pushReplacementNamed('/siginhome');
+                //Navigator.of(context).pushNamed('/siginhome');
               }, 
              child:signinController.siginIndex.value==0? Text('Use Email Id',
              
@@ -167,7 +167,7 @@ ListView(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(onPressed: (){
-                  Navigator.of(context).pushReplacementNamed('/forgotscreen');
+                  Navigator.of(context).pushNamed('/forgotscreen');
                 }, 
                 child: Text('Forget password |',
                 style: primaryFontbold.copyWith(
@@ -176,7 +176,7 @@ ListView(
                 ),)),
               
                 TextButton(onPressed: (){
-                  Navigator.of(context).pushReplacementNamed('/registerscreen');
+                  Navigator.of(context).pushNamed('/registerscreen');
                 },
                  child: Text('Create Account'))
               ],

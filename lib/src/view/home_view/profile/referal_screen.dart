@@ -42,7 +42,7 @@ class _ReferalScreenState extends State<ReferalScreen> {
                             children: [
                               InkWell(
                                 onTap: (){
-                                  Navigator.of(context).pushReplacementNamed( '/profile');
+                                  Navigator.of(context).pushNamed( '/bottumnavbar');
                                 },
                                 child: Image.asset('assets/icons/backarrow.png')),
                            Text('Referral',
@@ -129,13 +129,10 @@ class _ReferalScreenState extends State<ReferalScreen> {
                               ),
                               Container(
                                 height: 500,
-                                child: ListView.builder(
+                                child: ListView.builder(physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemBuilder: (context,index){
-                                  return Column(
-                                    //crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                         Container(
+                                  return   Container(
                                           width: MediaQuery.of(context).size.width,
                                            child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -197,16 +194,7 @@ class _ReferalScreenState extends State<ReferalScreen> {
                                                )
                                              ],
                                            ),
-                                         ),
-                                      
-                                         Padding(
-                                           padding: const EdgeInsets.only(left: 30,right: 10,top: 5),
-                                           child: Divider(
-                                            thickness: 1,
-                                           ),
-                                         )
-                                    ],
-                                  );
+                                         );
                                 }),
                               )
                       ],

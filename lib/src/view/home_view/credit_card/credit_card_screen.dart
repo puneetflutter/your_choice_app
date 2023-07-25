@@ -32,7 +32,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                   child: Row(
                     children: [
                     IconButton(onPressed: (){
-                      Navigator.of(context).pushReplacementNamed('/home');
+                      Navigator.of(context).pushNamed('/home');
                     }, 
                     icon: Icon(Icons.arrow_back,
                     color: yblue,)),
@@ -231,7 +231,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                 )
               ),
               onPressed: (){
-              Navigator.of(context).pushReplacementNamed( '/home');
+              Navigator.of(context).pushNamed( '/home');
               }, 
                        child:Text('Done',
                        style: TextStyle(
@@ -244,7 +244,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                       ],
                     );
                    });
-                //Navigator.of(context).pushReplacementNamed( '/transfersummery');
+                //Navigator.of(context).pushNamed( '/transfersummery');
               }, 
              child:Text('Save',
              style: primaryFontsemiBold.copyWith(

@@ -24,7 +24,7 @@ class _PaymentLinkScreenState extends State<PaymentLinkScreen> {
                 children: [
                   GestureDetector(
                     onTap: (){
-                      Navigator.of(context).pushReplacementNamed('/home');
+                      Navigator.of(context).pushNamed(     '/bottumnavbar'     )   ;   
                     },
                     child: Icon(Icons.arrow_back)),
                   Padding(
@@ -122,7 +122,7 @@ class _PaymentLinkScreenState extends State<PaymentLinkScreen> {
                              )
                            ),
                            onPressed: (){
-                             //Navigator.of(context).pushReplacementNamed('/selectcard');
+                             //Navigator.of(context).pushNamed('/selectcard');
                            }, 
                        child:Center(
                          child: Text('Share',

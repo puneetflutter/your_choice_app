@@ -49,7 +49,7 @@ class _PostpaidDetailScreenState extends State<PostpaidDetailScreen> {
                                         children: [
                                              GestureDetector(
                                               onTap: (){
-                                                Navigator.of(context).pushReplacementNamed('/postpaid');
+                                                Navigator.of(context).pushNamed('/postpaid');
                                               },
                                               child: Image.asset('assets/icons/backarrow.png')),
                                            Text('BSNL Broadhband',
@@ -93,7 +93,7 @@ class _PostpaidDetailScreenState extends State<PostpaidDetailScreen> {
                                           children:[
                                             InkWell(
                                               onTap: (){
-                                                Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                                Navigator.of(context).pushNamed('/dthscreen');
                                               },
                                               child: Container(
                                                 height: 66,
@@ -218,7 +218,7 @@ class _PostpaidDetailScreenState extends State<PostpaidDetailScreen> {
                                 children: [
                                   InkWell(
                                     onTap: (){
-                                      Navigator.of(context).pushReplacementNamed('/postpaid');
+                                      Navigator.of(context).pushNamed('/postpaid');
                                     },
                                     child: Container(
                                                           height: 50,

@@ -40,6 +40,7 @@ import 'package:your_choice_app/src/view/home_view/toupscreen/selectcard_screen.
 import 'package:your_choice_app/src/view/home_view/toupscreen/topup_payment_screen.dart';
 import 'package:your_choice_app/src/view/home_view/toupscreen/topup_screen.dart';
 import 'package:your_choice_app/src/view/splash_screen/splash_screen.dart';
+import 'package:your_choice_app/src/widgets/bottumnav_bar.dart';
 
 import 'src/view/home_view/home_screen.dart';
 
@@ -100,6 +101,7 @@ class MyApp extends StatelessWidget {
         '/referal':(context) => ReferalScreen(),
         '/support':(context) => SupportScreen(),
         '/notification':(context) => NotificationScreen(),
+        '/bottumnavbar':(context)=>BottumBar()
 
       },
     );

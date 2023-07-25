@@ -29,7 +29,7 @@ class _TopUpPaymentScreenState extends State<TopUpPaymentScreen> {
                   children: [
                     GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushReplacementNamed('/topupscreen');
+                        Navigator.of(context).pushNamed('/topupscreen');
                       },
                       child: Icon(Icons.arrow_back,
                       color: yblue,),
@@ -184,7 +184,7 @@ class _TopUpPaymentScreenState extends State<TopUpPaymentScreen> {
                 )
               ),
               onPressed: (){
-              Navigator.of(context).pushReplacementNamed( '/paymentsuccess');
+              Navigator.of(context).pushNamed( '/paymentsuccess');
               }, 
                        child:Text('Next',
                        style: TextStyle(

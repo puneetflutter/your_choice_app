@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 
@@ -16,9 +16,9 @@ class _AuthLandingScreenState extends State<AuthLandingScreen> {
     return Scaffold(
       body: SafeArea(
         
-        child: ListView(
+        child: ListView(physics: BouncingScrollPhysics(),
           children: [
-            Column(
+            Column(mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                    ysizedbox10,
@@ -27,19 +27,19 @@ class _AuthLandingScreenState extends State<AuthLandingScreen> {
                       child: Container(
                           child: Row(
                             children: [
-                              IconButton(
-                              onPressed: (){
-                                Navigator.of(context).pushReplacementNamed("/onbording");
-                              }, 
-                            icon: Icon(Icons.arrow_back,
-                            color: yblue,)),
+                            //   IconButton(
+                            //   onPressed: (){
+                            //     Navigator.of(context).pushNamed("/onbording");
+                            //   }, 
+                            // icon: Icon(Icons.arrow_back,
+                            // color: yblue,)),
                             ],
                           ),
                       ),
                     ),
                 ysizedbox40,
                 Padding(
-                  padding: const EdgeInsets.only(top: 30),
+                  padding: const EdgeInsets.only(),
                   child: Image.asset('assets/images/authlandingimage.png'),
                 ),
                 ysizedbox20,
@@ -67,14 +67,14 @@ class _AuthLandingScreenState extends State<AuthLandingScreen> {
                     )
                   ),
                   onPressed: (){
-                    Navigator.of(context).pushReplacementNamed('/siginhome');
+                    Navigator.of(context).pushNamed('/siginhome');
                   }, 
                  child:Text('Sign in',
                  style: TextStyle(
                   fontSize: 17
                  ),)),
                  ysizedbox20,
-                 TextButton(onPressed: (){},
+                 TextButton(onPressed: (){ Navigator.of(context).pushNamed('/registerscreen');},
                   child: Text('Create a new account',
                   style: TextStyle(
                     fontSize: 17

@@ -42,7 +42,7 @@ class _SlectePrepaidScreenState extends State<SlectePrepaidScreen> {
                                     children: [
                                          GestureDetector(
                                           onTap: (){
-                                            Navigator.of(context).pushReplacementNamed('/home');
+                                            Navigator.of(context).pushNamed('/home');
                                           },
                                           child: Image.asset('assets/icons/backarrow.png')),
                                        Text('Recharge Bill',
@@ -86,7 +86,7 @@ class _SlectePrepaidScreenState extends State<SlectePrepaidScreen> {
                                       children:[
                                         InkWell(
                                           onTap: (){
-                                            Navigator.of(context).pushReplacementNamed('/dthscreen');
+                                            Navigator.of(context).pushNamed('/dthscreen');
                                           },
                                           child: Container(
                                             height: 66,
@@ -114,7 +114,7 @@ class _SlectePrepaidScreenState extends State<SlectePrepaidScreen> {
                                       children:[
                                          InkWell(
                                           onTap: (){
-                                            Navigator.of(context).pushReplacementNamed('/postpaid');
+                                            Navigator.of(context).pushNamed('/postpaid');
                                           },
                                            child: Container(
                                             height: 66,
@@ -174,7 +174,7 @@ class _SlectePrepaidScreenState extends State<SlectePrepaidScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed( '/planchoose');
+                              Navigator.of(context).pushNamed( '/planchoose');
                             },
                             child: Container(
                                                   

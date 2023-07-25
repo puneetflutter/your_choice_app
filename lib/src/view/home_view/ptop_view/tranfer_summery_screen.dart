@@ -32,7 +32,7 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(onPressed: (){
-                            Navigator.of(context).pushReplacementNamed('/home');
+                            Navigator.of(context).pushNamed('/home');
                           },
                            icon: Icon(Icons.arrow_back,
                            color: yblue,)),
@@ -319,7 +319,7 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                                ysizedbox20,
                               GestureDetector(
                                 onTap: (){
-                                  Navigator.of(context).pushReplacementNamed('/ptopscreen');
+                                  Navigator.of(context).pushNamed('/ptopscreen');
                                 },
                                 child: Container(
                                   height: 50,
@@ -350,7 +350,7 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                                    ]       )     
                   );
                 });
-                //Navigator.of(context).pushReplacementNamed( '/transfersummery');
+                //Navigator.of(context).pushNamed( '/transfersummery');
               }, 
              child:Text('Generate Link',
              style: primaryFontsemiBold.copyWith(
@@ -368,8 +368,8 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                 )
               ),
               onPressed: (){
-  Navigator.of(context).pushReplacementNamed('/ptopscreen');
-                //Navigator.of(context).pushReplacementNamed( '/transfersummery');
+  Navigator.of(context).pushNamed('/ptopscreen');
+                //Navigator.of(context).pushNamed( '/transfersummery');
               }, 
              child:Text('Back',
              style: primaryFontsemiBold.copyWith(

@@ -39,7 +39,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.of(context).pushReplacementNamed('/confirmationpin');
+                              Navigator.of(context).pushNamed('/confirmationpin');
                             },
                             child: Image.asset('assets/icons/backarrow.png')),
                        Text('Password Set',
@@ -229,7 +229,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                                             padding: const EdgeInsets.only(top: 30,right: 20,left: 20),
                                             child: InkWell(
                                               onTap: (){
-                                                Navigator.of(context).pushReplacementNamed( '/profile');
+                                                Navigator.of(context).pushNamed( '/bottumnavbar');
                                               },
                                               child: Container(
                                                 height: 45,
