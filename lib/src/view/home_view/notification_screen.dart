@@ -61,7 +61,83 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 )
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10,right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/connectdthimage.png")),
+                       // color: Colors.red,
+                        borderRadius: BorderRadius.circular(30),
+          
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("All Payment send Narsh new\nConncept Ideas solutions.",style: primaryFont.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400
+                    ),)
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 13),
+                  child: Text("9:35 AM",style: primaryFont.copyWith(
+                   fontSize: 11,color: Colors.black45
+                  ),),
+                )
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10,right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/bsnlimage.png")),
+                       // color: Colors.red,
+                        borderRadius: BorderRadius.circular(30),
+          
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("Send New Payment Connect\nModels system",style: primaryFont.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400
+                    ),)
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 13),
+                  child: Text("9:35 AM",style: primaryFont.copyWith(
+                   fontSize: 11,color: Colors.black45
+                  ),),
+                )
+              ],
+            ),
+          ),
         ],
       )),
     );

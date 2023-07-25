@@ -63,7 +63,10 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
                             children: [
                              Padding(
                                padding: const EdgeInsets.only(right: 5),
-                               child: Image.asset('assets/images/notificationimage.png'),
+                               child: GestureDetector(
+                            onTap: (){
+                              Navigator.of(context).pushNamed('/notification');
+                            },child: Image.asset('assets/images/notificationimage.png')),
                              ),
                              Padding(
                                padding: const EdgeInsets.only(left: 5),
