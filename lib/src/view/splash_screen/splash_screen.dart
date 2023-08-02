@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   toHomepage()async{
    await Future.delayed(Duration(seconds: 2));
-   Navigator.of(context).pushNamed("/onbording");
+   Navigator.of(context).pushReplacementNamed("/onbording");
   }
 
 
