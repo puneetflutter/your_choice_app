@@ -13,8 +13,7 @@ class NewPayeeScreen extends StatefulWidget {
 }
 
 class _NewPayeeScreenState extends State<NewPayeeScreen> {
-
-  List image=[
+  List image = [
     'assets/images/newpayeeimage1.png',
     'assets/images/newpayeeimage2.png',
     'assets/images/newpayeeimage3.png',
@@ -22,229 +21,231 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-     final navigationCOntroller=Get.find<SiginController>();
-     var size = MediaQuery.of(context).size;
+    final navigationCOntroller = Get.find<AuthController>();
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: yindigo,
       body: SafeArea(
-
-        child:ListView(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
+          child: ListView(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                         Padding(
-                           padding: const EdgeInsets.only(left: 20,right: 20,top: 30),
-                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             children: [
-                               Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
-                                   Text('New Payee',
-                                      style: TextStyle(
-                                        color: ywhite,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold
-                                      ),),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 3),
-                                        child: Text('Add new payments method',
-                                        style: TextStyle(
-                                          color: ywhite
-                                        ),),
-                                      )
-                                 ],
-                               ),
-                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                             Padding(
-                               padding: const EdgeInsets.only(right: 5),
-                               child: GestureDetector(
-                            onTap: (){
-                              Navigator.of(context).pushNamed('/bottumnavbar');
-                            },child: Image.asset('assets/images/notificationimage.png')),
-                             ),
-                             Padding(
-                               padding: const EdgeInsets.only(left: 5),
-                               child: Image.asset('assets/images/homeprofileimage.png'),
-                             )
-                         
-                            ],
-                                       )
-                             ],
-                           ),
-                         ),
-                      ],
-                ),
-                Column(
-                  children: [
-                       Container(
-                      
-                        decoration: BoxDecoration(
-                          color: ywhite,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10)
-                          )
-                        ),
-                        child: Column(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            
+                            Text(
+                              'New Payee',
+                              style: TextStyle(
+                                  color: ywhite,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold),
+                            ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 20,left: 20),
-                              child: Row(
-                                children: [
-                                  Text('Add Payee',
-                                  textAlign: TextAlign.start,
-                                  style: primaryFontbold.copyWith(
-                                    color: yindigo,
-                                    fontSize: 16
-                                  ),),
-                                ],
+                              padding: const EdgeInsets.only(top: 3),
+                              child: Text(
+                                'Add new payments method',
+                                style: TextStyle(color: ywhite),
                               ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 5),
+                              child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .pushNamed('/bottumnavbar');
+                                  },
+                                  child: Image.asset(
+                                      'assets/images/notificationimage.png')),
                             ),
-                            ysizedbox10,
-                            Divider(
-                              color: ygrey,
-                            ),
-                                    ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: image.length,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: (){
-                                  //Navigator.of(context).pushNamed( '/dthdetail');
-                                },
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    
-                                      children: [
-                                        
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 20,left: 20),
-                                          child: Column(
-                                            
-                                            children: [
-                                            Image.asset(image[index]),
-                                         ],
-                                          ),
-                                        ),
-                                       
-                                          Padding(
-                                              padding: const EdgeInsets.only(left: 20,top: 20),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Raja',
-                                                  style: TextStyle(
-                                                    fontSize: 15.5
-                                                  ),),
-                                                  Text('ABC Bank Name'),
-                                                  Row(
-                                                    children: [
-                                                      Text('AC.No:'),
-                                                      Text(' 122323432442555425',
-                                                      style: TextStyle(
-                                                        color: ygrey.withOpacity(0.7)
-                                                      ),)
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text('IFSC Code:'),
-                                                      Text(' ABCD12',
-                                                      style: TextStyle(
-                                                        color: ygrey.withOpacity(0.7)
-                                                      ),)
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text('Mobile Number:',
-                                                    ),
-                                                      Text(' 9876543210',
-                                                        style: TextStyle(
-                                                        color: ygrey.withOpacity(0.7)
-                                                      ),
-                                                      )
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                             Padding(
-                                               padding: const EdgeInsets.only(top: 20),
-                                               child: Row(
-                                                 children: [
-                                                Text(':',
-                                                style: primaryFontbold.copyWith(
-                                                  color: yblue
-                                                ),)
-                                                 ],
-                                                ),
-                                             ),
-                                                 
-                                      ],
-                                    ),
-                                    ysizedbox10,
-                                    Divider(
-                                      //thickness: 1,
-                                      color: ygrey,
-                                    ),
-
-                                  ],
-                                ),
-                              );
-                            }, 
-                          
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: Image.asset(
+                                  'assets/images/homeprofileimage.png'),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: ywhite,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20, left: 20),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Add Payee',
+                                textAlign: TextAlign.start,
+                                style: primaryFontbold.copyWith(
+                                    color: yindigo, fontSize: 16),
+                              ),
+                            ],
                           ),
-                          
-                                    ysizedbox40,
-                                    ysizedbox20,
-                                     Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                        ),
+                        ysizedbox10,
+                        Divider(
+                          color: ygrey,
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: image.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                //Navigator.of(context).pushNamed( '/dthdetail');
+                              },
+                              child: Column(
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     children: [
-                                      InkWell(
-                                        onTap: (){
-                                        Navigator.of(context).pushNamed('/bottumnavbar');
-                                        },
-                                        child: Container(
-                                                              height: 50,
-                                                              width: 230,
-                                                              decoration:BoxDecoration(
-                                                                color: yblueversion,
-                                                                borderRadius: BorderRadius.circular(10)
-                                                              ),
-                                                              child: Center(
-                                                                child: Text('Add New Payee',
-                                                                style: primaryFontmedium.copyWith(
-                                                                  fontSize: 17,
-                                                                  color: ywhite
-                                                                ),),
-                                                              ),
-                                                            ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 20, left: 20),
+                                        child: Column(
+                                          children: [
+                                            Image.asset(image[index]),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, top: 20),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Raja',
+                                              style: TextStyle(fontSize: 15.5),
+                                            ),
+                                            Text('ABC Bank Name'),
+                                            Row(
+                                              children: [
+                                                Text('AC.No:'),
+                                                Text(
+                                                  ' 122323432442555425',
+                                                  style: TextStyle(
+                                                      color: ygrey
+                                                          .withOpacity(0.7)),
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text('IFSC Code:'),
+                                                Text(
+                                                  ' ABCD12',
+                                                  style: TextStyle(
+                                                      color: ygrey
+                                                          .withOpacity(0.7)),
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  'Mobile Number:',
+                                                ),
+                                                Text(
+                                                  ' 9876543210',
+                                                  style: TextStyle(
+                                                      color: ygrey
+                                                          .withOpacity(0.7)),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 20),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              ':',
+                                              style: primaryFontbold.copyWith(
+                                                  color: yblue),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  ysizedbox40,
+                                  ysizedbox10,
+                                  Divider(
+                                    //thickness: 1,
+                                    color: ygrey,
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                        ysizedbox40,
+                        ysizedbox20,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed('/bottumnavbar');
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 230,
+                                decoration: BoxDecoration(
+                                    color: yblueversion,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Center(
+                                  child: Text(
+                                    'Add New Payee',
+                                    style: primaryFontmedium.copyWith(
+                                        fontSize: 17, color: ywhite),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                       ),
-                  ],
-                )
-              ],
-              
-            ),
-          ],
-        )
-        ),
+                        ysizedbox40,
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      )),
       //   bottomNavigationBar:Container(
       //    height: 60,
       //       width: size.width,
@@ -319,7 +320,7 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
       //                             children: [
       //                              Image.asset('assets/images/navigationnewpayee.png',
       //                              color: yindigo,),
-                                  
+
       //                               Text('New Payee')
       //                             ],
       //                           ),
@@ -347,7 +348,7 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
       //                             mainAxisAlignment: MainAxisAlignment.spaceAround,
       //                             children: [
       //                              Image.asset('assets/images/navigationhistory.png',color: yindigo,),
-                                  
+
       //                               Text('History')
       //                             ],
       //                           ),
@@ -375,7 +376,7 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
       //                             children: [
       //                              Image.asset('assets/images/navigationprofile.png',
       //                              color: yindigo,),
-                                  
+
       //                               Text('Profile')
       //                             ],
       //                           ),

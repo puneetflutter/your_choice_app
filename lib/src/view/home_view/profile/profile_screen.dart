@@ -13,7 +13,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final navigationCOntroller = Get.find<SiginController>();
+  final navigationCOntroller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

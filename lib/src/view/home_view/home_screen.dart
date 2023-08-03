@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final navigationCOntroller = Get.find<SiginController>();
+  final navigationCOntroller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -423,7 +423,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                           Container(
+                                          Container(
                                             height: 55,
                                             width: 55,
                                             decoration: BoxDecoration(
@@ -559,7 +559,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: primaryFont.copyWith(
                                                     fontSize: 17),
                                               ),
-                                            const  Padding(
+                                              const Padding(
                                                 padding: const EdgeInsets.only(
                                                     top: 4),
                                                 child:
