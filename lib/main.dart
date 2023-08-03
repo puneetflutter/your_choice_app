@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:your_choice_app/src/controller/profile_controller/profileapi_controller.dart';
 import 'package:your_choice_app/src/controller/sigin_controller.dart';
 import 'package:your_choice_app/src/view/auth_views/auth_landing_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/forgotscreen/forgotpassword_screen.dart';
@@ -46,6 +47,7 @@ import 'src/view/home_view/home_screen.dart';
 
 void main() {
   Get.put(AuthController());
+  Get.put(ProfileApiController());
   runApp(
     const MyApp(),
   );
