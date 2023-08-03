@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 
@@ -19,6 +20,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var passwordController = TextEditingController();
 
   var _formKey = GlobalKey<FormState>();
+
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +92,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     decoration: InputDecoration(
                         labelText: 'Company Name',
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5)),
                         focusedBorder: OutlineInputBorder(
@@ -83,9 +101,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 ysizedbox20,
-                Container(
-                  height: 52,
-                  width: size.width - 60,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextFormField(
                     controller: fullnameController,
                     validator: (value) {
@@ -97,34 +114,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     decoration: InputDecoration(
                         labelText: 'Full Name',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1, color: ygrey))),
-                  ),
-                ),
-                ysizedbox20,
-                Container(
-                  height: 52,
-                  width: size.width - 60,
-                  child: TextField(
-                    controller: emaiController,
-                    decoration: InputDecoration(
-                        labelText: 'Email Address',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1, color: ygrey))),
-                  ),
-                ),
-                ysizedbox20,
-                Container(
-                  height: 52,
-                  width: size.width - 60,
-                  child: TextField( keyboardType: TextInputType.phone,
-                    controller: mobilenumberController,
-                    decoration: InputDecoration(
-                        labelText: 'Mobile Number',
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5)),
                         focusedBorder: OutlineInputBorder(
@@ -134,28 +125,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ysizedbox20,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Container(
-                    height: 52,
-                    width: size.width,
-                    child: TextField(
-                      controller: dateofbirthController,
-                      decoration: InputDecoration(
-                          labelText: 'Date Of Birth',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(width: 1, color: ygrey))),
-                    ),
-                  ),
-                ),
-                ysizedbox20,
-                Container(
-                  height: 52,
-                  width: size.width - 60,
-                  child: TextField(
-                    controller: adharController,
+                  child: TextFormField(
+                    controller: emaiController,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Email can't be Empty";
+                      } else {
+                        return null;
+                      }
+                    },
                     decoration: InputDecoration(
-                        labelText: 'Aadhar Card',
+                        labelText: 'Email Address',
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5)),
                         focusedBorder: OutlineInputBorder(
@@ -167,9 +152,121 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 52,
                   width: size.width - 60,
                   child: TextField(
+                    controller: mobilenumberController,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(10),
+                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Mobile Number can't be Empty";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Mobile Number',
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: ygrey))),
+                  ),
+                ),
+                ysizedbox20,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: TextFormField(
+                    controller: dateofbirthController,
+                    readOnly: true,
+                    onTap: () {
+                      _selectDate(context);
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Date Of Birth can't be Empty";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Date Of Birth',
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
+                        suffixIcon: const Icon(Icons.date_range),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: ygrey))),
+                  ),
+                ),
+                ysizedbox20,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: TextFormField(
+                    controller: adharController,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(12),
+                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Aadhar Card can't be Empty";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Aadhar Card',
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: ygrey))),
+                  ),
+                ),
+                ysizedbox20,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: TextFormField(
                     controller: passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Password can't be Empty";
+                      } else {
+                        return null;
+                      }
+                    },
                     decoration: InputDecoration(
                         labelText: 'Password',
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: ygrey))),
+                  ),
+                ),
+                ysizedbox20,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: TextFormField(
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Confirm Password can't be Empty";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Confirm Password',
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5)),
                         focusedBorder: OutlineInputBorder(
@@ -191,7 +288,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ysizedbox40,
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        minimumSize: Size(290, 50),
+                        minimumSize: const Size(290, 50),
                         backgroundColor: yindigo,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8))),
@@ -201,7 +298,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             .pushReplacementNamed('/registeredscreen');
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       'Register Account',
                       style: TextStyle(fontSize: 17),
                     )),
