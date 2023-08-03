@@ -13,6 +13,7 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
+  final authController = Get.find<AuthController>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   bool ispasswordhide = true;
@@ -67,17 +68,17 @@ class _SigninScreenState extends State<SigninScreen> {
                       decoration: BoxDecoration(),
                       child: TextField(
                         cursorColor: ygrey,
-                        obscureText: ispasswordhide,
                         controller: emailController,
                         decoration: InputDecoration(
-                            labelText: signinController.siginIndex.value == 0
-                                ? 'Mobile Number'
-                                : 'Email Id',
-                            labelStyle: TextStyle(color: ygrey),
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: ygrey))),
+                          labelText: signinController.siginIndex.value == 0
+                              ? 'Mobile Number'
+                              : 'Email Id',
+                          labelStyle: TextStyle(color: ygrey),
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: ygrey),
+                          ),
+                        ),
                       ),
                     ),
                     ysizedbox30,
@@ -88,68 +89,82 @@ class _SigninScreenState extends State<SigninScreen> {
                       child: TextField(
                         cursorColor: ygrey,
                         controller: passwordController,
+                        obscureText: ispasswordhide,
                         decoration: InputDecoration(
-                            labelText: 'Password',
-                            labelStyle: TextStyle(color: ygrey),
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    ispasswordhide = !ispasswordhide;
-                                  });
+                          labelText: 'Password',
+                          labelStyle: TextStyle(color: ygrey),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(
+                                () {
+                                  ispasswordhide = !ispasswordhide;
                                 },
-                                icon: ispasswordhide
-                                    ? Icon(
-                                        Icons.visibility,
-                                        color: ygrey,
-                                      )
-                                    : Icon(
-                                        Icons.visibility_off_outlined,
-                                        color: ygrey,
-                                      )),
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: ygrey))),
+                              );
+                            },
+                            icon: ispasswordhide
+                                ? Icon(
+                                    Icons.visibility,
+                                    color: ygrey,
+                                  )
+                                : Icon(
+                                    Icons.visibility_off_outlined,
+                                    color: ygrey,
+                                  ),
+                          ),
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: ygrey),
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
                 ysizedbox40,
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: Size(290, 50),
-                        backgroundColor: yindigo,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8))),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/bottumnavbar');
-                    },
-                    child: Text(
-                      'Sign in',
-                      style: TextStyle(fontSize: 17),
-                    )),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(290, 50),
+                    backgroundColor: yindigo,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () {
+                    authController.loginUser(
+                        email_mobile: emailController.text,
+                        password: passwordController.text);
+                    //  Navigator.of(context).pushNamed('/bottumnavbar');
+                  },
+                  child: Text(
+                    'Sign in',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                ),
                 ysizedbox20,
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: Size(290, 50),
-                        backgroundColor: ypurpule,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8))),
-                    onPressed: () {
-                      signinController.siginIndex(2);
-                      signinController.update();
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(290, 50),
+                    backgroundColor: ypurpule,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () {
+                    signinController.siginIndex(2);
+                    signinController.update();
 
-                      //Navigator.of(context).pushNamed('/siginhome');
-                    },
-                    child: signinController.siginIndex.value == 0
-                        ? Text(
-                            'Use Email Id',
-                            style: TextStyle(fontSize: 17),
-                          )
-                        : Text(
-                            'Use phone number',
-                            style: TextStyle(fontSize: 17),
-                          )),
+                    //Navigator.of(context).pushNamed('/siginhome');
+                  },
+                  child: signinController.siginIndex.value == 0
+                      ? Text(
+                          'Use Email Id',
+                          style: TextStyle(fontSize: 17),
+                        )
+                      : Text(
+                          'Use phone number',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                ),
                 ysizedbox20,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -165,10 +180,11 @@ class _SigninScreenState extends State<SigninScreen> {
                           ),
                         )),
                     TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/registerscreen');
-                        },
-                        child: Text('Create Account'))
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/registerscreen');
+                      },
+                      child: Text('Create Account'),
+                    ),
                   ],
                 ),
                 ysizedbox20,

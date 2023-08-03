@@ -4,9 +4,9 @@ import 'package:dio/dio.dart';
 
 import '../../base_urls/base_urls.dart';
 
-
 class LoginServicesApi extends BaseApiService {
-  Future loginApi({required String email_mobile, required String password}) async {
+  Future loginApi(
+      {required String email_mobile, required String password}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
@@ -15,14 +15,15 @@ class LoginServicesApi extends BaseApiService {
 
       var response = await dio.post(loginURL,
           options: Options(
-              headers: {
-                'Accept': 'application/json',
-              },
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
-          data: {"login": email_mobile, "password": password});
+            headers: {
+              'Accept': 'application/json',
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! <= 500;
+            },
+          ),
+          data: {"email_mobile": email_mobile, "password": password});
       print("::::::::<Login Api>::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
