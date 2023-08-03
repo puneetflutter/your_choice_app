@@ -259,10 +259,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                               ysizedbox30,
-                              InkWell( onTap: () {
-                                                  Navigator.of(context)
-                                                      .pushNamed('/support');
-                                                },
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed('/support');
+                                },
                                 child: Container(
                                   height: 56,
                                   width: 350,
@@ -281,8 +281,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             Image.asset(
                                                 'assets/icons/supportprofile.png'),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.only(left: 10),
+                                              padding: const EdgeInsets.only(
+                                                  left: 10),
                                               child: Text(
                                                 'Support',
                                                 style: TextStyle(color: ywhite),
@@ -307,10 +307,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                               ysizedbox30,
-                              InkWell( onTap: () {
-                                Navigator.of(context).pop();
-                                _showModalSheet();
-                              },
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                  _showModalSheet();
+                                },
                                 child: Container(
                                   height: 56,
                                   width: 350,
@@ -329,8 +330,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             Image.asset(
                                                 'assets/icons/signoutprofile.png'),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.only(left: 10),
+                                              padding: const EdgeInsets.only(
+                                                  left: 10),
                                               child: Text(
                                                 'Sign Out',
                                                 style: TextStyle(color: ywhite),
@@ -573,69 +574,74 @@ class _ProfileScreenState extends State<ProfileScreen> {
       //  ),
     );
   }
-    void _showModalSheet() {
+
+  void _showModalSheet() {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        context: context,
-        builder: (builder) {
-          return Container(
-            height: 162,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 28,
-                ),
-                const Center(
-                    child: Text(
-                  "Do you want to Logout?",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                )),
-                const SizedBox(
-                  height: 32,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(100, 40),
-                            backgroundColor: yblue,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18))),
-                         onPressed: () async {
-                        //   final prefs = await SharedPreferences.getInstance();
-                        //   await FirebaseMessaging.instance.deleteToken();
-                        //   await prefs.setString("auth_token", "null");
-                          // Get.to(const SigninScreen(),);
-                          Navigator.pushReplacementNamed(context, "/authlanding");
-               },
-                        child: Text(
-                          'Log Out',
-                          style: TextStyle(fontSize: 15, color: ywhite),
-                        )),
-                    const SizedBox(
-                      width: 40,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      context: context,
+      builder: (builder) {
+        return Container(
+          height: 162,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 28,
+              ),
+              const Center(
+                  child: Text(
+                "Do you want to Logout?",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              )),
+              const SizedBox(
+                height: 32,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(100, 40),
+                      backgroundColor: yblue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
                     ),
-                    OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: yblue, width: 1),
-                            minimumSize: const Size(110, 40),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            )),
-                        onPressed: ()  {
-                                      Navigator.of(context)
-                                          .pushNamed('/bottumnavbar');
-                                    },
-                        child: Text(
-                          'Cancel',
-                          style: TextStyle(fontSize: 15, color: yblue),
-                        ))
-                  ],
-                )
-              ],
-            ),
-          );
-        });
+                    onPressed: () async {
+                      //   final prefs = await SharedPreferences.getInstance();
+                      //   await FirebaseMessaging.instance.deleteToken();
+                      //   await prefs.setString("auth_token", "null");
+                      // Get.to(const SigninScreen(),);
+                      Navigator.pushReplacementNamed(context, "/authlanding");
+                    },
+                    child: Text(
+                      'Log Out',
+                      style: TextStyle(fontSize: 15, color: ywhite),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: yblue, width: 1),
+                        minimumSize: const Size(110, 40),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/bottumnavbar');
+                      },
+                      child: Text(
+                        'Cancel',
+                        style: TextStyle(fontSize: 15, color: yblue),
+                      ))
+                ],
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 }
