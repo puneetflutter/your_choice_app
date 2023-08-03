@@ -13,17 +13,19 @@ class LoginServicesApi extends BaseApiService {
       // final prefs = await SharedPreferences.getInstance();
       // String? authtoken = prefs.getString("auth_token");
 
-      var response = await dio.post(loginURL,
-          options: Options(
-            headers: {
-              'Accept': 'application/json',
-            },
-            followRedirects: false,
-            validateStatus: (status) {
-              return status! <= 500;
-            },
-          ),
-          data: {"email_mobile": email_mobile, "password": password});
+      var response = await dio.post(
+        loginURL,
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+          },
+          followRedirects: false,
+          validateStatus: (status) {
+            return status! <= 500;
+          },
+        ),
+        data: {"email_mobile": email_mobile, "password": password},
+      );
       print("::::::::<Login Api>::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);

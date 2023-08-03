@@ -121,7 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Container(
                   height: 52,
                   width: size.width - 60,
-                  child: TextField(
+                  child: TextField( keyboardType: TextInputType.phone,
                     controller: mobilenumberController,
                     decoration: InputDecoration(
                         labelText: 'Mobile Number',

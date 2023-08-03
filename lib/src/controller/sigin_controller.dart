@@ -6,6 +6,9 @@ import 'package:dio/dio.dart' as dio;
 import '../service/networks/auth_api_service/login_api_services.dart';
 
 class AuthController extends GetxController {
+
+
+
   RxInt siginIndex = 0.obs;
   RxInt naviIndex = 0.obs;
   RxInt selctedtextindex = 0.obs;
@@ -19,8 +22,15 @@ class AuthController extends GetxController {
   RxBool paymentlink = false.obs;
   RxBool isLoading = false.obs;
 
+
+
   LoginServicesApi loginServicesApi = LoginServicesApi();
+
+
     loginUser({required String email_mobile, required String password, }) async {
+
+
+      
     isLoading(true);
     dio.Response<dynamic> response =
         await loginServicesApi.loginApi(email_mobile:email_mobile, password: password);
