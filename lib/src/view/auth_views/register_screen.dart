@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/models/register_model.dart';
+
+import '../../controller/sigin_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -18,7 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var dateofbirthController = TextEditingController();
   var adharController = TextEditingController();
   var passwordController = TextEditingController();
-
+  var confirmPasswordController = TextEditingController();
   var _formKey = GlobalKey<FormState>();
 
   DateTime selectedDate = DateTime.now();
@@ -36,6 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -113,13 +119,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       }
                     },
                     decoration: InputDecoration(
-                        labelText: 'Full Name',
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1, color: ygrey))),
+                      labelText: 'Full Name',
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: ygrey),
+                      ),
+                    ),
                   ),
                 ),
                 ysizedbox20,
@@ -149,9 +158,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 ysizedbox20,
                 Container(
-                  height: 52,
+             //     height: 52,
                   width: size.width - 60,
-                  child: TextField(
+                  child: TextFormField(
                     controller: mobilenumberController,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(10),
@@ -166,13 +175,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       }
                     },
                     decoration: InputDecoration(
-                        labelText: 'Mobile Number',
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1, color: ygrey))),
+                      labelText: 'Mobile Number',
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: ygrey),
+                      ),
+                    ),
                   ),
                 ),
                 ysizedbox20,
@@ -180,7 +192,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextFormField(
                     controller: dateofbirthController,
-                    readOnly: true,
+                    // readOnly: true,
                     onTap: () {
                       _selectDate(context);
                     },
@@ -192,14 +204,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       }
                     },
                     decoration: InputDecoration(
-                        labelText: 'Date Of Birth',
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
-                        suffixIcon: const Icon(Icons.date_range),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1, color: ygrey))),
+                      labelText: 'Date Of Birth',
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
+                      suffixIcon: const Icon(Icons.date_range),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: ygrey),
+                      ),
+                    ),
                   ),
                 ),
                 ysizedbox20,
@@ -220,13 +235,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       }
                     },
                     decoration: InputDecoration(
-                        labelText: 'Aadhar Card',
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1, color: ygrey))),
+                      labelText: 'Aadhar Card',
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: ygrey),
+                      ),
+                    ),
                   ),
                 ),
                 ysizedbox20,
@@ -255,7 +272,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextFormField(
-                    controller: passwordController,
+                    controller: confirmPasswordController,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Confirm Password can't be Empty";
@@ -287,21 +304,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 ysizedbox40,
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(290, 50),
-                        backgroundColor: yindigo,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8))),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.of(context)
-                            .pushReplacementNamed('/registeredscreen');
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(290, 50),
+                      backgroundColor: yindigo,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      if (passwordController.text ==
+                          confirmPasswordController.text) {
+                        RegisterModel registerModel = RegisterModel(
+                          name: fullnameController.text,
+                          email: emaiController.text,
+                          mobile: mobilenumberController.text,
+                          dob: dateofbirthController.text,
+                          adharno: adharController.text,
+                          password: passwordController.text,
+                          username: companynameController.text,
+                        );
+                        authController.registerUser(registerModel);
                       }
-                    },
-                    child: const Text(
-                      'Register Account',
-                      style: TextStyle(fontSize: 17),
-                    )),
+                     // Navigator.of(context)
+                        //  .pushReplacementNamed('/registeredscreen');
+                    else {
+                        Get.rawSnackbar(
+                          messageText: const Text(
+                            "Confirm password must match the new password.",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          backgroundColor: Colors.red,
+                        );
+                      }}
+                  },
+                  child: const Text(
+                    'Register Account',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                ),
                 ysizedbox20,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

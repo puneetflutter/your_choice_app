@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
@@ -139,6 +140,11 @@ class _SigninScreenState extends State<SigninScreen> {
                             return null;
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
+                            inputFormatters: [
+              LengthLimitingTextInputFormatter(10),
+              FilteringTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.deny(RegExp(r'\s')),
+            ],
                           cursorColor: ygrey,
                           controller: passwordController,
                           obscureText: ispasswordhide,

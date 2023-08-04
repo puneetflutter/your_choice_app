@@ -1,19 +1,21 @@
 class RegisterModel {
-  String companyName;
-  String fullName;
+  String name;
   String username;
   String email;
   String mobile;
+  String dob;
+  String adharno;
   String password;
-  String passwordConfirmation;
 
+ 
   RegisterModel({
-    required this.companyName,
-    required this.fullName,
+    required this.name,
     required this.username,
     required this.email,
     required this.mobile,
+    required this.dob,
+    required this.adharno,
     required this.password,
-    required this.passwordConfirmation,
+  
   });
-}
+}   

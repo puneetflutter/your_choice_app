@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart' as dio;
+import '../models/register_model.dart';
 import '../service/networks/auth_api_service/login_api_services.dart';
+import '../service/networks/auth_api_service/register_api_services.dart';
 
 class AuthController extends GetxController {
 
@@ -23,14 +25,11 @@ class AuthController extends GetxController {
   RxBool isLoading = false.obs;
 
 
-
+  RegisterServicesApi registerServicesApi = RegisterServicesApi();
   LoginServicesApi loginServicesApi = LoginServicesApi();
 
-
+//LOG IN
     loginUser({required String email_mobile, required String password, }) async {
-
-
-      
     isLoading(true);
     dio.Response<dynamic> response =
         await loginServicesApi.loginApi(email_mobile:email_mobile, password: password);
@@ -55,6 +54,40 @@ class AuthController extends GetxController {
         backgroundColor: Colors.red,
       );
     }
-  }
+
+  
+
+//REGISTER
+    registerUser(RegisterModel registerModel) async {
+    isLoading(true);
+    dio.Response<dynamic> response =
+        await registerServicesApi.registerApi(registerModel);
+    isLoading(false);
+print("------------------------------->>${response.data["status"]}");
+    if (response.data["status"] == true) {
+      final prefs = await SharedPreferences.getInstance();
+      // await prefs.setString("auth_token", response.data["token"]);
+      await prefs.setString("temp_auth_token", response.data["token"]);
+      await prefs.setString("verify", "false");
+      Get.toNamed('/registeredscreen');
+
+
+
+        // Navigator.of(context)
+        //                     .pushReplacementNamed('/registeredscreen');
+      // Get.to(otp_page(
+      //   phoneNumber: registerModel.mobile,
+      //   otp: response.data["user"]["otp"].toString(),
+      // ));
+    } else
+ //    if (response.statusCode == 422) 
+     {
+      Get.rawSnackbar(
+        messageText: Text(
+          response.data["message"].first,
+          style: const TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
+);}}}
 
 
