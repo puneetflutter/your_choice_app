@@ -59,7 +59,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                      Youronbording4(),
 
 
-                  ])),
+                  ],),),
                   Padding(
                     padding:
                         const EdgeInsets.only( left: 20, right: 20),

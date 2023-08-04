@@ -1,8 +1,7 @@
 abstract class BaseApiService {
- // final String baseUrl = "https://sipmaaindia.com/api/";
-
+  
   //register url
-  final String registerURl = "";
+  final String registerURl = "https://yourchoice.batechnology.in/api/user/register";
 
   //login url
   final String loginURL = "https://yourchoice.batechnology.in/api/user/login";
@@ -10,4 +9,6 @@ abstract class BaseApiService {
    final String getProfileURL = 'https://yourchoice.batechnology.in/api/user/details';
    //updateprofile
    final String getupdateprofileURL = 'https://yourchoice.batechnology.in/api/user/update';
+
+
 }

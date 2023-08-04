@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
@@ -18,6 +19,7 @@ class _SigninScreenState extends State<SigninScreen> {
   var passwordController = TextEditingController();
   bool ispasswordhide = true;
   final signinController = Get.find<AuthController>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,66 +61,125 @@ class _SigninScreenState extends State<SigninScreen> {
                   ),
                 ),
                 ysizedbox20,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 52,
-                      width: 290,
-                      decoration: BoxDecoration(),
-                      child: TextField(
-                        cursorColor: ygrey,
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          labelText: signinController.siginIndex.value == 0
-                              ? 'Mobile Number'
-                              : 'Email Id',
-                          labelStyle: TextStyle(color: ygrey),
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1, color: ygrey),
-                          ),
-                        ),
-                      ),
-                    ),
-                    ysizedbox30,
-                    Container(
-                      height: 52,
-                      width: 290,
-                      decoration: BoxDecoration(),
-                      child: TextField(
-                        cursorColor: ygrey,
-                        controller: passwordController,
-                        obscureText: ispasswordhide,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          labelStyle: TextStyle(color: ygrey),
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              setState(
-                                () {
-                                  ispasswordhide = !ispasswordhide;
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      signinController.siginIndex.value == 0
+                          ? Container(
+                              // height: 52,
+                              width: 290,
+                              decoration: BoxDecoration(),
+                              child: TextFormField(
+                                keyboardType: TextInputType.phone,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Mobile Name can't be empty";
+                                  }
+                                  return null;
                                 },
-                              );
-                            },
-                            icon: ispasswordhide
-                                ? Icon(
-                                    Icons.visibility,
-                                    color: ygrey,
-                                  )
-                                : Icon(
-                                    Icons.visibility_off_outlined,
-                                    color: ygrey,
+                                cursorColor: ygrey,
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.fromLTRB(
+                                      17.0, 8.0, 17.0, 7.0),
+                                  labelText: 'Mobile Number',
+                                  labelStyle: TextStyle(color: ygrey),
+                                  border: OutlineInputBorder(),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(width: 1, color: ygrey),
                                   ),
-                          ),
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1, color: ygrey),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              // height: 52,
+                              width: 290,
+                              decoration: BoxDecoration(),
+                              child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Email can't be empty";
+                                  }
+                                  return null;
+                                },
+                                cursorColor: ygrey,
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.fromLTRB(
+                                      17.0, 8.0, 17.0, 7.0),
+                                  labelText: 'Email Id',
+                                  labelStyle: TextStyle(color: ygrey),
+                                  border: OutlineInputBorder(),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(width: 1, color: ygrey),
+                                  ),
+                                ),
+                              ),
+                            ),
+                      ysizedbox30,
+                      Container(
+                        //   height: 52,
+                        width: 290,
+                        decoration: BoxDecoration(),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Password can't be empty";
+                            } else if (value.length < 8) {
+                              return "Password must be of 8 characters";
+                            }
+                            return null;
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                            inputFormatters: [
+              LengthLimitingTextInputFormatter(10),
+              FilteringTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.deny(RegExp(r'\s')),
+            ],
+                          cursorColor: ygrey,
+                          controller: passwordController,
+                          obscureText: ispasswordhide,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(17.0, 8.0, 17.0, 7.0),
+                            labelText: 'Password',
+                            labelStyle: TextStyle(color: ygrey),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(
+                                  () {
+                                    ispasswordhide = !ispasswordhide;
+                                  },
+                                );
+                              },
+                              icon: ispasswordhide
+                                  ? Icon(
+                                      Icons.visibility,
+                                      color: ygrey,
+                                    )
+                                  : Icon(
+                                      Icons.visibility_off_outlined,
+                                      color: ygrey,
+                                    ),
+                            ),
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(width: 1, color: ygrey),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 ysizedbox40,
                 ElevatedButton(
@@ -130,9 +191,11 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                   ),
                   onPressed: () {
-                    authController.loginUser(
-                        email_mobile: emailController.text,
-                        password: passwordController.text);
+                    if (_formKey.currentState!.validate()) {
+                      authController.loginUser(
+                          email_mobile: emailController.text,
+                          password: passwordController.text);
+                    }
                     //  Navigator.of(context).pushNamed('/bottumnavbar');
                   },
                   child: Text(
@@ -150,8 +213,13 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                   ),
                   onPressed: () {
-                    signinController.siginIndex(2);
-                    signinController.update();
+                    if (signinController.siginIndex == 0) {
+                      signinController.siginIndex(2);
+                      signinController.update();
+                    } else {
+                      signinController.siginIndex(0);
+                      signinController.update();
+                    }
 
                     //Navigator.of(context).pushNamed('/siginhome');
                   },
