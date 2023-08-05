@@ -36,7 +36,7 @@ class AuthController extends GetxController {
     if (response.data["status"] == true) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString("auth_token", response.data["token"]);
-      await prefs.setString("id", response.data["data"]["id"]);
+      await prefs.setString("id", response.data["data"]["id"].toString());
       Get.offAllNamed('/bottumnavbar');
       Get.rawSnackbar(
         messageText: const Text(

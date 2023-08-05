@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -29,15 +30,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   DateTime selectedDate = DateTime.now();
 
   Future<void> _selectDate(BuildContext context) async {
+    DateTime date = DateTime.now().subtract(const Duration(days: 6570));
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime(2015, 8),
         lastDate: DateTime(2101));
     if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
+      setState(
+        () {
+          selectedDate = picked;
+          dateofbirthController.text =
+              formatDate(date, [dd, "/", mm, "/", yyyy]);
+        },
+      );
     }
   }
 
@@ -158,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 ysizedbox20,
                 Container(
-             //     height: 52,
+                  //     height: 52,
                   width: size.width - 60,
                   child: TextFormField(
                     controller: mobilenumberController,
@@ -324,9 +330,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         );
                         authController.registerUser(registerModel);
                       }
-                     // Navigator.of(context)
-                        //  .pushReplacementNamed('/registeredscreen');
-                    else {
+                      // Navigator.of(context)
+                      //  .pushReplacementNamed('/registeredscreen');
+                      else {
                         Get.rawSnackbar(
                           messageText: const Text(
                             "Confirm password must match the new password.",
@@ -334,7 +340,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           backgroundColor: Colors.red,
                         );
-                      }}
+                      }
+                    }
                   },
                   child: const Text(
                     'Register Account',

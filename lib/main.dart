@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:your_choice_app/src/controller/profile_controller/profileapi_controller.dart';
+import 'package:your_choice_app/src/controller/home_controller.dart';
 import 'package:your_choice_app/src/controller/sigin_controller.dart';
 import 'package:your_choice_app/src/view/auth_views/auth_landing_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/forgotscreen/forgotpassword_screen.dart';
@@ -48,6 +49,7 @@ import 'src/view/home_view/home_screen.dart';
 void main() {
   Get.put(AuthController());
   Get.put(ProfileApiController());
+  Get.put(HomeController());
   runApp(
     const MyApp(),
   );
@@ -59,6 +61,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
     debugShowCheckedModeBanner: false,
      initialRoute: "/",

@@ -3,6 +3,7 @@ abstract class BaseApiService {
   final String registerURl =
       "https://yourchoice.batechnology.in/api/user/register";
 
+
   //login url
   final String loginURL = "https://yourchoice.batechnology.in/api/user/login";
   //profile
@@ -39,4 +40,7 @@ abstract class BaseApiService {
   final String getpasswordURL =
       'https://yourchoice.batechnology.in/api/user/change-password';
 
+
+  // card list
+ final String  cardListURL="https://yourchoice.batechnology.in/api/card-list";
 }

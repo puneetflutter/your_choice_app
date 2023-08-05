@@ -71,13 +71,14 @@ class _AuthLandingScreenState extends State<AuthLandingScreen> {
                     )),
                 ysizedbox20,
                 TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/registerscreen');
-                    },
-                    child: Text(
-                      'Create a new account',
-                      style: TextStyle(fontSize: 17),
-                    ))
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/registerscreen');
+                  },
+                  child: Text(
+                    'Create a new account',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                )
               ],
             ),
           ],
