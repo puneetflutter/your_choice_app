@@ -41,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         () {
           selectedDate = picked;
           dateofbirthController.text =
-              formatDate(date, [dd, "/", mm, "/", yyyy]);
+              formatDate(date, [yyyy, "-", mm, "-", dd]);
         },
       );
     }
@@ -141,6 +141,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: emaiController,
                     inputFormatters: [
                       FilteringTextInputFormatter.deny(RegExp(r'\s')),
@@ -148,6 +149,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Email can't be Empty";
+                      } else if (value.isEmail) {
+                        return "Enter a valid email id";
                       } else {
                         return null;
                       }
@@ -163,11 +166,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 ysizedbox20,
-                Container(
-                  //     height: 52,
-                  width: size.width - 60,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextFormField(
                     controller: mobilenumberController,
+                    keyboardType: TextInputType.phone,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(10),
                       FilteringTextInputFormatter.digitsOnly,
@@ -228,6 +231,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextFormField(
                     controller: adharController,
+                    keyboardType: TextInputType.phone,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(12),
                       FilteringTextInputFormatter.digitsOnly,

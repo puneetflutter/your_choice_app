@@ -61,12 +61,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-     initialRoute: "/",
-
-
+      debugShowCheckedModeBanner: false,
+      initialRoute: "/",
       routes: {
         "/": (context) => SplashScreen(),
         "/onbording": (context) => OnbordingScreen(),
@@ -84,7 +81,7 @@ class MyApp extends StatelessWidget {
         '/selectcard': (context) => SelectCardScreen(),
        // '/topupscreen': (context) => TopUpScreen(),
         '/topuppayment': (context) => TopUpPaymentScreen(),
-        '/paymentsuccess': (context) => paymentSucessScreen(),
+        '/paymentsuccess': (context) => PaymentSucessScreen(),
         '/paymentlink': (context) => PaymentLinkScreen(),
         '/ptopscreen': (context) => PtopScreen(),
         '/transfersummery': (context) => TransferSummeryScreen(),

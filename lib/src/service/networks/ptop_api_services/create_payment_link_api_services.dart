@@ -6,7 +6,7 @@ import 'package:your_choice_app/src/service/base_urls/base_urls.dart';
 class CreatePaymentLinkApiServices extends BaseApiService {
   Future createPayOrder({required int id}) async {
     final prefs = await SharedPreferences.getInstance();
-    String? authtoken = prefs.getString("authToken");
+    String? authtoken = prefs.getString("auth_token");
     dynamic responseJson;
     try {
       var dio = Dio();

@@ -3,20 +3,15 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:your_choice_app/src/service/base_urls/base_urls.dart';
 
-class PtoPApiServices extends BaseApiService {
-  Future ptopApiServices(
-      {required String purpuse,
-      required String amount,
-      required String name,
-      required String mobileNumber,
-      required String description}) async {
+class PayOrderResponseApiServices extends BaseApiService {
+  Future getResponsePayOrder(int orderId) async {
     final prefs = await SharedPreferences.getInstance();
     String? authtoken = prefs.getString("auth_token");
     dynamic responseJson;
+
     try {
       var dio = Dio();
-
-      var response = await dio.post(createPtoPOrder,
+      var response = await dio.post(paymentOrderResponseURL,
           options: Options(
               headers: {
                 'Authorization': 'Bearer $authtoken',
@@ -26,15 +21,15 @@ class PtoPApiServices extends BaseApiService {
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: {
-            "purpose_amount": purpuse,
-            "amount": amount,
-            "name": name,
-            "mobile_number": mobileNumber,
-          });
-      print(":::::::<order>:::::::::status code:::::::<order>:::::::");
+          data: {"order_id": orderId});
+      print(
+          ":::::::<Pay order Response payment>:::::::::status checking code:::::::<Pay order Response api>:::::::");
       print(response.statusCode);
-      responseJson = response.data;
+      if (response.statusCode != 500) {
+        print(response);
+      }
+
+      responseJson = response;
     } on SocketException {
       print("no internet");
     }
@@ -47,18 +42,22 @@ class PtoPApiServices extends BaseApiService {
         dynamic responseJson = response.data;
         print("here.>>>>>>>>>>>>");
         return responseJson;
+
       case 400:
-      // throw BadRequestException(response.body.toString());
+        break;
       case 401:
+        break;
+
       case 403:
-      // throw UnauthorisedException(response.body.toString());
+        break;
+
       case 404:
-      // throw UnauthorisedException(response.body.toString());
+        break;
+
       case 500:
+        break;
+
       default:
-      // throw FetchDataException(
-      //     'Error occured while communication with server' +
-      //         ' with status code : ${response.statusCode}');
     }
   }
 }

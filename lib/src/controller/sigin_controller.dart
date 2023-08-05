@@ -65,13 +65,13 @@ class AuthController extends GetxController {
     if (response.data["status"] == true) {
       final prefs = await SharedPreferences.getInstance();
       // await prefs.setString("auth_token", response.data["token"]);
-      await prefs.setString("temp_auth_token", response.data["token"]);
+      await prefs.setString("auth_token", response.data["token"]);
       await prefs.setString("id", response.data["data"]["id"]);
       await prefs.setString("verify", "false");
       Get.offAllNamed('/registeredscreen');
 
       // Navigator.of(context)
-      //                     .pushReplacementNamed('/registeredscreen');
+      // .pushReplacementNamed('/registeredscreen');
       // Get.to(otp_page(
       //   phoneNumber: registerModel.mobile,
       //   otp: response.data["user"]["otp"].toString(),

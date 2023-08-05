@@ -46,113 +46,111 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Column(
-        children: [
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, top: 20),
-              child: Row(
-                children: [
-                  InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushNamed('/bottumnavbar');
-                      },
-                      child: Icon(Icons.arrow_back)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Choose the Card Type',
-                          style: primaryFontsemiBold.copyWith(
-                            color: yblue,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed('/bottumnavbar');
+            },
+            child: const Icon(Icons.arrow_back)),
+        title: Text(
+          'Choose the Card Type',
+          style: primaryFontsemiBold.copyWith(
+            color: yblue,
+            fontSize: 20,
           ),
-          ysizedbox40,
-          GetBuilder<HomeController>(
-            builder: (_) {
-              return Container(
-                height: 300,
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 1.2,
-                    crossAxisCount: 3,
-                  ),
-                  itemCount: homeController.cardlist.length,
-                  itemBuilder: ((context, index) {
-                    return InkWell(
-                      onTap: () {
-                        setState(() {
-                          selectedId = homeController.cardlist[index].cardId;
-                        });
-                      },
-                      child: Column(
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: GetBuilder<HomeController>(
+          builder: (_) {
+            return GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 1.1,
+                crossAxisCount: 3,
+              ),
+              itemCount: homeController.cardlist.length,
+              itemBuilder: ((context, index) {
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      selectedId = homeController.cardlist[index].cardId;
+                    });
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 70,
+                        height: 70,
+                        decoration: BoxDecoration(
+                          color: homeController.cardlist[index].cardId
+                                      .toString() ==
+                                  selectedId
+                              ? yOrange
+                              : yblue,
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                      ),
+                      ysizedbox10,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            width: 70,
-                            height: 70,
-                            decoration: BoxDecoration(
-                              color: homeController.cardlist[index].cardId
-                                          .toString() ==
-                                      selectedId
-                                  ? yOrange
-                                  : yblue,
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                          ),
-                          ysizedbox10,
-                          Text(homeController.cardlist[index].cardType)
-                              .text
-                              .semiBold
-                              .blue800
-                              .make(),
+                              width: 100,
+                              alignment: Alignment.center,
+                              child: Text(
+                                homeController.cardlist[index].cardType,
+                                textAlign: TextAlign.center,
+                                style: primaryFont.copyWith(
+                                    color: Colors.blue[900],
+                                    fontWeight: FontWeight.bold),
+                              )),
                         ],
                       ),
-                    );
-                  }),
-                ),
-              );
-            },
-          ),
-          ysizedbox30,
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                minimumSize: Size(290, 50),
-                backgroundColor: yindigo,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8))),
-            onPressed: () {
-              Get.to(TopUpScreen(cardId:selectedId));
-             // Navigator.of(context).pushNamed('/selectcard');
-            },
-            child: Text(
-              'Next',
-              style: TextStyle(fontSize: 17),
+                    ],
+                  ),
+                );
+              }),
+            );
+          },
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 150,
+        child: Column(
+          children: [
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size(290, 50),
+                  backgroundColor: yindigo,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8))),
+              onPressed: () {
+                Get.to(TopUpScreen(cardId: selectedId));
+                // Navigator.of(context).pushNamed('/selectcard');
+              },
+              child: Text(
+                'Next',
+                style: TextStyle(fontSize: 17),
+              ),
             ),
-          ),
-          ysizedbox20,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Please any one card choose!',
-                style: primaryFont.copyWith(fontSize: 15, color: yblue),
-              )
-            ],
-          )
-        ],
-      )),
+            ysizedbox20,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Please any one card choose!',
+                  style: primaryFont.copyWith(fontSize: 15, color: yblue),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }

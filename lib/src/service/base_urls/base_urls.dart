@@ -3,7 +3,6 @@ abstract class BaseApiService {
   final String registerURl =
       "https://yourchoice.batechnology.in/api/user/register";
 
-
   //login url
   final String loginURL = "https://yourchoice.batechnology.in/api/user/login";
   //profile
@@ -31,7 +30,7 @@ abstract class BaseApiService {
   //forgotpassword
   final String forgotPasswordURL =
       'https://yourchoice.batechnology.in/api/user/forgot-password';
-      
+
   //support
   final String getsupportURL =
       'https://yourchoice.batechnology.in/api/create-support';
@@ -40,11 +39,15 @@ abstract class BaseApiService {
   final String getpasswordURL =
       'https://yourchoice.batechnology.in/api/user/change-password';
 
-
   // card list
  final String  cardListURL="https://yourchoice.batechnology.in/api/card-list";
 
   //notification list
  final String notificationlistURL="https://yourchoice.batechnology.in/api/notification-list";
 
+  final String paymentOrderResponseURL =
+      "https://yourchoice.batechnology.in/api/payment-response";
+
+  final String paymentStatusURL =
+      "https://yourchoice.batechnology.in/api/payment-status";
 }

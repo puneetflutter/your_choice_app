@@ -3,20 +3,21 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:your_choice_app/src/service/base_urls/base_urls.dart';
 
-class PtoPApiServices extends BaseApiService {
-  Future ptopApiServices(
-      {required String purpuse,
-      required String amount,
-      required String name,
-      required String mobileNumber,
-      required String description}) async {
+class PaymentStatusServices extends BaseApiService {
+  Future paymentStatusServices(
+      {required String orderId,
+      required String orderAmount,
+      required String status,
+      required String paymentMode,
+      required String txnTime,
+      required String message,
+      required String refernceId}) async {
     final prefs = await SharedPreferences.getInstance();
     String? authtoken = prefs.getString("auth_token");
     dynamic responseJson;
     try {
       var dio = Dio();
-
-      var response = await dio.post(createPtoPOrder,
+      var response = await dio.post(paymentStatusURL,
           options: Options(
               headers: {
                 'Authorization': 'Bearer $authtoken',
@@ -27,12 +28,21 @@ class PtoPApiServices extends BaseApiService {
                 return status! <= 500;
               }),
           data: {
-            "purpose_amount": purpuse,
-            "amount": amount,
-            "name": name,
-            "mobile_number": mobileNumber,
+            "orderId": orderId,
+            "orderAmount": orderAmount,
+            "txStatus": status,
+            "paymentMode": paymentMode,
+            "txTime": txnTime,
+            "txMsg": message,
+            "referenceId": refernceId
           });
-      print(":::::::<order>:::::::::status code:::::::<order>:::::::");
+      print(
+          ":::::::<addPayee>:::::::::status-0-0-0-code:::::::<addPayee>:::::::");
+      print(orderId);
+      print(orderAmount);
+      print(status);
+      print(paymentMode);
+      print(txnTime);
       print(response.statusCode);
       responseJson = response.data;
     } on SocketException {

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 
-class PaymentSucessScreen extends StatefulWidget {
-  const PaymentSucessScreen({super.key});
+class PaymentFailedScreen extends StatefulWidget {
+  const PaymentFailedScreen({super.key});
 
   @override
-  State<PaymentSucessScreen> createState() => _PaymentSucessScreenState();
+  State<PaymentFailedScreen> createState() => _PaymentFailedScreenState();
 }
 
-class _PaymentSucessScreenState extends State<PaymentSucessScreen> {
+class _PaymentFailedScreenState extends State<PaymentFailedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _PaymentSucessScreenState extends State<PaymentSucessScreen> {
           Column(
             children: [
               Text(
-                'Topup Successfully! Done',
+                'Payment Failed',
                 style: primaryFont.copyWith(fontSize: 19, color: yblue),
               ),
               ysizedbox20,
