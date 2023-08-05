@@ -52,7 +52,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           selectedDate=picked;
           dofbirthController.text='${selectedDate.year}-${selectedDate.month}-${selectedDate.day}';
         });
-      }
+      } 
 
     }
 

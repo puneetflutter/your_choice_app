@@ -3,11 +3,11 @@
 class ProfileUpdateModel {
   String companyName;
   String userName;
-  String mobilenumber;
-  String email;
+  dynamic mobilenumber;
+  dynamic email;
   dynamic dateOfBirth;
-  String aadhar_no;
-  String user_id;
+  dynamic aadhar_no;
+  dynamic user_id;
 
   ProfileUpdateModel({
     required this.aadhar_no,

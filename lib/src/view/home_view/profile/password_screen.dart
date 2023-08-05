@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 
 import '../../../constants/app_fonts.dart';
+import '../../../controller/profile_controller/profileapi_controller.dart';
 
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({super.key});
@@ -18,6 +20,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
   bool currentvisibility =false;
   bool newvisibility=false;
   bool confirvisibility=false;
+
+  final profileapiController = Get.find<ProfileApiController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -254,19 +258,27 @@ class _PasswordScreenState extends State<PasswordScreen> {
                                 );
                               });
                             },
-                            child: Container(
-                              height: 55,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                color: yindigo,
-                                borderRadius: BorderRadius.circular(10)
-                              ),
-                              child: Center(
-                                child: Text('Update Passwrd',
-                                style: primaryFontmedium.copyWith(
-                                  color: ywhite,
-                                  fontSize: 20
-                                ),),
+                            child: InkWell(
+                              onTap: (){
+                                profileapiController.password(
+                                  password: newpasswordController.text, 
+                                  confirm_password: confirpasswordController.text, 
+                                  userId: currentpasswordController.text);
+                              },
+                              child: Container(
+                                height: 55,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: yindigo,
+                                  borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: Center(
+                                  child: Text('Update Passwrd',
+                                  style: primaryFontmedium.copyWith(
+                                    color: ywhite,
+                                    fontSize: 20
+                                  ),),
+                                ),
                               ),
                             ),
                           ),

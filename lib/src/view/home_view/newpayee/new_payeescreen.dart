@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 
+import '../../../controller/pay_controller/add_newpay_controller.dart';
 import '../../../controller/sigin_controller.dart';
 
 class NewPayeeScreen extends StatefulWidget {
@@ -19,9 +20,11 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
     'assets/images/newpayeeimage3.png',
     'assets/images/newpayeeimage4.png',
   ];
+  final addnewpayController = Get.find<AddnewpayController>();
+  final navigationCOntroller = Get.find<AuthController>();
   @override
+  
   Widget build(BuildContext context) {
-    final navigationCOntroller = Get.find<AuthController>();
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: yindigo,
@@ -217,7 +220,7 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)
-                                    .pushNamed('/bottumnavbar');
+                                    .pushNamed('/newpaydetail');
                               },
                               child: Container(
                                 height: 50,

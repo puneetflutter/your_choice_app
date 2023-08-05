@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/models/add_new_model.dart';
 
 import '../../../constants/app_colors.dart';
+import '../../../controller/pay_controller/add_newpay_controller.dart';
+import '../../../controller/sigin_controller.dart';
 
 class NewPaymentDetailScreen extends StatefulWidget {
   const NewPaymentDetailScreen({super.key});
@@ -16,6 +20,8 @@ class _NewPaymentDetailScreenState extends State<NewPaymentDetailScreen> {
   var accountnumberController=TextEditingController();
   var ifscCodeController=TextEditingController();
   var holdernameController=TextEditingController();
+
+  final addnewpayController = Get.find<AddnewpayController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -198,6 +204,13 @@ class _NewPaymentDetailScreenState extends State<NewPaymentDetailScreen> {
                ysizedbox40,
                 InkWell(
                   onTap: (){
+                 AddnewModel addnewModel  = AddnewModel(
+                  accountnumber: accountnumberController.text, 
+                  bankifsccode: ifscCodeController.text, 
+                  bankname:banknameController.text, 
+                  mobilenumber: mobilenumberController.text, 
+                  name: holdernameController.text);
+                    addnewpayController.addnewpay(addnewModel:addnewModel );
                     Navigator.of(context).pushNamed('/newpayee');
                   },
                   child: Container(

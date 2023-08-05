@@ -1,11 +1,11 @@
 class RegisterModel {
-  String name;
-  String username;
-  String email;
-  String mobile;
-  String dob;
-  String adharno;
-  String password;
+  dynamic name;
+  dynamic username;
+  dynamic email;
+  dynamic mobile;
+  dynamic dob;
+  dynamic adharno;
+  dynamic  password;
 
  
   RegisterModel({

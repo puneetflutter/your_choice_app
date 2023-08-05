@@ -6,9 +6,12 @@ import '../../constants/app_fonts.dart';
 import '../../models/notification_list_model.dart';
 import '../../models/profile_model.dart';
 import '../../models/profileupdate_model.dart';
-import '../../service/networks/auth_api_service/profile/profile_api_services.dart';
-import '../../service/networks/auth_api_service/profile/profileupdate_api_service.dart';
 import '../../service/networks/notification_api_services/notification_list.dart';
+import '../../service/networks/profile/createpin_api_service.dart';
+import '../../service/networks/profile/password_api_service.dart';
+import '../../service/networks/profile/profile_api_services.dart';
+import '../../service/networks/profile/profileupdate_api_service.dart';
+import '../../service/networks/profile/support_api_service.dart';
 
 class ProfileApiController extends GetxController{
     RxBool isLoading = false.obs;
@@ -38,7 +41,7 @@ class ProfileApiController extends GetxController{
     isLoading(true);
     dio.Response<dynamic> response = await getprofileUpdateApiService.getprofileupdate(profileUpdateModel: profileUpdateModel);
     isLoading(false);
-    if(response.statusCode==200||response.statusCode==201){
+    if(response.data['status']==true){
       Get.rawSnackbar(
         backgroundColor: Colors.green,
         messageText: Text(
@@ -75,4 +78,100 @@ class ProfileApiController extends GetxController{
     update();
   }
 
+   CreateSupportApiService createsupportapiservice = CreateSupportApiService();
+
+createsupport({
+  required String name,
+  required String email,
+  required String  message,
+})
+async{
+  dio.Response<dynamic> response = await createsupportapiservice.createSupport(
+    name: name, 
+    email: email, 
+    message: message);
+    if(response.data["status"] == true){
+      Get.back();
+      Get.rawSnackbar(
+        backgroundColor: Colors.green,
+        messageText: Text(
+          response.data['message'],
+            style: primaryFont.copyWith(color: Colors.white),
+        )
+      );
+    }
+    else{
+      Get.rawSnackbar(
+         backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          )
+      );
+    }
+}
+
+       PasswordApiService passwordApiService = PasswordApiService();
+
+       password({
+        required String password,
+        required String confirm_password,
+        required String userId,
+       })async{
+        dio.Response<dynamic> response = await passwordApiService.getPassword(
+          password: password, 
+          confirm_password: confirm_password, 
+          userId: userId);
+           print(response.data);  
+
+          if(response.data['status'] == true){
+            Get.back();
+            Get.rawSnackbar(
+               backgroundColor: Colors.green,
+        messageText: Text(
+          response.data['message'],
+            style: primaryFont.copyWith(color: Colors.white),
+        )
+            );
+          }
+          else{
+            Get.rawSnackbar(
+         backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          )
+      );
+          }
+       }
+       CreatepinApiService createpinApiService = CreatepinApiService();
+
+       createpin({
+        required String pinnumber,
+       })
+       async{
+        dio.Response<dynamic> response = await createpinApiService.createapiservice(
+          pinnumber: pinnumber);
+          print(response.data);
+          if(response.data['status']==true){
+            Get.back();
+            Get.rawSnackbar(
+                             backgroundColor: Colors.green,
+        messageText: Text(
+          response.data['message'],
+            style: primaryFont.copyWith(color: Colors.white),
+        )
+            
+            );
+          }  
+          else{
+            Get.rawSnackbar(
+         backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          )
+      );
+          }
+       }
 }

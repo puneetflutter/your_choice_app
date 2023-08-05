@@ -2,8 +2,8 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../models/profileupdate_model.dart';
-import '../../../base_urls/base_urls.dart';
+import '../../../models/profileupdate_model.dart';
+import '../../base_urls/base_urls.dart';
 
 class GetProfileUpdateApiService extends BaseApiService{
   

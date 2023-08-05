@@ -37,19 +37,19 @@ class ProfileData {
     dynamic roleId;
     String name;
     String email;
-    String mobile;
+    dynamic mobile;
     String companyName;
-    String aadharNo;
+    dynamic aadharNo;
     DateTime dateOfBirth;
     dynamic profileImage;
-    String isUserVerified;
-    String userType;
+    dynamic isUserVerified;
+    dynamic userType;
     dynamic rememberToken;
     dynamic payoutEnable;
     String accessToken;
     dynamic pg;
     dynamic payoutType;
-    String status;
+    dynamic status;
 
     ProfileData({
         required this.id,
@@ -72,23 +72,23 @@ class ProfileData {
     });
 
     factory ProfileData.fromJson(Map<String, dynamic> json) => ProfileData(
-        id: json["id"],
-        roleId: json["role_id"],
-        name: json["name"],
-        email: json["email"],
-        mobile: json["mobile"],
-        companyName: json["company_name"],
-        aadharNo: json["aadhar_no"],
+        id: json["id"]??0,
+        roleId: json["role_id"]??"",
+        name: json["name"]??"",
+        email: json["email"]??"",
+        mobile: json["mobile"]??"",
+        companyName: json["company_name"]??"",
+        aadharNo: json["aadhar_no"]??"",
         dateOfBirth: DateTime.parse(json["date_of_birth"]),
-        profileImage: json["profile_image"],
-        isUserVerified: json["isUserVerified"],
-        userType: json["user_type"],
-        rememberToken: json["remember_token"],
-        payoutEnable: json["payout_enable"],
-        accessToken: json["access_token"],
-        pg: json["pg"],
-        payoutType: json["payout_type"],
-        status: json["status"],
+        profileImage: json["profile_image"]??"",
+        isUserVerified: json["isUserVerified"]??"",
+        userType: json["user_type"]??"",
+        rememberToken: json["remember_token"]??"",
+        payoutEnable: json["payout_enable"]??"",
+        accessToken: json["access_token"]??"",
+        pg: json["pg"]??"",
+        payoutType: json["payout_type"]??"",
+        status: json["status"]??"",
     );
 
     Map<String, dynamic> toJson() => {

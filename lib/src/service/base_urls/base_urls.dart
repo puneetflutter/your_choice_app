@@ -50,4 +50,13 @@ abstract class BaseApiService {
 
   final String paymentStatusURL =
       "https://yourchoice.batechnology.in/api/payment-status";
+    //create pin
+   final String createpinURL =  'https://yourchoice.batechnology.in/api/create-pin';  
+
+   //addnewpay
+   final String addnewpayURL = 'https://yourchoice.batechnology.in/api/add-payee';
+
+   //getpay
+   final String getpayUrl ='https://yourchoice.batechnology.in/api/get-payee';
+
 }

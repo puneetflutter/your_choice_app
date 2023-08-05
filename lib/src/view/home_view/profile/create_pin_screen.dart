@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:otp_text_field/otp_field.dart';
 import '../../../constants/app_fonts.dart';
+import '../../../controller/profile_controller/profileapi_controller.dart';
 
 class CreatePinScreen extends StatefulWidget {
   const CreatePinScreen({super.key});
@@ -13,6 +15,8 @@ class CreatePinScreen extends StatefulWidget {
 }
 
 class _CreatePinScreenState extends State<CreatePinScreen> {
+  final profileapiController = Get.find<ProfileApiController>();
+  String pin='';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +109,9 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                         ysizedbox40,
                         InkWell(
                           onTap: (){
-                            Navigator.of(context).pushNamed( '/confirmationpin');
+                           profileapiController.createpin(
+                            pinnumber:pin
+                           );
                           },
                           child: Container(
                             height: 55,
