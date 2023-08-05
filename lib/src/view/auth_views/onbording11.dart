@@ -102,7 +102,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                                 isPageViewEnabled = true;
                               });
                               if (_pageController.page!.toInt() == 3) {
-                              Navigator.of(context).pushNamed("/authlanding");
+                              Navigator.of(context).pushReplacementNamed("/authlanding");
                               } else {
                                 _pageController.nextPage(
                                   duration: const Duration(milliseconds: 300),
@@ -128,7 +128,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                             ),
                             ysizedbox20,
                             TextButton(onPressed: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BottumBar()));
+                               Navigator.of(context).pushReplacementNamed("/authlanding");
                             }, 
                             child: Text('Skip',
                             style: primaryFont.copyWith(

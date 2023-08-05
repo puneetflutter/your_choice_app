@@ -8,9 +8,6 @@ import '../service/networks/auth_api_service/login_api_services.dart';
 import '../service/networks/auth_api_service/register_api_services.dart';
 
 class AuthController extends GetxController {
-
-
-
   RxInt siginIndex = 0.obs;
   RxInt naviIndex = 0.obs;
   RxInt selctedtextindex = 0.obs;
@@ -24,20 +21,23 @@ class AuthController extends GetxController {
   RxBool paymentlink = false.obs;
   RxBool isLoading = false.obs;
 
-
   RegisterServicesApi registerServicesApi = RegisterServicesApi();
   LoginServicesApi loginServicesApi = LoginServicesApi();
 
 //LOG IN
-    loginUser({required String email_mobile, required String password, }) async {
+  loginUser({
+    required String email_mobile,
+    required String password,
+  }) async {
     isLoading(true);
-    dio.Response<dynamic> response =
-        await loginServicesApi.loginApi(email_mobile:email_mobile, password: password);
+    dio.Response<dynamic> response = await loginServicesApi.loginApi(
+        email_mobile: email_mobile, password: password);
     isLoading(false);
     if (response.data["status"] == true) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString("auth_token", response.data["token"]);
-     Get.toNamed('/bottumnavbar');
+      await prefs.setString("id", response.data["data"]["id"]);
+      Get.offAllNamed('/bottumnavbar');
       Get.rawSnackbar(
         messageText: const Text(
           "Login Successful",
@@ -53,41 +53,39 @@ class AuthController extends GetxController {
         ),
         backgroundColor: Colors.red,
       );
-    }
-
-  
+  }
 
 //REGISTER
-    registerUser(RegisterModel registerModel) async {
+  registerUser(RegisterModel registerModel) async {
     isLoading(true);
     dio.Response<dynamic> response =
         await registerServicesApi.registerApi(registerModel);
     isLoading(false);
-print("------------------------------->>${response.data["status"]}");
+    print("------------------------------->>${response.data["status"]}");
     if (response.data["status"] == true) {
       final prefs = await SharedPreferences.getInstance();
       // await prefs.setString("auth_token", response.data["token"]);
       await prefs.setString("temp_auth_token", response.data["token"]);
+      await prefs.setString("id", response.data["data"]["id"]);
       await prefs.setString("verify", "false");
-      Get.toNamed('/registeredscreen');
+      Get.offAllNamed('/registeredscreen');
 
-
-
-        // Navigator.of(context)
-        //                     .pushReplacementNamed('/registeredscreen');
+      // Navigator.of(context)
+      //                     .pushReplacementNamed('/registeredscreen');
       // Get.to(otp_page(
       //   phoneNumber: registerModel.mobile,
       //   otp: response.data["user"]["otp"].toString(),
       // ));
     } else
- //    if (response.statusCode == 422) 
-     {
+    //    if (response.statusCode == 422)
+    {
       Get.rawSnackbar(
         messageText: Text(
           response.data["message"].first,
           style: const TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.red,
-);}}}
-
-
+      );
+    }
+  }
+}
