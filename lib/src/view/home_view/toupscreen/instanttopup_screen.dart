@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/view/home_view/toupscreen/topup_screen.dart';
 
 import '../../../controller/home_controller.dart';
 
@@ -32,7 +33,7 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
     'Amex Card',
   ];
 
-  var selectedId ;
+  var selectedId;
 
   @override
   void initState() {
@@ -91,10 +92,10 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
                   itemCount: homeController.cardlist.length,
                   itemBuilder: ((context, index) {
                     return InkWell(
-                      onTap: (){
-                          setState(() {
-  selectedId = homeController.cardlist[index].cardId;
-});
+                      onTap: () {
+                        setState(() {
+                          selectedId = homeController.cardlist[index].cardId;
+                        });
                       },
                       child: Column(
                         children: [
@@ -102,14 +103,16 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
                             width: 70,
                             height: 70,
                             decoration: BoxDecoration(
-                              color: yblue,
+                              color: homeController.cardlist[index].cardId
+                                          .toString() ==
+                                      selectedId
+                                  ? yOrange
+                                  : yblue,
                               borderRadius: BorderRadius.circular(14),
                             ),
                           ),
                           ysizedbox10,
-                          Text(homeController
-                              .cardlist[index]
-                              .cardType)
+                          Text(homeController.cardlist[index].cardType)
                               .text
                               .semiBold
                               .blue800
@@ -130,7 +133,8 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8))),
             onPressed: () {
-              Navigator.of(context).pushNamed('/selectcard');
+              Get.to(TopUpScreen(cardId:selectedId));
+             // Navigator.of(context).pushNamed('/selectcard');
             },
             child: Text(
               'Next',

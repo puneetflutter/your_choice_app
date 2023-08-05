@@ -43,4 +43,8 @@ abstract class BaseApiService {
 
   // card list
  final String  cardListURL="https://yourchoice.batechnology.in/api/card-list";
+
+  //notification list
+ final String notificationlistURL="https://yourchoice.batechnology.in/api/notification-list";
+
 }

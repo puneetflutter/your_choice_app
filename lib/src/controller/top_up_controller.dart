@@ -4,31 +4,7 @@ import 'package:your_choice_app/src/service/networks/top_up_api_services/pay_ord
 
 class TopupController extends GetxController{
 
-
 PayOrderApiServices payOrderApiServices = PayOrderApiServices();
 CreateOrderApi createOrderApi = CreateOrderApi();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

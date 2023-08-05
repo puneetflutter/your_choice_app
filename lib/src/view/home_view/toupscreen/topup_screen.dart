@@ -3,7 +3,7 @@ import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 
 class TopUpScreen extends StatefulWidget {
-  const TopUpScreen({super.key});
+  const TopUpScreen({super.key, required cardId});
 
   @override
   State<TopUpScreen> createState() => _TopUpScreenState();

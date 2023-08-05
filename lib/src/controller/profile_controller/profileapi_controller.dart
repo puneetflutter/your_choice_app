@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/app_fonts.dart';
+import '../../models/notification_list_model.dart';
 import '../../models/profile_model.dart';
 import '../../models/profileupdate_model.dart';
 import '../../service/networks/auth_api_service/profile/profile_api_services.dart';
 import '../../service/networks/auth_api_service/profile/profileupdate_api_service.dart';
+import '../../service/networks/notification_api_services/notification_list.dart';
 
 class ProfileApiController extends GetxController{
     RxBool isLoading = false.obs;
-
+  GetNotificationListApi getNotificationLiistApi = GetNotificationListApi();
   GetProfileApiService getprofileapiservice = GetProfileApiService();
     List<ProfileData> profileData = [];
 
@@ -56,5 +58,21 @@ class ProfileApiController extends GetxController{
       print(response.statusCode);
     }
    }
+
+     List<ListElement> notificationList = [];
+  RxInt notificationCount = 0.obs;
+
+  getNotificationList() async {
+    dio.Response<dynamic> response =
+        await getNotificationLiistApi.getNotifionListApi();
+
+    if (response.statusCode == 201) {
+      NotificationListModel notificationListModel =
+          NotificationListModel.fromJson(response.data);
+      notificationList = notificationListModel.data;
+    //  notificationCount(notificationListModel.);
+    }
+    update();
+  }
 
 }

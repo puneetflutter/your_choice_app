@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
-//import 'package:flutter_svg/svg.dart';
+
 import '../../controller/sigin_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../widgets/bottumnav_bar.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
