@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 
 import '../../../controller/sigin_controller.dart';
@@ -309,7 +310,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ysizedbox30,
                               InkWell(
                                 onTap: () {
-                                  // Navigator.of(context).pop();
                                   _showModalSheet();
                                 },
                                 child: Container(
@@ -455,9 +455,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     onPressed: () async {
-                      //   final prefs = await SharedPreferences.getInstance();
-                      //   await FirebaseMessaging.instance.deleteToken();
-                      //   await prefs.setString("auth_token", "null");
+                        final prefs = await SharedPreferences.getInstance();
+                        // await FirebaseMessaging.instance.deleteToken();
+                        await prefs.setString("auth_token", "null");
                       // Get.to(const SigninScreen(),);
                       Navigator.of(context).pushReplacementNamed("/authlanding");
                       //Navigator.pushReplacementNamed(context, );

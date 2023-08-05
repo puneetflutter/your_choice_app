@@ -1,110 +1,137 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/controller/top_up_controller.dart';
 
 class TopUpScreen extends StatefulWidget {
-  const TopUpScreen({super.key, required cardId});
+  var cardId;
+  TopUpScreen({super.key, required this.cardId});
 
   @override
   State<TopUpScreen> createState() => _TopUpScreenState();
 }
 
 class _TopUpScreenState extends State<TopUpScreen> {
-  var amountController=TextEditingController();
+  var amountController = TextEditingController();
+
+  final topupController = Get.find<InstantTopUpController>();
+
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: Text(
+          'Top Up',
+          style: primaryFontsemiBold.copyWith(
+            color: yblue,
+            fontSize: 20,
+          ),
+        ),
+      ),
       body: SafeArea(
-        child: Column(
-          children: [
-        
-             Container(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20,left: 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).pushNamed('/selectcard');
-                      },
-                      child: Icon(Icons.arrow_back,
-                      color: yblue,),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Center(
+                  child: Image.asset('assets/images/topupimage.png'),
+                ),
+                ysizedbox20,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Text(
+                        'Amount',
+                        style: primaryFontsemiBold.copyWith(
+                            color: yblue, fontSize: 20),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Text('Top Up',
-                    style: primaryFontsemiBold.copyWith(
-                      color: yblue,
-                      fontSize: 20,
-                      ),),
-                  ),
-                    Container()
-                ],
-              ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 20, left: 30, right: 30),
+                      child: TextFormField(
+                        controller: amountController,
+                        keyboardType: TextInputType.number,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter an Amount";
+                          } else {
+                            return null;
+                          }
+                        },
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(10),
+                          FilteringTextInputFormatter.digitsOnly,
+                          FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                        ],
+                        decoration: InputDecoration(
+                            prefix: Text(
+                              "₹ ",
+                              style: primaryFont.copyWith(
+                                  fontWeight: FontWeight.bold, fontSize: 15),
+                            ),
+                            hintText: 'Enter Amount',
+                            hintStyle: TextStyle(
+                              color: Color(0xff010101).withOpacity(0.5),
+                              fontSize: 13,
+                            ),
+                            contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                            border: OutlineInputBorder()),
+                      ),
+                    )
+                  ],
+                ),
+                ysizedbox40,
+                ysizedbox40,
+                Obx(
+                  () => topupController.isLoading.isTrue
+                      ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(290, 50),
+                              backgroundColor: yindigo,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                          onPressed: () {
+                            topupController.isLoading(true);
+                            topupController.createOrder(amountController.text);
+                          },
+                          child: const CupertinoActivityIndicator(
+                            color: Colors.white,
+                          ))
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(290, 50),
+                              backgroundColor: yindigo,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              topupController.isLoading(true);
+                              topupController
+                                  .createOrder(amountController.text);
+                            }
+                          },
+                          child: const Text(
+                            'Proceed',
+                            style: TextStyle(fontSize: 17),
+                          )),
+                ),
+              ],
             ),
           ),
-            ysizedbox20,
-              Center(
-                child: Image.asset('assets/images/topupimage.png'),
-              ),
-              ysizedbox20,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Amount',
-                  style: primaryFontsemiBold.copyWith(
-                    color: yblue,
-                    fontSize: 20
-                  ),),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Container(
-                      height: 53,
-                      width: 280,
-                      decoration: BoxDecoration(
-                        color: ywhite
-                      ),
-                      child: TextField(
-                        controller: amountController,
-                        
-                        decoration: InputDecoration(
-                          
-                          hintText: ' ₹  Enter Amount',
-                          hintStyle: TextStyle(
-                            color: Color(0xff010101).withOpacity(0.5),
-                            fontSize: 13,
-                          ),
-                          border: OutlineInputBorder()
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              ysizedbox40,
-              ysizedbox40,
-              ElevatedButton(
-              
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(290, 50),
-                backgroundColor: yindigo,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)
-                )
-              ),
-              onPressed: (){
-              Navigator.of(context).pushNamed( '/topuppayment');
-              }, 
-                       child:Text('Proceed',
-                       style: TextStyle(
-              fontSize: 17
-                       ),)),
-          ],
         ),
       ),
     );

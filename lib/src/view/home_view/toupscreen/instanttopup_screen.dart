@@ -49,11 +49,7 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: InkWell(
-            onTap: () {
-              Navigator.of(context).pushNamed('/bottumnavbar');
-            },
-            child: const Icon(Icons.arrow_back)),
+        iconTheme: const IconThemeData(color: Colors.black),
         title: Text(
           'Choose the Card Type',
           style: primaryFontsemiBold.copyWith(
@@ -69,9 +65,9 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
             return GridView.builder(
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 1.1,
-                crossAxisCount: 3,
-              ),
+                  childAspectRatio: 1.1,
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 20),
               itemCount: homeController.cardlist.length,
               itemBuilder: ((context, index) {
                 return InkWell(

@@ -5,6 +5,7 @@ import 'package:your_choice_app/src/controller/pay_controller/add_newpay_control
 import 'package:your_choice_app/src/controller/profile_controller/profileapi_controller.dart';
 import 'package:your_choice_app/src/controller/home_controller.dart';
 import 'package:your_choice_app/src/controller/sigin_controller.dart';
+import 'package:your_choice_app/src/controller/top_up_controller.dart';
 import 'package:your_choice_app/src/view/auth_views/auth_landing_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/forgotscreen/forgotpassword_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/forgotscreen/forgotpass_verification_screen.dart';
@@ -54,6 +55,7 @@ void main() {
   Get.put(HomeController());
   Get.put(AddnewpayController());
   Get.put(ForfotPasswordController());
+  Get.put(InstantTopUpController());
   runApp(
     const MyApp(),
   );

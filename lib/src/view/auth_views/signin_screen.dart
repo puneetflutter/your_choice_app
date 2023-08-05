@@ -78,9 +78,17 @@ class _SigninScreenState extends State<SigninScreen> {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "Mobile Name can't be empty";
+                                  } else if (value.length != 10) {
+                                    return "Enter a valid mobile number";
                                   }
                                   return null;
                                 },
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(10),
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  FilteringTextInputFormatter.deny(
+                                      RegExp(r'\s')),
+                                ],
                                 cursorColor: ygrey,
                                 controller: emailController,
                                 decoration: InputDecoration(
@@ -140,11 +148,11 @@ class _SigninScreenState extends State<SigninScreen> {
                             return null;
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                            inputFormatters: [
-              LengthLimitingTextInputFormatter(10),
-              FilteringTextInputFormatter.digitsOnly,
-              FilteringTextInputFormatter.deny(RegExp(r'\s')),
-            ],
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                            FilteringTextInputFormatter.digitsOnly,
+                            FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                          ],
                           cursorColor: ygrey,
                           controller: passwordController,
                           obscureText: ispasswordhide,

@@ -4,32 +4,39 @@
 
 import 'dart:convert';
 
-ProfileModel profilelistFromJson(String str) => ProfileModel.fromJson(json.decode(str));
+ProfileModel profilelistFromJson(String str) =>
+    ProfileModel.fromJson(json.decode(str));
 
 String profilelistToJson(ProfileModel data) => json.encode(data.toJson());
 
 class ProfileModel {
-    bool status;
-    String message;
-    ProfileData data;
+  bool status;
+  String message;
+  ProfileData data;
+  String walletAmount;
+  String refferalAmount;
 
-    ProfileModel({
-        required this.status,
-        required this.message,
-        required this.data,
-    });
+  ProfileModel({
+    required this.status,
+    required this.message,
+    required this.data,
+    required this.refferalAmount,
+    required this.walletAmount,
+  });
 
-    factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
+  factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
         status: json["status"],
         message: json["message"],
+        refferalAmount: json["walletAmount"],
+        walletAmount: json["referralAmount"],
         data: ProfileData.fromJson(json["data"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "status": status,
         "message": message,
         "data": data.toJson(),
-    };
+      };
 }
 
 class ProfileData {
@@ -51,25 +58,25 @@ class ProfileData {
     dynamic payoutType;
     dynamic status;
 
-    ProfileData({
-        required this.id,
-        this.roleId,
-        required this.name,
-        required this.email,
-        required this.mobile,
-        required this.companyName,
-        required this.aadharNo,
-        required this.dateOfBirth,
-        this.profileImage,
-        required this.isUserVerified,
-        required this.userType,
-        this.rememberToken,
-        this.payoutEnable,
-        required this.accessToken,
-        this.pg,
-        this.payoutType,
-        required this.status,
-    });
+  ProfileData({
+    required this.id,
+    this.roleId,
+    required this.name,
+    required this.email,
+    required this.mobile,
+    required this.companyName,
+    required this.aadharNo,
+    required this.dateOfBirth,
+    this.profileImage,
+    required this.isUserVerified,
+    required this.userType,
+    this.rememberToken,
+    this.payoutEnable,
+    required this.accessToken,
+    this.pg,
+    this.payoutType,
+    required this.status,
+  });
 
     factory ProfileData.fromJson(Map<String, dynamic> json) => ProfileData(
         id: json["id"]??0,
@@ -91,7 +98,7 @@ class ProfileData {
         status: json["status"]??"",
     );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "role_id": roleId,
         "name": name,
@@ -109,5 +116,5 @@ class ProfileData {
         "pg": pg,
         "payout_type": payoutType,
         "status": status,
-    };
+      };
 }

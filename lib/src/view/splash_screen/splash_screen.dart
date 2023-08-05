@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
+import 'package:your_choice_app/src/widgets/bottumnav_bar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,8 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   toHomePage() async {
-    await Future.delayed(Duration(seconds: 2));
-    Navigator.of(context).pushReplacementNamed("/home");
+    await Future.delayed(const Duration(seconds: 2));
+    Get.offAll(() => BottumBar());
   }
 
   chooseCheckUserFn() async {

@@ -3,11 +3,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/controller/profile_controller/profileapi_controller.dart';
 
 import '../../controller/sigin_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +17,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final navigationCOntroller = Get.find<AuthController>();
+  final profileController = Get.find<ProfileApiController>();
+
+  @override
+  void initState() {
+    super.initState();
+    profileController.getprofile();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -34,41 +41,43 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     children: [
                       ysizedbox30,
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '₹ 2,344.00',
-                              style: TextStyle(
-                                  color: ywhite,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 5),
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .pushNamed('/notification');
-                                      },
-                                      child: SvgPicture.asset(
-                                          'assets/images/notificationimage.svg')),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Image.asset(
-                                      'assets/images/homeprofileimage.png'),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
+                      GetBuilder<ProfileApiController>(builder: (_) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '₹ ${profileController.walletAmount}',
+                                style: TextStyle(
+                                    color: ywhite,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 5),
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('/notification');
+                                        },
+                                        child: SvgPicture.asset(
+                                            'assets/images/notificationimage.svg')),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 5),
+                                    child: Image.asset(
+                                        'assets/images/homeprofileimage.png'),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      }),
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Row(
