@@ -75,10 +75,10 @@ class ProfileApiController extends GetxController {
         await getNotificationLiistApi.getNotifionListApi();
 
     if (response.statusCode == 201) {
-      NotificationListModel notificationListModel =
-          NotificationListModel.fromJson(response.data);
-      notificationList = notificationListModel.data;
-      //  notificationCount(notificationListModel.);
+      ListElement notificationListModel =
+          ListElement.fromJson(response.data);
+      notificationList = notificationListModel.list;
+     notificationCount(notificationListModel.status);
     }
     update();
   }

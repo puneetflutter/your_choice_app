@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 import 'package:your_choice_app/src/controller/profile_controller/profileapi_controller.dart';
@@ -23,6 +24,24 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     profileController.getprofile();
+  }
+
+  void openWhatsapp(
+      {required BuildContext context,
+      required String text,
+      required String number}) async {
+    var whatsapp = number; //+92xx enter like this
+    var whatsappURlAndroid =
+        "whatsapp://send?text=Pay now https://admin.havyou.com/payment/ ";
+    //  var whatsappURLIos = "https://wa.me/$whatsapp?text=${Uri.tryParse(text)}";
+
+    // android , web
+    if (await canLaunchUrl(Uri.parse(whatsappURlAndroid))) {
+      await launchUrl(Uri.parse(whatsappURlAndroid));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Whatsapp not installed")));
+    }
   }
 
   @override
@@ -117,102 +136,108 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               )),
                           GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pushNamed('/paymentlink');
-                              },
-                              child: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12)),
-                                alignment: Alignment.center,
-                                child: SvgPicture.asset(
-                                  'assets/images/paymemt_link_icon.svg',
-                                  height: 30,
-                                ),
-                              )),
+                            onTap: () {
+                              Navigator.of(context).pushNamed('/paymentlink');
+                            },
+                            child: Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12)),
+                              alignment: Alignment.center,
+                              child: SvgPicture.asset(
+                                'assets/images/paymemt_link_icon.svg',
+                                height: 30,
+                              ),
+                            ),
+                          ),
                           GestureDetector(
                               onTap: () {
-                                showModalBottomSheet(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                    ),
-                                    context: context,
-                                    builder: (context) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        child: Container(
-                                          height: 200,
-                                          decoration: BoxDecoration(
-                                            color: ywhite,
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              ysizedbox10,
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Open With',
-                                                    style: primaryFontsemiBold
-                                                        .copyWith(
-                                                            color: yblue,
-                                                            fontSize: 20),
-                                                  ),
-                                                  Image.asset(
-                                                    'assets/images/wrongwhatsappimage.png',
-                                                    color: Colors.black,
-                                                    height: 17,
-                                                    width: 17,
-                                                    fit: BoxFit.fitHeight,
-                                                  )
-                                                ],
-                                              ),
-                                              ysizedbox20,
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                children: [
-                                                  Image.asset(
-                                                      'assets/images/whatsapplogoimage.png'),
-                                                  Image.asset(
-                                                      'assets/images/gbwhatsapplogoimage.png')
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Text(
-                                                      'Whatsapp',
-                                                      style: TextStyle(
-                                                          fontSize: 17,
-                                                          color: yindigo),
-                                                    ),
-                                                    Text(
-                                                      'GB Whatsapp',
-                                                      style: TextStyle(
-                                                          fontSize: 17,
-                                                          color: yindigo),
-                                                    )
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    });
+                                openWhatsapp(
+                                    number: '+919633749714',
+                                    text: 'hii',
+                                    context: context);
+
+                                // showModalBottomSheet(
+                                //     shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.all(
+                                //           Radius.circular(10.0)),
+                                //     ),
+                                //     context: context,
+                                //     builder: (context) {
+                                //       return Padding(
+                                //         padding: const EdgeInsets.only(
+                                //             left: 10, right: 10),
+                                //         child: Container(
+                                //           height: 200,
+                                //           decoration: BoxDecoration(
+                                //             color: ywhite,
+                                //           ),
+                                //           child: Column(
+                                //             children: [
+                                //               ysizedbox10,
+                                //               Row(
+                                //                 mainAxisAlignment:
+                                //                     MainAxisAlignment
+                                //                         .spaceBetween,
+                                //                 children: [
+                                //                   Text(
+                                //                     'Open With',
+                                //                     style: primaryFontsemiBold
+                                //                         .copyWith(
+                                //                             color: yblue,
+                                //                             fontSize: 20),
+                                //                   ),
+                                //                   Image.asset(
+                                //                     'assets/images/wrongwhatsappimage.png',
+                                //                     color: Colors.black,
+                                //                     height: 17,
+                                //                     width: 17,
+                                //                     fit: BoxFit.fitHeight,
+                                //                   )
+                                //                 ],
+                                //               ),
+                                //               ysizedbox20,
+                                //               Row(
+                                //                 mainAxisAlignment:
+                                //                     MainAxisAlignment
+                                //                         .spaceAround,
+                                //                 children: [
+                                //                   Image.asset(
+                                //                       'assets/images/whatsapplogoimage.png'),
+                                //                   Image.asset(
+                                //                       'assets/images/gbwhatsapplogoimage.png')
+                                //                 ],
+                                //               ),
+                                //               Padding(
+                                //                 padding: const EdgeInsets.only(
+                                //                     left: 20),
+                                //                 child: Row(
+                                //                   mainAxisAlignment:
+                                //                       MainAxisAlignment
+                                //                           .spaceAround,
+                                //                   children: [
+                                //                     Text(
+                                //                       'Whatsapp',
+                                //                       style: TextStyle(
+                                //                           fontSize: 17,
+                                //                           color: yindigo),
+                                //                     ),
+                                //                     Text(
+                                //                       'GB Whatsapp',
+                                //                       style: TextStyle(
+                                //                           fontSize: 17,
+                                //                           color: yindigo),
+                                //                     )
+                                //                   ],
+                                //                 ),
+                                //               )
+                                //             ],
+                                //           ),
+                                //         ),
+                                //       );
+                                //     });
                               },
                               child: Container(
                                 height: 60,
