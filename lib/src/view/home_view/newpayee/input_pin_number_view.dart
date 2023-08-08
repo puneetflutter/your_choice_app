@@ -8,16 +8,20 @@ import 'package:your_choice_app/src/controller/payout_controller.dart';
 import '../../../constants/app_fonts.dart';
 import '../../../controller/profile_controller/profileapi_controller.dart';
 
-class CreatePinScreen extends StatefulWidget {
-  const CreatePinScreen({super.key});
+class InputPinNumber extends StatefulWidget {
+  var payeeId;
+  var amount;
+  InputPinNumber({super.key, this.amount, this.payeeId});
 
   @override
-  State<CreatePinScreen> createState() => _CreatePinScreenState();
+  State<InputPinNumber> createState() => _CreatePinScreenState();
 }
 
-class _CreatePinScreenState extends State<CreatePinScreen> {
+class _CreatePinScreenState extends State<InputPinNumber> {
   final profileapiController = Get.find<ProfileApiController>();
+  final payeeController = Get.find<PayoutController>();
   String pin = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,12 +42,12 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                           children: [
                             InkWell(
                                 onTap: () {
-                                Get.back();
+                                  Get.back();
                                 },
                                 child:
                                     Image.asset('assets/icons/backarrow.png')),
                             Text(
-                              'Create Pin',
+                              'Inuput Pin',
                               style: primaryFontmedium.copyWith(
                                   fontSize: 25, color: ywhite),
                             ),
@@ -61,7 +65,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             color: ywhite,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10))),
                         child: Column(
@@ -69,7 +73,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                             ysizedbox40,
                             ysizedbox20,
                             Text(
-                              'Create PIN for your Safebox',
+                              'Input your pin',
                               style: primaryFontmedium.copyWith(
                                   fontSize: 20, color: yindigo),
                             ),
@@ -97,7 +101,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                               ),
                             ),
                             ysizedbox30,
-                            Text(
+                            const Text(
                               'Type Four Pin, Don"t show',
                               style: TextStyle(
                                   fontSize: 15, color: Color(0xff4E6171)),
@@ -108,8 +112,10 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                             ysizedbox40,
                             InkWell(
                               onTap: () {
-                                Get.find<PayoutController>()
-                                    .createPin(profileapiController.pinnumbers);
+                                payeeController.payeeSendPay(
+                                    widget.amount,
+                                    widget.payeeId,
+                                    profileapiController.pinnumbers);
                               },
                               child: Container(
                                 height: 55,
@@ -119,7 +125,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                   child: Text(
-                                    'Create',
+                                    'Pay now',
                                     style: primaryFontmedium.copyWith(
                                         fontSize: 22, color: ywhite),
                                   ),

@@ -42,7 +42,7 @@ class _SupportScreenState extends State<SupportScreen> {
                                   children: [
                                     InkWell(
                                       onTap: (){
-                                        Navigator.of(context).pushNamed( '/profile');
+                                        Get.back();
                                       },
                                       child: Image.asset('assets/icons/backarrow.png')),
                                  Text('Support',

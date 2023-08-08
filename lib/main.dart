@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:your_choice_app/src/controller/forgotpassword_controller.dart';
 import 'package:your_choice_app/src/controller/pay_controller/add_newpay_controller.dart';
+import 'package:your_choice_app/src/controller/payout_controller.dart';
 import 'package:your_choice_app/src/controller/profile_controller/profileapi_controller.dart';
 import 'package:your_choice_app/src/controller/home_controller.dart';
 import 'package:your_choice_app/src/controller/sigin_controller.dart';
@@ -56,6 +57,7 @@ void main() {
   Get.put(payController());
   Get.put(ForfotPasswordController());
   Get.put(InstantTopUpController());
+  Get.put(PayoutController());
  
   runApp(
     const MyApp(),

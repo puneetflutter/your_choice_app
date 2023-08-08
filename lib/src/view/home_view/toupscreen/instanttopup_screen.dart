@@ -129,7 +129,7 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
                 Get.to(TopUpScreen(cardId: selectedId));
                 // Navigator.of(context).pushNamed('/selectcard');
               },
-              child: Text(
+              child: const Text(
                 'Next',
                 style: TextStyle(fontSize: 17),
               ),

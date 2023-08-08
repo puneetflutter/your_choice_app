@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
+import 'package:your_choice_app/src/controller/profile_controller/profileapi_controller.dart';
 
 import '../../../controller/sigin_controller.dart';
 import '../../auth_views/signin_screen.dart';
@@ -15,6 +16,26 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final navigationCOntroller = Get.find<AuthController>();
+
+  var profileapiController = Get.find<ProfileApiController>();
+
+  String userName = "";
+  String phoneNumber = "";
+
+  @override
+  void initState() {
+    super.initState();
+    setDefault();
+  }
+
+  setDefault() async {
+    await profileapiController.getprofile();
+    setState(() {
+  userName = profileapiController.profileData.first.name;
+  phoneNumber = profileapiController.profileData.first.mobile;
+});
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -22,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: yindigo,
       body: SafeArea(
           child: ListView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         children: [
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Column(
@@ -51,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Raja, 987654321',
+                                      '$userName, $phoneNumber',
                                       style: TextStyle(color: ywhite),
                                     ),
                                     Padding(
@@ -419,7 +440,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ysizedbox40
         ],
       )),
-    
     );
   }
 
@@ -455,11 +475,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     onPressed: () async {
-                        final prefs = await SharedPreferences.getInstance();
-                        // await FirebaseMessaging.instance.deleteToken();
-                        await prefs.setString("auth_token", "null");
+                      final prefs = await SharedPreferences.getInstance();
+                      // await FirebaseMessaging.instance.deleteToken();
+                      await prefs.setString("auth_token", "null");
                       // Get.to(const SigninScreen(),);
-                      Navigator.of(context).pushReplacementNamed("/authlanding");
+                      Navigator.of(context)
+                          .pushReplacementNamed("/authlanding");
                       //Navigator.pushReplacementNamed(context, );
                     },
                     child: Text(

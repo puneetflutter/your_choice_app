@@ -5,16 +5,17 @@ import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 import 'package:your_choice_app/src/controller/top_up_controller.dart';
+import 'package:your_choice_app/src/view/home_view/newpayee/input_pin_number_view.dart';
 
-class TopUpScreen extends StatefulWidget {
-  var cardId;
-  TopUpScreen({super.key, required this.cardId});
+class PayeeSendScreen extends StatefulWidget {
+  var payeeId;
+  PayeeSendScreen({super.key, required this.payeeId});
 
   @override
-  State<TopUpScreen> createState() => _TopUpScreenState();
+  State<PayeeSendScreen> createState() => _PayeeSendScreenState();
 }
 
-class _TopUpScreenState extends State<TopUpScreen> {
+class _PayeeSendScreenState extends State<PayeeSendScreen> {
   var amountController = TextEditingController();
 
   final topupController = Get.find<InstantTopUpController>();
@@ -30,7 +31,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
         title: Text(
-          'Top Up',
+          'Payout',
           style: primaryFontsemiBold.copyWith(
             color: yblue,
             fontSize: 20,
@@ -88,7 +89,8 @@ class _TopUpScreenState extends State<TopUpScreen> {
                               color: Color(0xff010101).withOpacity(0.5),
                               fontSize: 13,
                             ),
-                            contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(10, 10, 10, 10),
                             border: const OutlineInputBorder()),
                       ),
                     )
@@ -104,9 +106,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                               backgroundColor: yindigo,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
-                          onPressed: () {
-                            
-                          },
+                          onPressed: () {},
                           child: const CupertinoActivityIndicator(
                             color: Colors.white,
                           ),
@@ -119,21 +119,10 @@ class _TopUpScreenState extends State<TopUpScreen> {
                                   borderRadius: BorderRadius.circular(8))),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                                if (int.parse(amountController.text) > 9) {
-                                  topupController.isLoading(true);
-                                  topupController
-                                      .createOrder(amountController.text);
-                                } else {
-                                  Get.rawSnackbar(
-                                      message:
-                                          "Amount must be grater than Rs.10",
-                                      backgroundColor: Colors.red);
-                                }
-                             
-                              // topupController.isLoading(true);
-
-                              // topupController
-                              //     .createOrder(amountController.text);
+                              Get.to(() => InputPinNumber(
+                                    amount: amountController.text,
+                                    payeeId: widget.payeeId,
+                                  ));
                             }
                           },
                           child: const Text(

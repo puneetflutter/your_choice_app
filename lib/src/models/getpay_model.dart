@@ -33,19 +33,18 @@ class GetpayModel {
 }
 
 class GetpayData {
-    int currentPage;
+    dynamic currentPage;
     List<GetpaylistData> data;
     String firstPageUrl;
-    int from;
-    int lastPage;
+    dynamic from;
+    dynamic lastPage;
     String lastPageUrl;
-    List<Link> links;
     dynamic nextPageUrl;
     String path;
-    int perPage;
+    dynamic perPage;
     dynamic prevPageUrl;
-    int to;
-    int total;
+    dynamic to;
+    dynamic total;
 
     GetpayData({
         required this.currentPage,
@@ -54,7 +53,6 @@ class GetpayData {
         required this.from,
         required this.lastPage,
         required this.lastPageUrl,
-        required this.links,
         this.nextPageUrl,
         required this.path,
         required this.perPage,
@@ -70,7 +68,7 @@ class GetpayData {
         from: json["from"],
         lastPage: json["last_page"],
         lastPageUrl: json["last_page_url"],
-        links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
+        // links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
         nextPageUrl: json["next_page_url"],
         path: json["path"],
         perPage: json["per_page"],
@@ -86,7 +84,7 @@ class GetpayData {
         "from": from,
         "last_page": lastPage,
         "last_page_url": lastPageUrl,
-        "links": List<dynamic>.from(links.map((x) => x.toJson())),
+        // "links": List<dynamic>.from(links.map((x) => x.toJson())),
         "next_page_url": nextPageUrl,
         "path": path,
         "per_page": perPage,

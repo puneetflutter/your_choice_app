@@ -70,6 +70,13 @@ abstract class BaseApiService {
   final String addnewpayURL =
       'https://yourchoice.batechnology.in/api/add-payee';
 
-  // //getpay
-  // final String getpayUrl = 'https://yourchoice.batechnology.in/api/get-payee';
+
+   final String payeeSendURL = "https://yourchoice.batechnology.in/api/payee-send";
+
+
+
+   final String checkPinAvailability = "https://yourchoice.batechnology.in/api/pin-valid";
+
+  
+    final String resetPinUrl = "https://yourchoice.batechnology.in/api/reset-pin";
 }

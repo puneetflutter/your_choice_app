@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 
 import '../../../constants/app_fonts.dart';
@@ -30,7 +31,7 @@ class _DthDiscriptionScreenState extends State<DthDiscriptionScreen> {
                                             children: [
                                                  GestureDetector(
                                                   onTap: (){
-                                                    Navigator.of(context).pushNamed( '/dthscreen');
+                                                    Get.back();
                                                   },
                                                   child: Image.asset('assets/icons/backarrow.png')),
                                                Text('DTH Bill',

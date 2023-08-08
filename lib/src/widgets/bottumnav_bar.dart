@@ -9,7 +9,8 @@ import '../view/home_view/profile/profile_screen.dart';
 import '../view/home_view/toupscreen/topup_screen.dart';
 
 class BottumBar extends StatefulWidget {
-  const BottumBar({super.key});
+  int index;
+  BottumBar({super.key, this.index = 0});
 
   @override
   State<BottumBar> createState() => _BottumBarState();
@@ -42,6 +43,19 @@ class _BottumBarState extends State<BottumBar> {
     HistoryScreen(),
     ProfileScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    setData();
+  }
+
+  setData() {
+    setState(() {
+      _selectedItemPosition = widget.index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +87,7 @@ class _BottumBarState extends State<BottumBar> {
 
           currentIndex: _selectedItemPosition,
           onTap: (index) => setState(() => _selectedItemPosition = index),
-          items: [
+          items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.add), label: 'New Pay'),
             BottomNavigationBarItem(

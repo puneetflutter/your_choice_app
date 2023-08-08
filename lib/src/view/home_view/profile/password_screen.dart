@@ -43,7 +43,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.of(context).pushNamed('/confirmationpin');
+                             Get.back();
                             },
                             child: Image.asset('assets/icons/backarrow.png')),
                        Text('Password Set',

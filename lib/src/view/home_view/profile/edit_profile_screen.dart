@@ -124,26 +124,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         child: Column(
                           children: [
                             ysizedbox20,
-                            Stack(
-                              children: [
-                               Image.asset('assets/images/editprofileimgae.png'),
+                            // Stack(
+                            //   children: [
+                            //    Image.asset('assets/images/editprofileimgae.png'),
         
-                               Positioned(
-                                top: 120,
-                                left: 110,
-                                child: Image.asset('assets/icons/cameraicon.png',
-                               ))
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10,),
-                              child: Text('Replace Photo',
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600,
-                                color: yblue
-                              ),),
-                            ),
+                            //    Positioned(
+                            //     top: 120,
+                            //     left: 110,
+                            //     child: Image.asset('assets/icons/cameraicon.png',
+                            //    ))
+                            //   ],
+                            // ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(top: 10,),
+                            //   child: Text('Replace Photo',
+                            //   style: TextStyle(
+                            //     fontSize: 17,
+                            //     fontWeight: FontWeight.w600,
+                            //     color: yblue
+                            //   ),),
+                            // ),
                              Padding(
                               padding: const EdgeInsets.only(left: 20,right: 30,top: 40),
                               child: Container(
