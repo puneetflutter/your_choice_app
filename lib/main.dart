@@ -53,9 +53,10 @@ void main() {
   Get.put(AuthController());
   Get.put(ProfileApiController());
   Get.put(HomeController());
-  Get.put(AddnewpayController());
+  Get.put(payController());
   Get.put(ForfotPasswordController());
   Get.put(InstantTopUpController());
+ 
   runApp(
     const MyApp(),
   );

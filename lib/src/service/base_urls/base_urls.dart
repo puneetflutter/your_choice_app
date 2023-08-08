@@ -58,5 +58,6 @@ abstract class BaseApiService {
 
    //getpay
    final String getpayUrl ='https://yourchoice.batechnology.in/api/get-payee';
-
+   //deletepay
+   final String  paydeleteURL = 'https://yourchoice.batechnology.in/api/delete-payee';
 }

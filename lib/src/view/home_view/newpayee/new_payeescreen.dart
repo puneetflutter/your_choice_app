@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
-
+import 'package:cupertino_icons/cupertino_icons.dart';
 import '../../../controller/pay_controller/add_newpay_controller.dart';
+
 import '../../../controller/sigin_controller.dart';
 
 class NewPayeeScreen extends StatefulWidget {
@@ -14,14 +17,59 @@ class NewPayeeScreen extends StatefulWidget {
 }
 
 class _NewPayeeScreenState extends State<NewPayeeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getpayController.getnewpay();
+    
+  }
   List image = [
     'assets/images/newpayeeimage1.png',
     'assets/images/newpayeeimage2.png',
     'assets/images/newpayeeimage3.png',
     'assets/images/newpayeeimage4.png',
   ];
-  final addnewpayController = Get.find<AddnewpayController>();
+  final getpayController = Get.find<payController>();
   final navigationCOntroller = Get.find<AuthController>();
+ String _selectedValue = '';
+
+Future _showAlert({required String payid})async{
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+        ),
+      title: Text('Delete pay'),
+      content: Text('Are you sure want to delete '),
+       actions: <Widget>[
+          TextButton(
+            child: const Text('No',style: TextStyle(
+              color: Colors.black
+
+            ),),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child:  Text('Yes',style: TextStyle(
+              color: Colors.black
+            )),
+            onPressed: () {
+            getpayController.deletepay(id:payid);
+             Navigator.of(context).pop();
+            },
+          ),
+        ],
+    );
+    },
+    // builder: 
+  );
+} 
+// --- Button Widget --- //
+
   @override
   
   Widget build(BuildContext context) {
@@ -113,104 +161,149 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
                         Divider(
                           color: ygrey,
                         ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: image.length,
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                //Navigator.of(context).pushNamed( '/dthdetail');
-                              },
-                              child: Column(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                        GetBuilder<payController>(
+                          builder: (_) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: getpayController.getpaydata.length,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    //Navigator.of(context).pushNamed( '/dthdetail');
+                                  },
+                                  child: Column(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 20, left: 20),
-                                        child: Column(
-                                          children: [
-                                            Image.asset(image[index]),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, top: 20),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Raja',
-                                              style: TextStyle(fontSize: 15.5),
-                                            ),
-                                            Text('ABC Bank Name'),
-                                            Row(
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 20, left: 20),
+                                            child: Column(
                                               children: [
-                                                Text('AC.No:'),
-                                                Text(
-                                                  ' 122323432442555425',
-                                                  style: TextStyle(
-                                                      color: ygrey
-                                                          .withOpacity(0.7)),
-                                                )
+                                              Image.asset('assets/icons/profileicon.png',
+                                            fit: BoxFit.fitHeight,
+                                            height: 50,)
                                               ],
                                             ),
-                                            Row(
-                                              children: [
-                                                Text('IFSC Code:'),
-                                                Text(
-                                                  ' ABCD12',
-                                                  style: TextStyle(
-                                                      color: ygrey
-                                                          .withOpacity(0.7)),
-                                                )
-                                              ],
-                                            ),
-                                            Row(
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 20, top: 20),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  'Mobile Number:',
+                                                  getpayController.getpaydata[index].name,
+                                                  style: TextStyle(fontSize: 15.5),
                                                 ),
-                                                Text(
-                                                  ' 9876543210',
-                                                  style: TextStyle(
-                                                      color: ygrey
-                                                          .withOpacity(0.7)),
+                                                Row(
+                                                  children: [
+                                                    Text('Bank Name :  ',
+                                                    style: TextStyle(
+                                                      height: 1.5
+                                                    ),),
+                                                    Text(getpayController.getpaydata[index].bankName)
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text('AC.No :  ',
+                                                    style: TextStyle(
+                                                      height: 1.5
+                                                    ),),
+                                                    Text(
+                                                      getpayController.getpaydata[index].accountNumber,
+                                                      style: TextStyle(
+                                                          color: ygrey
+                                                              .withOpacity(0.9)),
+                                                    )
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text('IFSC Code :  ',
+                                                    style: TextStyle(
+                                                      height: 1.5
+                                                    ),),
+                                                    Text(
+                                                      getpayController.getpaydata[index].bankIfscCode,
+                                                      style: TextStyle(
+                                                          color: ygrey
+                                                              .withOpacity(0.9)),
+                                                    )
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'Mobile Number :  ',
+                                                      style: TextStyle(
+                                                        height: 1.5
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                        getpayController.getpaydata[index].contactNumber,
+                                                      style: TextStyle(
+                                                          color: ygrey
+                                                              .withOpacity(0.9)),
+                                                    )
+                                                  ],
                                                 )
                                               ],
-                                            )
-                                          ],
-                                        ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 0),
+                                            child: Row(
+                                              children: [
+                                                PopupMenuButton(
+                                                 shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(7)
+                                                 ),
+                                                          icon: Icon(Icons.more_vert) ,    
+                                                            onSelected: (String value) {
+                                                              setState(() {
+                                                                _selectedValue = value;
+                                                                
+                                                              });
+                                                              _showAlert(payid: getpayController.getpaydata[index].id.toString());
+                                                            },
+                                                            itemBuilder: (BuildContext ctx) => [
+                                                                  const PopupMenuItem(value: '', child: Center(child:
+                                                                   Icon(
+                                                  CupertinoIcons.delete,
+                                                  color: Colors.grey,
+                                                  size: 15,
+                                                ),) )
+                                                                
+                                                                ]),
+                                              //  IconButton(onPressed: (){
+                                              
+                                               
+                                              
+                                              //  }, 
+                                              //  icon:Icon(Icons.more_vert))
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 20),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              ':',
-                                              style: primaryFontbold.copyWith(
-                                                  color: yblue),
-                                            )
-                                          ],
-                                        ),
+                                      ysizedbox10,
+                                      Divider(
+                                        //thickness: 1,
+                                        color: ygrey,
                                       ),
                                     ],
                                   ),
-                                  ysizedbox10,
-                                  Divider(
-                                    //thickness: 1,
-                                    color: ygrey,
-                                  ),
-                                ],
-                              ),
+                                );
+                              },
                             );
-                          },
+                          }
                         ),
                         ysizedbox40,
                         ysizedbox20,
