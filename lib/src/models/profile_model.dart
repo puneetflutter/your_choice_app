@@ -13,8 +13,8 @@ class ProfileModel {
   bool status;
   String message;
   ProfileData data;
-  String walletAmount;
-  String refferalAmount;
+  dynamic walletAmount;
+  dynamic refferalAmount;
 
   ProfileModel({
     required this.status,
@@ -27,8 +27,8 @@ class ProfileModel {
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
         status: json["status"],
         message: json["message"],
-        refferalAmount: json["walletAmount"],
-        walletAmount: json["referralAmount"],
+        walletAmount: json["walletAmount"],
+        refferalAmount: json["referralAmount"],
         data: ProfileData.fromJson(json["data"]),
       );
 

@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:your_choice_app/src/service/base_urls/base_urls.dart';
 
 class PayOrderResponseApiServices extends BaseApiService {
-  Future getResponsePayOrder(int orderId) async {
+  Future getResponsePayOrder(var orderId) async {
     final prefs = await SharedPreferences.getInstance();
     String? authtoken = prefs.getString("auth_token");
     dynamic responseJson;
@@ -21,7 +21,7 @@ class PayOrderResponseApiServices extends BaseApiService {
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: {"order_id": orderId});
+          data: {"orderId": orderId});
       print(
           ":::::::<Pay order Response payment>:::::::::status checking code:::::::<Pay order Response api>:::::::");
       print(response.statusCode);

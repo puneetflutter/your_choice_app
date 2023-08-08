@@ -29,7 +29,7 @@ class ProfileApiController extends GetxController {
     if (response.statusCode != 401) {
       if (response.data["status"] == true) {
         ProfileModel profilemodel = ProfileModel.fromJson(response.data);
-        walletAmount(profilemodel.walletAmount);
+        walletAmount(profilemodel.walletAmount.toString());
         profileData.add(profilemodel.data);
         update();
       } else {

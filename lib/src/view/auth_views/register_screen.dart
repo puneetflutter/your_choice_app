@@ -27,21 +27,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var confirmPasswordController = TextEditingController();
   var _formKey = GlobalKey<FormState>();
 
-  DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime(2005);
 
   Future<void> _selectDate(BuildContext context) async {
-    DateTime date = DateTime.now().subtract(const Duration(days: 6570));
+    DateTime date =  DateTime(2005);
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2005));
     if (picked != null && picked != selectedDate) {
       setState(
         () {
           selectedDate = picked;
           dateofbirthController.text =
-              formatDate(date, [yyyy, "-", mm, "-", dd]);
+              formatDate(selectedDate, [yyyy, "-", mm, "-", dd]);
         },
       );
     }
@@ -149,7 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Email can't be Empty";
-                      } else if (value.isEmail) {
+                      } else if (value.isEmail == false) {
                         return "Enter a valid email id";
                       } else {
                         return null;

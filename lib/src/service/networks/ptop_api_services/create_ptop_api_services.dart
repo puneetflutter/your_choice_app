@@ -34,7 +34,7 @@ class PtoPApiServices extends BaseApiService {
           });
       print(":::::::<order>:::::::::status code:::::::<order>:::::::");
       print(response.statusCode);
-      responseJson = response.data;
+      responseJson = response;
     } on SocketException {
       print("no internet");
     }

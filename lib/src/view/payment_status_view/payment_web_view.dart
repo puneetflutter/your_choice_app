@@ -10,7 +10,7 @@ import 'package:your_choice_app/src/controller/top_up_controller.dart';
 
 class PaymentWebView extends StatefulWidget {
   String url;
-  int orderId;
+  var orderId;
   PaymentWebView({
     required this.url,
     required this.orderId,

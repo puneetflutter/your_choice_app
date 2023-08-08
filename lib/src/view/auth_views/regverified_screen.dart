@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/controller/sigin_controller.dart';
 
 import '../../constants/app_colors.dart';
 
 class RegisterverifiedScreen extends StatefulWidget {
-  const RegisterverifiedScreen({super.key});
+  String mobileNumber;
+  RegisterverifiedScreen({super.key, required this.mobileNumber});
 
   @override
   State<RegisterverifiedScreen> createState() => _RegisterverifiedScreenState();
@@ -14,6 +17,14 @@ class RegisterverifiedScreen extends StatefulWidget {
 
 class _RegisterverifiedScreenState extends State<RegisterverifiedScreen> {
   OtpFieldController otpbox = OtpFieldController();
+  String? otpNumber;
+
+  final authController = Get.find<AuthController>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +32,8 @@ class _RegisterverifiedScreenState extends State<RegisterverifiedScreen> {
       body: SafeArea(
         child: ListView(
           children: [
-            Column(mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ysizedbox40,
                 Container(
@@ -58,12 +70,12 @@ class _RegisterverifiedScreenState extends State<RegisterverifiedScreen> {
                         fontSize: 16,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Enter 4-digit code we have sent to at',
                       style: TextStyle(fontSize: 16, height: 1.6),
                     ),
                     Text(
-                      '+91-123 456 7890',
+                      widget.mobileNumber,
                       style:
                           TextStyle(height: 1.6, color: yindigo, fontSize: 16),
                     )
@@ -75,18 +87,21 @@ class _RegisterverifiedScreenState extends State<RegisterverifiedScreen> {
                   length: 4,
                   width: 250,
                   fieldWidth: 50,
-                  style: TextStyle(fontSize: 17),
+                  style: const TextStyle(fontSize: 17),
                   textFieldAlignment: MainAxisAlignment.spaceAround,
                   fieldStyle: FieldStyle.box,
                   onCompleted: (pin) {
                     print("Entered OTP Code: $pin");
+                    setState(() {
+                      otpNumber = pin;
+                    });
                   },
                 ),
                 ysizedbox20,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('If you didn"t receive the code ?'),
+                    const Text('If you didn"t receive the code ?'),
                     Text(
                       'Resend',
                       style: TextStyle(fontSize: 14, color: yindigo),
@@ -96,15 +111,14 @@ class _RegisterverifiedScreenState extends State<RegisterverifiedScreen> {
                 ysizedbox40,
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        minimumSize: Size(290, 50),
+                        minimumSize: const Size(290, 50),
                         backgroundColor: yindigo,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8))),
                     onPressed: () {
-                      Navigator.of(context)
-                          .pushNamed('/bottumnavbar');
+                      authController.verifyOTP(widget.mobileNumber, otpNumber!);
                     },
-                    child: Text(
+                    child: const Text(
                       'Done',
                       style: TextStyle(fontSize: 17),
                     )),
@@ -112,7 +126,7 @@ class _RegisterverifiedScreenState extends State<RegisterverifiedScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Having Trouble ?',
                       style: TextStyle(
                         fontSize: 14,
@@ -124,7 +138,7 @@ class _RegisterverifiedScreenState extends State<RegisterverifiedScreen> {
                     )
                   ],
                 ),
-               // ysizedbox30
+                // ysizedbox30
               ],
             ),
           ],

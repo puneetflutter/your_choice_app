@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:your_choice_app/src/models/p_to_p_order_model.dart';
+import 'package:your_choice_app/src/service/networks/ptop_api_services/create_payment_link_api_services.dart';
+import 'package:your_choice_app/src/service/networks/ptop_api_services/create_ptop_api_services.dart';
 import 'package:your_choice_app/src/service/networks/top_up_api_services/create_order_api_services.dart';
 import 'package:your_choice_app/src/service/networks/top_up_api_services/pay_order_api_services.dart';
 import 'package:your_choice_app/src/service/networks/top_up_api_services/payment_response_api_services.dart';
 import 'package:your_choice_app/src/service/networks/top_up_api_services/payment_status_api_services.dart';
+import 'package:your_choice_app/src/view/home_view/ptop_view/tranfer_summery_screen.dart';
 import 'package:your_choice_app/src/view/home_view/toupscreen/payment_failed_view.dart';
 import 'package:your_choice_app/src/view/home_view/toupscreen/paymentsucess_screen.dart';
 import 'package:your_choice_app/src/view/payment_status_view/payment_web_view.dart';
@@ -21,6 +25,11 @@ class InstantTopUpController extends GetxController {
       PayOrderResponseApiServices();
 
   PayOrderApiServices payOrderApiServices = PayOrderApiServices();
+
+  PtoPApiServices ptoPApiServices = PtoPApiServices();
+
+  CreatePaymentLinkApiServices createPaymentLinkApiServices =
+      CreatePaymentLinkApiServices();
 
   static MethodChannel _channel = MethodChannel('easebuzz');
 
@@ -63,10 +72,11 @@ class InstantTopUpController extends GetxController {
   createOrder(String amount) async {
     dio.Response<dynamic> response =
         await createOrderApi.createTopUpOrder(amount, "1");
-    print(response);
+    print(response.data);
 
     if (response.data["status"] == true) {
-      payWithRunPaisa(response.data["order_details"]["id"]);
+      payWithRunPaisa(
+          response.data["data"]["id"], response.data["data"]["order_no"]);
     } else {
       isLoading(false);
       Get.rawSnackbar(
@@ -81,16 +91,23 @@ class InstantTopUpController extends GetxController {
     //     phone: response["customer_phone"]);
   }
 
-  payWithRunPaisa(int id) async {
+  payWithRunPaisa(var id, var orderId) async {
     var response = await payOrderApiServices.createPayOrder(id: id);
     isLoading(false);
     print(
         "::::::::---------------::::::::::::::::::--------------::::::::::::::::::---------------::::::::::::");
     print(response);
     Get.to(() => PaymentWebView(
-          url: response["paymentLink"],
-          orderId: id,
+          url: response["data"]["paymentLink"],
+          orderId: orderId,
         ));
+  }
+
+  createLink(int id) async {
+    var response = await createPaymentLinkApiServices.createpaymentLink(id: id);
+    isLoading(false);
+    print(response);
+    return response["data"]["paymentLink"];
   }
 
   // paythroughtEaseBuzz({
@@ -135,9 +152,11 @@ class InstantTopUpController extends GetxController {
   //   }
   // }
 
-  getPaymantResponse(int orderId) async {
+  getPaymantResponse(dynamic orderId) async {
     dio.Response<dynamic> response =
         await payOrderResponseApi.getResponsePayOrder(orderId);
+
+    print(response.data);
 
     if (response.statusCode == 200) {
       // var response2 = await paymentStatusServices.paymentStatusServices(
@@ -155,6 +174,32 @@ class InstantTopUpController extends GetxController {
       Get.off(() => const PaymentSucessScreen());
     } else if (response.statusCode == 400) {
       Get.off(() => PaymentFailedScreen());
+    }
+  }
+
+  createPtoPOrder({
+    required String purpuse,
+    required String amount,
+    required String name,
+    required String mobileNumber,
+    required String description,
+  }) async {
+    isLoading(true);
+    dio.Response<dynamic> response = await ptoPApiServices.ptopApiServices(
+        purpuse: purpuse,
+        amount: amount,
+        name: name,
+        mobileNumber: mobileNumber,
+        description: description);
+    isLoading(false);
+    if (response.data["status"] == true) {
+      PtoPOrderModel ptoPOrderModel = PtoPOrderModel.fromJson(response.data);
+      Get.to(() => TransferSummeryScreen(
+            data: ptoPOrderModel.data,
+          ));
+    } else {
+      Get.rawSnackbar(
+          message: response.data["message"], backgroundColor: Colors.red);
     }
   }
 }

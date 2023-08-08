@@ -5,6 +5,12 @@ abstract class BaseApiService {
 
   //login url
   final String loginURL = "https://yourchoice.batechnology.in/api/user/login";
+
+
+  //otpVerifyURL
+  final String otpVerifyURL = "https://yourchoice.batechnology.in/api/user/login";
+
+
   //profile
   final String getProfileURL =
       'https://yourchoice.batechnology.in/api/user/details';
@@ -23,6 +29,7 @@ abstract class BaseApiService {
   final String createPtoPOrder =
       "https://yourchoice.batechnology.in/api/create-ptop-order";
 
+
   //create payment link url
   final String createPaymentLink =
       "https://yourchoice.batechnology.in/api/create-payment-link";
@@ -40,24 +47,29 @@ abstract class BaseApiService {
       'https://yourchoice.batechnology.in/api/user/change-password';
 
   // card list
- final String  cardListURL="https://yourchoice.batechnology.in/api/card-list";
+  final String cardListURL = "https://yourchoice.batechnology.in/api/card-list";
 
   //notification list
- final String notificationlistURL="https://yourchoice.batechnology.in/api/notification-list";
+  final String notificationlistURL =
+      "https://yourchoice.batechnology.in/api/notification-list";
 
   final String paymentOrderResponseURL =
       "https://yourchoice.batechnology.in/api/payment-response";
 
   final String paymentStatusURL =
       "https://yourchoice.batechnology.in/api/payment-status";
-    //create pin
-   final String createpinURL =  'https://yourchoice.batechnology.in/api/create-pin';  
-
-   //addnewpay
-   final String addnewpayURL = 'https://yourchoice.batechnology.in/api/add-payee';
+  //create pin
+  final String createpinURL =
+      'https://yourchoice.batechnology.in/api/create-pin';
 
    //getpay
    final String getpayUrl ='https://yourchoice.batechnology.in/api/get-payee';
    //deletepay
    final String  paydeleteURL = 'https://yourchoice.batechnology.in/api/delete-payee';
+  //addnewpay
+  final String addnewpayURL =
+      'https://yourchoice.batechnology.in/api/add-payee';
+
+  // //getpay
+  // final String getpayUrl = 'https://yourchoice.batechnology.in/api/get-payee';
 }

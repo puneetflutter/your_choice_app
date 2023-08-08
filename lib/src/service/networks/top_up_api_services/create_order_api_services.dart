@@ -20,7 +20,8 @@ class CreateOrderApi extends BaseApiService {
               followRedirects: false,
               validateStatus: (status) {
                 return status! <= 500;
-              }),
+              },
+              ),
           data: {"amount": amount, "card_type_id": cardType});
       print(":::::::<order>:::::::::status code:::::::<order>:::::::");
       print(response.statusCode);

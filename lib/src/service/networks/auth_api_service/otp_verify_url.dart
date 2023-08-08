@@ -1,30 +1,35 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:your_choice_app/src/service/base_urls/base_urls.dart';
 
-class PayOrderApiServices extends BaseApiService {
-  Future createPayOrder({required var id}) async {
-    final prefs = await SharedPreferences.getInstance();
-    String? authtoken = prefs.getString("auth_token");
+import 'package:dio/dio.dart';
+
+import '../../base_urls/base_urls.dart';
+
+class OTPVerifyApiServices extends BaseApiService {
+  Future otpVerifyApiServices(
+      {required String mobil,required String otp}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
-      var response = await dio.post(payOrderURL,
-          options: Options(
-              headers: {
-                'Authorization': 'Bearer $authtoken',
-                'Content-Type': 'application/json',
-              },
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
-          data: {"orderId": id});
-      print(
-          ":::::::<Pay order payment>:::::::::status code:::::::<Pay order api>:::::::");
+      // final prefs = await SharedPreferences.getInstance();
+      // String? authtoken = prefs.getString("auth_token");
+
+      var response = await dio.post(
+        otpVerifyURL,
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+          },
+          followRedirects: false,
+          validateStatus: (status) {
+            return status! <= 500;
+          },
+        ),
+        data: {"mobile": mobil, "otp": otp},
+      );
+      print("::::::::<Login Api>::::::::status code::::::::::");
       print(response.statusCode);
-      responseJson = response.data;
+      print(response.data);
+      responseJson = response;
     } on SocketException {
       print("no internet");
     }

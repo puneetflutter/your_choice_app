@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:your_choice_app/src/service/networks/auth_api_service/otp_verify_url.dart';
+import 'package:your_choice_app/src/view/auth_views/auth_landing_screen.dart';
+import 'package:your_choice_app/src/view/auth_views/registred_screen.dart';
+import 'package:your_choice_app/src/widgets/bottumnav_bar.dart';
 import '../models/register_model.dart';
 import '../service/networks/auth_api_service/login_api_services.dart';
 import '../service/networks/auth_api_service/register_api_services.dart';
@@ -24,6 +28,7 @@ class AuthController extends GetxController {
 
   RegisterServicesApi registerServicesApi = RegisterServicesApi();
   LoginServicesApi loginServicesApi = LoginServicesApi();
+  OTPVerifyApiServices otpVerifyApiServices = OTPVerifyApiServices();
 
 //LOG IN
   loginUser({
@@ -66,10 +71,14 @@ class AuthController extends GetxController {
     if (response.data["status"] == true) {
       final prefs = await SharedPreferences.getInstance();
       // await prefs.setString("auth_token", response.data["token"]);
-      await prefs.setString("auth_token", response.data["token"]);
-      await prefs.setString("id", response.data["data"]["id"]);
+      // await prefs.setString("auth_token", response.data["token"]);
+      await prefs.setString("id", response.data["data"]["id"].toString());
       await prefs.setString("verify", "false");
-      Get.offAllNamed('/registeredscreen');
+      // Get.offAllNamed('/registeredscreen');
+
+      Get.offAll(() => RegisteredScreen(
+            mobileNumber: registerModel.mobile,
+          ));
 
       // Navigator.of(context)
       // .pushReplacementNamed('/registeredscreen');
@@ -82,11 +91,25 @@ class AuthController extends GetxController {
     {
       Get.rawSnackbar(
         messageText: Text(
-          response.data["message"].first,
+          response.data["message"],
           style: const TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.red,
       );
+    }
+  }
+
+  verifyOTP(String mobileNumber, String otp) async {
+    dio.Response<dynamic> response = await otpVerifyApiServices
+        .otpVerifyApiServices(mobil: mobileNumber, otp: otp);
+
+    if (response.data["status"] == true) {
+      Get.rawSnackbar(
+          message: "Otp verified Successfully", backgroundColor: Colors.green);
+      Get.offAll(() => const AuthLandingScreen());
+    } else {
+      Get.rawSnackbar(
+          message: "${response.data["message"]}", backgroundColor: Colors.red);
     }
   }
 }
