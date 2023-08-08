@@ -110,7 +110,8 @@ class _TopUpScreenState extends State<TopUpScreen> {
                           },
                           child: const CupertinoActivityIndicator(
                             color: Colors.white,
-                          ))
+                          ),
+                        )
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               minimumSize: const Size(290, 50),
@@ -127,7 +128,8 @@ class _TopUpScreenState extends State<TopUpScreen> {
                           child: const Text(
                             'Proceed',
                             style: TextStyle(fontSize: 17),
-                          )),
+                          ),
+                        ),
                 ),
               ],
             ),

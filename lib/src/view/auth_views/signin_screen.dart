@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -190,27 +191,48 @@ class _SigninScreenState extends State<SigninScreen> {
                   ),
                 ),
                 ysizedbox40,
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(290, 50),
-                    backgroundColor: yindigo,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      authController.loginUser(
-                          email_mobile: emailController.text,
-                          password: passwordController.text);
-                    }
-                    //  Navigator.of(context).pushNamed('/bottumnavbar');
-                  },
-                  child: Text(
-                    'Sign in',
-                    style: TextStyle(fontSize: 17),
-                  ),
-                ),
+                Obx(() => authController.isLoading.isTrue
+                    ? ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(290, 50),
+                          backgroundColor: yindigo,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onPressed: () {
+                          authController.isLoading(true);
+                          authController.loginUser(
+                              email_mobile: emailController.text,
+                              password: passwordController.text);
+
+                          //  Navigator.of(context).pushNamed('/bottumnavbar');
+                        },
+                        child: const CupertinoActivityIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(290, 50),
+                          backgroundColor: yindigo,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            authController.loginUser(
+                                email_mobile: emailController.text,
+                                password: passwordController.text);
+                          }
+                          //  Navigator.of(context).pushNamed('/bottumnavbar');
+                        },
+                        child: Text(
+                          'Sign in',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      )),
                 ysizedbox20,
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(

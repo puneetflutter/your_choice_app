@@ -8,6 +8,7 @@ import '../service/networks/auth_api_service/login_api_services.dart';
 import '../service/networks/auth_api_service/register_api_services.dart';
 
 class AuthController extends GetxController {
+  
   RxInt siginIndex = 0.obs;
   RxInt naviIndex = 0.obs;
   RxInt selctedtextindex = 0.obs;

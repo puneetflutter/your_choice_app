@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
         '/registerverifiedscreen': (context) => RegisterverifiedScreen(),
         '/instaptop': (context) => InstantTopupScreen(),
         '/selectcard': (context) => SelectCardScreen(),
-       // '/topupscreen': (context) => TopUpScreen(),
+     //   '/topupscreen': (context) => TopUpScreen(),
         '/topuppayment': (context) => TopUpPaymentScreen(),
         '/paymentsuccess': (context) => PaymentSucessScreen(),
         '/paymentlink': (context) => PaymentLinkScreen(),

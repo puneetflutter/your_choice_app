@@ -94,9 +94,13 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                           fieldStyle: FieldStyle.underline,
                           onCompleted: (pin) {
                             print("Completed: " + pin);
+
+                            profileapiController.pinnumbers=pin;
+                            profileapiController.update();
                           },
                         ),
                         ),
+
                         ysizedbox30,
                         Text('Type Four Pin, Don"t show',
                         style: TextStyle(
@@ -110,7 +114,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                         InkWell(
                           onTap: (){
                            profileapiController.createpin(
-                            pinnumber:pin
+                            pinnumber: profileapiController.pinnumbers
                            );
                           },
                           child: Container(

@@ -19,7 +19,7 @@ class ProfileApiController extends GetxController {
   GetNotificationListApi getNotificationLiistApi = GetNotificationListApi();
   GetProfileApiService getprofileapiservice = GetProfileApiService();
   List<ProfileData> profileData = [];
-
+  String pinnumbers="";
   RxString walletAmount = "0.00".obs;
 
   getprofile() async {
