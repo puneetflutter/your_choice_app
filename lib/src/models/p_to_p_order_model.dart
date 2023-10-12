@@ -44,7 +44,7 @@ class PtoPModelData {
   int serviceCharge;
   String fundTransferFee;
   String serviceName;
-  int refId;
+  dynamic refId;
   String orderNo;
   DateTime updatedAt;
   DateTime createdAt;

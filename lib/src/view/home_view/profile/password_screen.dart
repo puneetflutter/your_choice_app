@@ -90,8 +90,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                           child: TextField(
                             controller: currentpasswordController,
                             decoration: InputDecoration(
-                             
-                              fillColor: Color(0xffDDE9F0),
+                              fillColor:const Color(0xffDDE9F0),
                               filled: true,
                               suffixIcon:currentvisibility?IconButton(
                                 onPressed: (){
@@ -129,8 +128,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                           child: TextField(
                             controller: newpasswordController,
                             decoration: InputDecoration(
-                             
-                              fillColor: Color(0xffDDE9F0),
+                              fillColor:const Color(0xffDDE9F0),
                               filled: true,
                               suffixIcon:newvisibility?IconButton(
                                 onPressed: (){
@@ -167,8 +165,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                           child: TextField(
                             controller: confirpasswordController,
                             decoration: InputDecoration(
-                             
-                              fillColor: Color(0xffDDE9F0),
+                              fillColor:const Color(0xffDDE9F0),
                               filled: true,
                               suffixIcon:confirvisibility?IconButton(
                                 onPressed: (){

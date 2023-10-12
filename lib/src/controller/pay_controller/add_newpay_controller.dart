@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:your_choice_app/src/models/search_bank_model.dart';
+import 'package:your_choice_app/src/service/networks/pay_api_service/search_bank_api_service.dart';
 import 'package:your_choice_app/src/widgets/bottumnav_bar.dart';
 import '../../constants/app_fonts.dart';
 import '../../models/add_new_model.dart';
@@ -9,7 +11,7 @@ import '../../service/networks/pay_api_service/add_newpay_api_service.dart';
 import '../../service/networks/pay_api_service/delete_pay_api_service.dart';
 import '../../service/networks/pay_api_service/getpay_api_service.dart';
 
-class payController extends GetxController {
+class PayController extends GetxController {
   RxBool isLoading = false.obs;
   AddnewPayApiService addnewPayApiService = AddnewPayApiService();
 
@@ -73,4 +75,22 @@ class payController extends GetxController {
           message: response.data["message"], backgroundColor: Colors.red);
     }
   }
+
+  //search bank
+  SearchBankApiServices searchBankApiServices = SearchBankApiServices();
+  var selectBankNameController = TextEditingController();
+  var bankIFSCController = TextEditingController();
+
+  List<SearchBankData> searchBankDataList = [];
+  searchBank({required String searchKey}) async {
+    var response =
+        await searchBankApiServices.searchBankApi(searchkey: searchKey);
+    if (response.statusCode == 200) {
+      SearchBankModel searchBankModel = SearchBankModel.fromJson(response.data);
+
+      searchBankDataList = searchBankModel.bankDetail.data;
+      update();
+    }
+  }
+  
 }

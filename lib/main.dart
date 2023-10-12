@@ -14,10 +14,9 @@ import 'package:your_choice_app/src/view/auth_views/forgotscreen/password_create
 import 'package:your_choice_app/src/view/auth_views/forgotscreen/password_sucess_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/onbording11.dart';
 import 'package:your_choice_app/src/view/auth_views/register_screen.dart';
-import 'package:your_choice_app/src/view/auth_views/registred_screen.dart';
-import 'package:your_choice_app/src/view/auth_views/regverified_screen.dart';
 import 'package:your_choice_app/src/view/auth_views/signin_screen.dart';
 import 'package:your_choice_app/src/view/home_view/credit_card/credit_card_screen.dart';
+import 'package:your_choice_app/src/view/home_view/history/all_wallet_history_screen.dart';
 import 'package:your_choice_app/src/view/home_view/history/history_screen.dart';
 import 'package:your_choice_app/src/view/home_view/newpayee/new_payeescreen.dart';
 import 'package:your_choice_app/src/view/home_view/newpayee/new_paymentdetails.dart';
@@ -29,9 +28,8 @@ import 'package:your_choice_app/src/view/home_view/profile/edit_profile_screen.d
 import 'package:your_choice_app/src/view/home_view/profile/password_screen.dart';
 import 'package:your_choice_app/src/view/home_view/profile/profile_screen.dart';
 import 'package:your_choice_app/src/view/home_view/profile/referal_screen.dart';
-import 'package:your_choice_app/src/view/home_view/profile/support_screen.dart';
+import 'package:your_choice_app/src/view/home_view/profile/support_screen_new.dart';
 import 'package:your_choice_app/src/view/home_view/ptop_view/ptop_screen.dart';
-import 'package:your_choice_app/src/view/home_view/ptop_view/tranfer_summery_screen.dart';
 import 'package:your_choice_app/src/view/home_view/recharge_view/dth_discription_screen.dart';
 import 'package:your_choice_app/src/view/home_view/recharge_view/dth_screen.dart';
 import 'package:your_choice_app/src/view/home_view/recharge_view/plan_choose_screen.dart';
@@ -44,17 +42,15 @@ import 'package:your_choice_app/src/view/home_view/toupscreen/instanttopup_scree
 import 'package:your_choice_app/src/view/home_view/toupscreen/paymentsucess_screen.dart';
 import 'package:your_choice_app/src/view/home_view/toupscreen/selectcard_screen.dart';
 import 'package:your_choice_app/src/view/home_view/toupscreen/topup_payment_screen.dart';
-import 'package:your_choice_app/src/view/home_view/toupscreen/topup_screen.dart';
 import 'package:your_choice_app/src/view/splash_screen/splash_screen.dart';
 import 'package:your_choice_app/src/widgets/bottumnav_bar.dart';
-
 import 'src/view/home_view/home_screen.dart';
 
 void main() {
   Get.put(AuthController());
   Get.put(ProfileApiController());
   Get.put(HomeController());
-  Get.put(payController());
+  Get.put(PayController());
   Get.put(ForfotPasswordController());
   Get.put(InstantTopUpController());
   Get.put(PayoutController());
@@ -74,46 +70,46 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: {
-        "/": (context) => SplashScreen(),
-        "/onbording": (context) => OnbordingScreen(),
-        "/home": (context) => HomeScreen(),
-        '/authlanding': (context) => AuthLandingScreen(),
-        '/siginhome': (context) => SigninScreen(),
-        '/forgotscreen': (context) => ForgotPasswordScreen(),
-        '/forgotverification': (context) => ForgotPassVerificationScreen(),
-        '/passwordcreate': (context) => PasswordCreateScreen(),
-        '/passwordsucess': (context) => PasswordSucessScreen(),
-        '/registerscreen': (context) => RegisterScreen(),
+        "/": (context) => const SplashScreen(),
+        "/onbording": (context) => const OnbordingScreen(),
+        "/home": (context) => const HomeScreen(),
+        '/authlanding': (context) => const AuthLandingScreen(),
+        '/siginhome': (context) => const SigninScreen(),
+        '/forgotscreen': (context) => const ForgotPasswordScreen(),
+        '/forgotverification': (context) => const ForgotPassVerificationScreen(),
+        '/passwordcreate': (context) => const PasswordCreateScreen(),
+        '/passwordsucess': (context) => const PasswordSucessScreen(),
+        '/registerscreen': (context) => const RegisterScreen(),
         // '/registeredscreen': (context) => RegisteredScreen(),
         // '/registerverifiedscreen': (context) => RegisterverifiedScreen(),
-        '/instaptop': (context) => InstantTopupScreen(),
-        '/selectcard': (context) => SelectCardScreen(),
+        '/instaptop': (context) => const InstantTopupScreen(),
+        '/selectcard': (context) => const SelectCardScreen(),
      //   '/topupscreen': (context) => TopUpScreen(),
-        '/topuppayment': (context) => TopUpPaymentScreen(),
-        '/paymentsuccess': (context) => PaymentSucessScreen(),
-        '/paymentlink': (context) => PaymentLinkScreen(),
-        '/ptopscreen': (context) => PtopScreen(),
+        '/topuppayment': (context) => const TopUpPaymentScreen(),
+        '/paymentsuccess': (context) => const PaymentSucessScreen(),
+        '/paymentlink': (context) => const PaymentLinkScreen(),
+        '/ptopscreen': (context) => const PtopScreen(),
         // '/transfersummery': (context) => TransferSummeryScreen(),
-        '/creditcard': (context) => CreditCardScreen(),
-        '/recharge': (context) => RechargeScreen(),
-        '/selectprepaid': (context) => SlectePrepaidScreen(),
-        '/planchoose': (context) => PlanChooseScreen(),
-        '/selectrecharge': (context) => SelectRechargePlanScreen(),
-        '/dthscreen': (context) => DthScreen(),
-        '/dthdetail': (context) => DthDiscriptionScreen(),
-        '/postpaid': (context) => PostpaidScreen(),
-        '/postdeatail': (context) => PostpaidDetailScreen(),
-        '/newpayee': (context) => NewPayeeScreen(),
-        '/newpaydetail': (context) => NewPaymentDetailScreen(),
-        '/history': (context) => HistoryScreen(),
-        '/profile': (context) => ProfileScreen(),
-        '/editprofile': (context) => EditProfileScreen(),
-        '/createpin': (context) => CreatePinScreen(),
-        '/confirmationpin': (context) => ConfirmationPinScreen(),
-        '/password': (context) => PasswordScreen(),
-        '/referal': (context) => ReferalScreen(),
-        '/support': (context) => SupportScreen(),
-        '/notification': (context) => NotificationScreen(),
+        '/creditcard': (context) => const CreditCardScreen(),
+        '/recharge': (context) => const RechargeScreen(),
+        '/selectprepaid': (context) => const SlectePrepaidScreen(),
+        '/planchoose': (context) => const PlanChooseScreen(),
+        '/selectrecharge': (context) => const SelectRechargePlanScreen(),
+        '/dthscreen': (context) => const DthScreen(),
+        '/dthdetail': (context) => const DthDiscriptionScreen(),
+        '/postpaid': (context) => const PostpaidScreen(),
+        '/postdeatail': (context) => const PostpaidDetailScreen(),
+        '/newpayee': (context) => const NewPayeeScreen(),
+        '/newpaydetail': (context) => const NewPaymentDetailScreen(),
+        '/history': (context) => const AllWalletHistoryScreen(),
+        '/profile': (context) => const ProfileScreen(),
+        '/editprofile': (context) => const EditProfileScreen(),
+        '/createpin': (context) => const CreatePinScreen(),
+        '/confirmationpin': (context) => const ConfirmationPinScreen(),
+        '/password': (context) => const PasswordScreen(),
+        '/referal': (context) => const ReferalScreen(),
+        '/support': (context) => const SupportScreenNew(),
+        '/notification': (context) => const NotificationScreen(),
         '/bottumnavbar': (context) => BottumBar()
       },
     );

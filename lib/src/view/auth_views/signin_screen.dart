@@ -53,8 +53,8 @@ class _SigninScreenState extends State<SigninScreen> {
                   'Sign In to Account',
                   style: primaryFontbold.copyWith(fontSize: 24, color: yblue),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 7),
+                const Padding(
+                  padding: EdgeInsets.only(top: 7),
                   child: Text(
                     'Sign With Username or email and \n password to use your account',
                     textAlign: TextAlign.center,
@@ -71,7 +71,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           ? Container(
                               // height: 52,
                               width: 290,
-                              decoration: BoxDecoration(),
+                              decoration:const BoxDecoration(),
                               child: TextFormField(
                                 keyboardType: TextInputType.phone,
                                 autovalidateMode:
@@ -97,7 +97,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                       17.0, 8.0, 17.0, 7.0),
                                   labelText: 'Mobile Number',
                                   labelStyle: TextStyle(color: ygrey),
-                                  border: OutlineInputBorder(),
+                                  border:const OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
                                         BorderSide(width: 1, color: ygrey),
@@ -108,7 +108,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           : Container(
                               // height: 52,
                               width: 290,
-                              decoration: BoxDecoration(),
+                              decoration:const BoxDecoration(),
                               child: TextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 autovalidateMode:
@@ -126,7 +126,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                       17.0, 8.0, 17.0, 7.0),
                                   labelText: 'Email Id',
                                   labelStyle: TextStyle(color: ygrey),
-                                  border: OutlineInputBorder(),
+                                  border:const OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
                                         BorderSide(width: 1, color: ygrey),
@@ -138,7 +138,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       Container(
                         //   height: 52,
                         width: 290,
-                        decoration: BoxDecoration(),
+                        decoration:const BoxDecoration(),
                         child: TextFormField(
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -149,13 +149,9 @@ class _SigninScreenState extends State<SigninScreen> {
                             return null;
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(10),
-                            FilteringTextInputFormatter.digitsOnly,
-                            FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                          ],
                           cursorColor: ygrey,
                           controller: passwordController,
+                          keyboardType: TextInputType.visiblePassword,
                           obscureText: ispasswordhide,
                           decoration: InputDecoration(
                             contentPadding:

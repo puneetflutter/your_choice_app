@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
@@ -103,8 +104,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Navigator.of(context)
                                           .pushNamed('/notification');
                                     },
-                                    child: Image.asset(
-                                        'assets/images/notificationimage.png')),
+                                    child: SvgPicture.asset(
+                                            'assets/images/notificationimage.svg')),
                               ),
                               InkWell(
                                 onTap: () {
@@ -135,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             color: ywhite,
-                            borderRadius: BorderRadius.only(
+                            borderRadius:const BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10))),
                         child: Padding(

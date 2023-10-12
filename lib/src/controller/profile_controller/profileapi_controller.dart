@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:your_choice_app/src/models/admin_support_details_model.dart';
+import 'package:your_choice_app/src/service/networks/profile/admin_support_details.dart';
 import 'package:your_choice_app/src/view/auth_views/auth_landing_screen.dart';
 
 import '../../constants/app_fonts.dart';
@@ -178,5 +180,21 @@ async{
           )
       );
           }
+       }
+
+       //admin support detail
+       AdminSupportDetailsApi adminSupportDetailsApi = AdminSupportDetailsApi();
+       List<AdminSupportDetailData> adminSupportDetailData = [];
+
+       adminSupportDetail() async {
+
+         dio.Response<dynamic> response = await adminSupportDetailsApi.adminSupportDetailsApi();
+         if(response.statusCode == 200){
+           AdminSupportDetails adminSupportDetails = AdminSupportDetails.fromJson(response.data);
+           adminSupportDetailData.add(adminSupportDetails.data);
+         } else {
+          Get.rawSnackbar(message: response.data["message"]);
+        }
+        update();
        }
 }

@@ -90,6 +90,9 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
                               : yblue,
                           borderRadius: BorderRadius.circular(14),
                         ),
+                        child: Center(
+                          child: Image.asset(cardimage[index],color: Colors.white,),
+                        ),
                       ),
                       ysizedbox10,
                       Row(
@@ -121,7 +124,7 @@ class _InstantTopupScreenState extends State<InstantTopupScreen> {
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  minimumSize: Size(290, 50),
+                  minimumSize:const Size(290, 50),
                   backgroundColor: yindigo,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),

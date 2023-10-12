@@ -1,9 +1,11 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/controller/payout_controller.dart';
 import 'package:your_choice_app/src/controller/profile_controller/profileapi_controller.dart';
 
 import '../../controller/sigin_controller.dart';
@@ -19,11 +21,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final navigationCOntroller = Get.find<AuthController>();
   final profileController = Get.find<ProfileApiController>();
+  final payoutController = Get.find<PayoutController>();
 
   @override
   void initState() {
     super.initState();
     profileController.getprofile();
+    payoutController.walletHistory(startDate: "2023-01-01", endDate: "2023-10-02");
   }
 
   void openWhatsapp(
@@ -39,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (await canLaunchUrl(Uri.parse(whatsappURlAndroid))) {
       await launchUrl(Uri.parse(whatsappURlAndroid));
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
+       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Whatsapp not installed")));
     }
   }
@@ -290,14 +294,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: size.width,
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.9),
-                            borderRadius: BorderRadius.only(
+                            borderRadius:const BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 25, left: 20),
+                              padding: const EdgeInsets.only(top: 25, left: 20,bottom: 25),
                               child: Row(
                                 children: [
                                   Text(
@@ -361,7 +365,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 20, right: 20),
+                                  const EdgeInsets.only(left: 20, right: 20,top: 25,bottom: 25),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -369,259 +373,110 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Text('Recent Transaction',
                                       style: primaryFontbold.copyWith(
                                           fontSize: 18)),
-                                  Text(
-                                    'See all',
-                                    style:
-                                        TextStyle(color: yblue, fontSize: 15),
-                                  )
+                                  // Text(
+                                  //   'See all',
+                                  //   style:
+                                  //       TextStyle(color: yblue, fontSize: 15),
+                                  // )
                                 ],
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15),
-                              child: Container(
-                                height: 370,
-                                width: size.width,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(20),
-                                        topRight: Radius.circular(20)),
-                                    color: ywhite),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15, right: 15, top: 5),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            height: 55,
-                                            width: 55,
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey
-                                                    .withOpacity(0.2),
-                                                borderRadius:
-                                                    BorderRadius.circular(60)),
-                                            alignment: Alignment.center,
-                                            child: SvgPicture.asset(
-                                                'assets/images/Icon awesome-user-alt.svg',
-                                                height: 30),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Payment',
-                                                style: primaryFont.copyWith(
-                                                    fontSize: 17),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child:
-                                                    Text('Payment from Wasim'),
-                                              )
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text(
-                                                '₹243.54',
-                                                style: primaryFontsemiBold
-                                                    .copyWith(
-                                                        color: Colors.green,
-                                                        fontSize: 17),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child: Text('JUN 26'),
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Divider(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15, right: 15),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            height: 55,
-                                            width: 55,
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey
-                                                    .withOpacity(0.2),
-                                                borderRadius:
-                                                    BorderRadius.circular(60)),
-                                            alignment: Alignment.center,
-                                            child: SvgPicture.asset(
-                                                'assets/images/Icon awesome-user-alt.svg',
-                                                height: 30),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Payment',
-                                                style: primaryFont.copyWith(
-                                                    fontSize: 17),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child:
-                                                    Text('Payment from Wasim'),
-                                              )
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text(
-                                                '₹243.54',
-                                                style: primaryFontsemiBold
-                                                    .copyWith(
-                                                        color: Colors.red,
-                                                        fontSize: 17),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child: Text('JUN 26'),
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Divider(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15, right: 15),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            height: 55,
-                                            width: 55,
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey
-                                                    .withOpacity(0.2),
-                                                borderRadius:
-                                                    BorderRadius.circular(60)),
-                                            alignment: Alignment.center,
-                                            child: SvgPicture.asset(
-                                                'assets/images/Icon awesome-user-alt.svg',
-                                                height: 30),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Payment',
-                                                style: primaryFont.copyWith(
-                                                    fontSize: 17),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child:
-                                                    Text('Payment from Wasim'),
-                                              )
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text(
-                                                '₹243.54',
-                                                style: primaryFontsemiBold
-                                                    .copyWith(
-                                                        color: Colors.green,
-                                                        fontSize: 17),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child: Text('JUN 26'),
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Divider(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15, right: 15),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            height: 55,
-                                            width: 55,
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey
-                                                    .withOpacity(0.2),
-                                                borderRadius:
-                                                    BorderRadius.circular(60)),
-                                            alignment: Alignment.center,
-                                            child: SvgPicture.asset(
-                                                'assets/images/Icon awesome-user-alt.svg',
-                                                height: 30),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Payment',
-                                                style: primaryFont.copyWith(
-                                                    fontSize: 17),
-                                              ),
-                                              const Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child:
-                                                    Text('Payment from Wasim'),
-                                              )
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text(
-                                                '₹243.54',
-                                                style: primaryFontsemiBold
-                                                    .copyWith(
-                                                        color: Colors.red,
-                                                        fontSize: 17),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child: Text('JUN 26'),
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                              padding: const EdgeInsets.symmetric(horizontal: 15),
+                              child: GetBuilder<PayoutController>(
+                                builder: (_) {
+                                  return payoutController.walletTransactionData.isEmpty ? 
+                                   Center(
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(height: 10,),
+                                        const Image(image: AssetImage("assets/images/walletnotavailableimage.png")),
+                                        const SizedBox(height: 10,),
+                                        Text("Transaction not found",
+                                        style: primaryFontmedium.copyWith(
+                                                  fontSize: 18,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w700
+                                        ),
                                 ),
+                                      ],
+                                    ),
+                                  ) :
+                                  Container(
+                                    height: 200,
+                                    width: size.width,
+                                    decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20)),
+                                        color: ywhite),
+                                        child: ListView.builder(
+                                          itemCount: payoutController.walletTransactionData.length,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        height: 55,
+                                                        width: 55,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.grey
+                                                                .withOpacity(0.2),
+                                                            borderRadius:
+                                                                BorderRadius.circular(60)),
+                                                        alignment: Alignment.center,
+                                                        child: SvgPicture.asset(
+                                                            'assets/images/Icon awesome-user-alt.svg',
+                                                            height: 30),
+                                                      ),
+                                                   const SizedBox(width: 10,),
+                                                   Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        payoutController.walletTransactionData[index].flag,
+                                                        style: primaryFont.copyWith(
+                                                            fontSize: 17),
+                                                      ),
+                                                       Padding(
+                                                        padding:const EdgeInsets.only(top: 4),
+                                                        child: Text(payoutController.walletTransactionData[index].remarks),
+                                                      )
+                                                    ],
+                                                  ),
+                                                    ],
+                                                  ),
+                                                
+                                                  Row(
+                                                    children: [
+                                                      Column(
+                                                        children: [
+                                                          Text(payoutController.walletTransactionData[index].flag == "payout" ?
+                                                            payoutController.walletTransactionData[index].debitAmount : payoutController.walletTransactionData[index].creditAmount,
+                                                            style: primaryFontsemiBold
+                                                                .copyWith(
+                                                                    color:payoutController.walletTransactionData[index].flag == "payout" ? Colors.red : Colors.green,
+                                                                    fontSize: 17),
+                                                          ),
+                                                           Padding(
+                                                            padding:const EdgeInsets.only(top: 4),
+                                                            child: Text(formatDate(payoutController.walletTransactionData[index].createdAt, [MM," ", dd])),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          }
+                                        ),
+                                  );
+                                }
                               ),
                             )
                           ],

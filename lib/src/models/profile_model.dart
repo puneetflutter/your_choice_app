@@ -57,6 +57,7 @@ class ProfileData {
     dynamic pg;
     dynamic payoutType;
     dynamic status;
+    String paymentId;
 
   ProfileData({
     required this.id,
@@ -76,6 +77,7 @@ class ProfileData {
     this.pg,
     this.payoutType,
     required this.status,
+    required this.paymentId,
   });
 
     factory ProfileData.fromJson(Map<String, dynamic> json) => ProfileData(
@@ -96,6 +98,7 @@ class ProfileData {
         pg: json["pg"]??"",
         payoutType: json["payout_type"]??"",
         status: json["status"]??"",
+        paymentId: json["paymentId"]?? "",
     );
 
   Map<String, dynamic> toJson() => {
@@ -116,5 +119,6 @@ class ProfileData {
         "pg": pg,
         "payout_type": payoutType,
         "status": status,
+        "paymentId": paymentId,
       };
 }

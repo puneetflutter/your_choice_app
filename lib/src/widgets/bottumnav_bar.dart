@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
+import 'package:your_choice_app/src/view/home_view/history/all_wallet_history_screen.dart';
 
 import '../view/home_view/history/history_screen.dart';
 import '../view/home_view/home_screen.dart';
@@ -38,10 +39,10 @@ class _BottumBarState extends State<BottumBar> {
   Color unselectedColor = Colors.blue;
 
   List pages = [
-    HomeScreen(),
-    NewPayeeScreen(),
-    HistoryScreen(),
-    ProfileScreen(),
+    const HomeScreen(),
+    const NewPayeeScreen(),
+    const AllWalletHistoryScreen(),
+    const ProfileScreen(),
   ];
 
   @override

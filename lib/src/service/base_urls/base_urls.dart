@@ -79,4 +79,13 @@ abstract class BaseApiService {
 
   
     final String resetPinUrl = "https://yourchoice.batechnology.in/api/reset-pin";
+
+   //wallet history
+   final String walletHistoryApiUrl = "https://yourchoice.batechnology.in/api/transaction-history";
+
+   //admin support details
+   final String adminSupportDetailApiUrl = "https://yourchoice.batechnology.in/api/admin-support-details"; 
+
+   //search bank
+   final String searchbankURL = "https://yourchoice.batechnology.in/api/bank-details";
 }

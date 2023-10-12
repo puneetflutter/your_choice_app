@@ -31,7 +31,7 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
     'assets/images/newpayeeimage4.png',
   ];
 
-  final getpayController = Get.find<payController>();
+  final getpayController = Get.find<PayController>();
   final navigationCOntroller = Get.find<AuthController>();
   final payeeController =Get.find<PayoutController>();
   String _selectedValue = '';
@@ -165,7 +165,7 @@ class _NewPayeeScreenState extends State<NewPayeeScreen> {
                           Divider(
                             color: ygrey,
                           ),
-                          GetBuilder<payController>(builder: (_) {
+                          GetBuilder<PayController>(builder: (_) {
                             return getpayController.getpaydata.isEmpty
                                 ? Container(
                                     height: size.height / 2,

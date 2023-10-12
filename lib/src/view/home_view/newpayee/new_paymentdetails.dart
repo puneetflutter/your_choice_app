@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
 import 'package:your_choice_app/src/models/add_new_model.dart';
+import 'package:your_choice_app/src/view/home_view/newpayee/search_bank_view.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../controller/pay_controller/add_newpay_controller.dart';
@@ -26,9 +27,15 @@ class _NewPaymentDetailScreenState extends State<NewPaymentDetailScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    setDefault();
   }
 
-  final addnewpayController = Get.find<payController>();
+  setDefault(){
+    addnewpayController.selectBankNameController.clear();
+    addnewpayController.bankIFSCController.clear();
+  }
+
+  final addnewpayController = Get.find<PayController>();
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -119,7 +126,10 @@ class _NewPaymentDetailScreenState extends State<NewPaymentDetailScreen> {
                         return null;
                       }
                     },
-                    controller: banknameController,
+                    onTap: (){
+                      Get.to(()=> const SearchBankView());
+                    },
+                    controller: addnewpayController.selectBankNameController,
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: yblue),
@@ -179,7 +189,7 @@ class _NewPaymentDetailScreenState extends State<NewPaymentDetailScreen> {
                       }
                     },
                     textCapitalization: TextCapitalization.words,
-                    controller: ifscCodeController,
+                    controller: addnewpayController.bankIFSCController,
                     inputFormatters: <TextInputFormatter>[
                       LengthLimitingTextInputFormatter(11),
                     ],
@@ -250,8 +260,8 @@ class _NewPaymentDetailScreenState extends State<NewPaymentDetailScreen> {
                       if (_formkey.currentState!.validate()) {
                         AddnewModel addnewModel = AddnewModel(
                             accountnumber: accountnumberController.text,
-                            bankifsccode: ifscCodeController.text,
-                            bankname: banknameController.text,
+                            bankifsccode: addnewpayController.bankIFSCController.text,
+                            bankname: addnewpayController.selectBankNameController.text,
                             mobilenumber: mobilenumberController.text,
                             name: holdernameController.text);
                         addnewpayController.addnewpay(addnewModel: addnewModel);
