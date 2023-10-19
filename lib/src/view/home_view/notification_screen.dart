@@ -60,21 +60,21 @@ class _NotificationScreenState extends State<NotificationScreen> {
             child: Row(
               children: [
                 Text('New'),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        color: ygrey.withOpacity(0.4), shape: BoxShape.circle),
-                    child: Center(
-                      child: Text(
-                        '2',
-                        style: TextStyle(color: yindigo),
-                      ),
-                    ),
-                  ),
-                )
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 10),
+                //   child: Container(
+                //     height: 20,
+                //     width: 20,
+                //     decoration: BoxDecoration(
+                //         color: ygrey.withOpacity(0.4), shape: BoxShape.circle),
+                //     child: Center(
+                //       child: Text(
+                //         '2',
+                //         style: TextStyle(color: yindigo),
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),

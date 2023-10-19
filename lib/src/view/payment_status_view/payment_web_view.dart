@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:your_choice_app/src/controller/top_up_controller.dart';
+import 'package:your_choice_app/src/view/home_view/toupscreen/payment_failed_view.dart';
+import 'package:your_choice_app/src/view/home_view/toupscreen/paymentsucess_screen.dart';
 
 
 class PaymentWebView extends StatefulWidget {
@@ -56,12 +59,41 @@ class _PaymentWebViewState extends State<PaymentWebView> {
           },
           onPageFinished: (String url) {
             print('Page finished loading: $url');
-            paymentController.getPaymantResponse(widget.orderId);
+            Uri uri = Uri.parse(url);
+  
+            if(uri.pathSegments.length > 2){
+    
+            if(uri.pathSegments[1] == "furl"){
+              
+             Get.off(() => const PaymentFailedScreen());
+             paymentController.easebuzzSts(orderId: widget.orderId);
+             //Failed
+      
+    }else if(uri.pathSegments[1] == "surl"){
+       Get.off(() => const PaymentSucessScreen());
+       paymentController.easebuzzSts(orderId: widget.orderId);
+      //Success
+      
+    }
+    
+  }
           },
-          navigationDelegate: (value) {
-            print(value.url);
-            print(value.isForMainFrame);
-            print(value);
+          navigationDelegate: (value) async {
+            if (value.url.startsWith("gpay") ||
+                value.url.startsWith("phonepe") ||
+                value.url.startsWith("paytmmp") ||
+                value.url.startsWith("upi")) {
+              final link = value.url;
+              final uri = Uri.parse(link);
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(
+                  uri,
+                  mode: LaunchMode.externalApplication,
+                );
+              }
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
+              return NavigationDecision.prevent;
+            }
             SystemChannels.textInput.invokeMethod('TextInput.hide');
             return NavigationDecision.navigate;
           },

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:your_choice_app/src/models/p_to_p_order_model.dart';
+import 'package:your_choice_app/src/service/networks/easebuzz_paymaent_api_service/easebuzz_status_api_service.dart';
 import 'package:your_choice_app/src/service/networks/ptop_api_services/create_payment_link_api_services.dart';
 import 'package:your_choice_app/src/service/networks/ptop_api_services/create_ptop_api_services.dart';
 import 'package:your_choice_app/src/service/networks/top_up_api_services/create_order_api_services.dart';
@@ -103,6 +104,14 @@ class InstantTopUpController extends GetxController {
         ));
   }
 
+  //easebuzz status
+  EasebuzzStatusApiService easebuzzStatusApiService = EasebuzzStatusApiService();
+
+  easebuzzSts({required String orderId}) async {
+     dio.Response<dynamic> response = await easebuzzStatusApiService.easebuzzStatusApiService(orderId: orderId);
+     
+  }
+
   createLink(int id) async {
     var response = await createPaymentLinkApiServices.createpaymentLink(id: id);
     isLoading(false);
@@ -173,7 +182,7 @@ class InstantTopUpController extends GetxController {
       // print(response2);
       Get.off(() => const PaymentSucessScreen());
     } else if (response.statusCode == 400) {
-      Get.off(() => PaymentFailedScreen());
+      Get.off(() => const PaymentFailedScreen());
     }
   }
 

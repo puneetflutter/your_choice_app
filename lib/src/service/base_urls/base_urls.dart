@@ -88,4 +88,7 @@ abstract class BaseApiService {
 
    //search bank
    final String searchbankURL = "https://yourchoice.batechnology.in/api/bank-details";
+
+   //easebuzz status 
+   final String easebuzzStsApiUrl = "https://yourchoice.batechnology.in/api/easebuzz-order-status";
 }

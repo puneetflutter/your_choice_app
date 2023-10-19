@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:your_choice_app/src/models/wallet_history_model.dart';
+import 'package:your_choice_app/src/service/networks/easebuzz_paymaent_api_service/easebuzz_payment_api_service.dart';
 import 'package:your_choice_app/src/service/networks/pay_api_service/payee_send_api.dart';
 import 'package:your_choice_app/src/service/networks/pin_handle_api_services/check_availability_pin_api.dart';
 import 'package:your_choice_app/src/service/networks/pin_handle_api_services/create_pin_services.dart';
@@ -102,6 +104,70 @@ class PayoutController extends GetxController {
       Get.rawSnackbar(message: response.data["message"]);
     }
     update();
+  }
+
+  //easebuzz payment 
+
+   static MethodChannel _channel = MethodChannel('easebuzz');
+  EaseBuzzTokenApiService easeBuzzApi = EaseBuzzTokenApiService();
+
+  payUseingEaseBuzz(
+      {required String id,
+      required String customerid,
+      required String amount,
+      required String customerName,
+      required String email,
+      required String phone,
+      required dynamic status}) async {
+        print(".............1");
+    var response = await easeBuzzApi.getPaymentToken(
+        amount: amount,
+        // amount: "1",
+        customerName: customerName,
+        email: email,
+        id: "07889${DateTime.now().microsecond}${DateTime.now().second}",
+        phone: phone);
+    print(".............2");
+    String access_key = response["data"];
+    String pay_mode = "test";
+
+    print("access_key >>$access_key");
+    Object parameters = {"access_key": access_key, "pay_mode": pay_mode};
+    // isPayLoading(false);
+    print(".............3");
+    isLoading(false);
+    final payment_response =
+        await _channel.invokeMethod("payWithEasebuzz", parameters);
+        print(".............4");
+    print(payment_response);
+    isLoading(false);
+    if (payment_response["result"] == "payment_successfull") {
+      //need to give id
+      Get.snackbar(
+        "Payment Successfully Paid",
+        "",
+        icon: const Icon(Icons.check_circle_outline_outlined,
+            color: Colors.white),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        borderRadius: 20,
+        margin: const EdgeInsets.all(15),
+        colorText: Colors.white,
+        duration: const Duration(seconds: 3),
+        isDismissible: true,
+        dismissDirection: DismissDirection.horizontal,
+        forwardAnimationCurve: Curves.easeOutBack,
+      );
+
+      print(response);
+    } else {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+          "The last transaction has been cancelled!", "Please try again!",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          snackPosition: SnackPosition.BOTTOM);
+    }
   }
 
 }

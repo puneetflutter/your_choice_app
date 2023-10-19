@@ -44,13 +44,13 @@ class AuthController extends GetxController {
       await prefs.setString("auth_token", response.data["token"]);
       await prefs.setString("id", response.data["data"]["id"].toString());
       Get.offAllNamed('/bottumnavbar');
-      Get.rawSnackbar(
-        messageText: const Text(
-          "Login Successful",
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.green,
-      );
+      // Get.rawSnackbar(
+      //   messageText: const Text(
+      //     "Login Successful",
+      //     style: TextStyle(color: Colors.white),
+      //   ),
+      //   backgroundColor: Colors.green,
+      // );
     } else
       Get.rawSnackbar(
         messageText: Text(

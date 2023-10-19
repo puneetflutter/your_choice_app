@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/controller/payout_controller.dart';
 import 'package:your_choice_app/src/controller/top_up_controller.dart';
 
 class TopUpScreen extends StatefulWidget {
@@ -20,6 +21,8 @@ class _TopUpScreenState extends State<TopUpScreen> {
   final topupController = Get.find<InstantTopUpController>();
 
   final _formKey = GlobalKey<FormState>();
+
+  final payoutController = Get.find<PayoutController>();
 
   @override
   Widget build(BuildContext context) {
@@ -118,8 +121,18 @@ class _TopUpScreenState extends State<TopUpScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
                           onPressed: () {
+
+                            // payoutController.payUseingEaseBuzz(
+                            //   id: "", 
+                            //   customerid: "", 
+                            //   amount: "120", 
+                            //   customerName: "anas", 
+                            //   email: "anas@gmail.com", 
+                            //   phone: "8157868869", 
+                            //   status: "");
+
                             if (_formKey.currentState!.validate()) {
-                                if (int.parse(amountController.text) > 9) {
+                                if (int.parse(amountController.text) > 0) {
                                   topupController.isLoading(true);
                                   topupController
                                       .createOrder(amountController.text);

@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     profileController.getprofile();
-    payoutController.walletHistory(startDate: "2023-01-01", endDate: "2023-10-02");
+    payoutController.walletHistory(startDate: "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}", endDate: "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}");
   }
 
   void openWhatsapp(
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '₹ ${profileController.walletAmount}',
+                                '₹ ${profileController.walletAmount}.00',
                                 style: TextStyle(
                                     color: ywhite,
                                     fontSize: 25,

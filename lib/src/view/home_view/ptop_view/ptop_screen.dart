@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:your_choice_app/src/constants/app_colors.dart';
 import 'package:your_choice_app/src/constants/app_fonts.dart';
+import 'package:your_choice_app/src/controller/payout_controller.dart';
 import 'package:your_choice_app/src/controller/top_up_controller.dart';
 
 import '../../../controller/sigin_controller.dart';
@@ -24,6 +25,7 @@ class _PtopScreenState extends State<PtopScreen> {
   final pageshowController = Get.find<AuthController>();
 
   final topupController = Get.find<InstantTopUpController>();
+  final payoutController = Get.find<PayoutController>();
 
   @override
   Widget build(BuildContext context) {
