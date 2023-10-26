@@ -36,12 +36,12 @@ class PtoPOrderModel {
 class PtoPModelData {
   int userId;
   String subTotal;
-  int amount;
+  dynamic amount;
   String notes;
   String customerName;
   String customerPhone;
   String customerEmail;
-  int serviceCharge;
+  dynamic serviceCharge;
   String fundTransferFee;
   String serviceName;
   dynamic refId;

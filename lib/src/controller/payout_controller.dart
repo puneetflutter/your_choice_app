@@ -55,11 +55,11 @@ class PayoutController extends GetxController {
     }
   }
 
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
 
   payeeSendPay(String amount, String payeeId, String userPin) async {
-    var response =
-        await payeePaymentApi.payeeSendPayment(amount, payeeId, userPin);
+    isLoading(true);
+    var response = await payeePaymentApi.payeeSendPayment(amount, payeeId, userPin);
     print(response);
     isLoading(false);
     // if (response["message"] == "Wrong pin.Please reset your pin") {

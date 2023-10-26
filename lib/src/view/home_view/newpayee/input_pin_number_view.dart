@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field_style.dart';
@@ -110,24 +111,39 @@ class _CreatePinScreenState extends State<InputPinNumber> {
                             ysizedbox40,
                             ysizedbox40,
                             ysizedbox40,
-                            InkWell(
-                              onTap: () {
-                                payeeController.payeeSendPay(
-                                    widget.amount,
-                                    widget.payeeId,
-                                    profileapiController.pinnumbers);
-                              },
-                              child: Container(
-                                height: 55,
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                decoration: BoxDecoration(
-                                    color: yindigo,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Center(
-                                  child: Text(
-                                    'Pay now',
-                                    style: primaryFontmedium.copyWith(
-                                        fontSize: 22, color: ywhite),
+                            Obx( () => payeeController.isLoading.isTrue ? Padding(
+                                      padding: const EdgeInsets.only(right: 15,left: 15),
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              minimumSize:const Size(5, 50),
+                                              backgroundColor: yindigo,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular( 50))),
+                                          onPressed: () {
+                                          },
+                                          child: const CupertinoActivityIndicator(
+                                            color: Colors.white,
+                                          ) ),
+                                    ) :
+                               InkWell(
+                                onTap: () {
+                                  payeeController.payeeSendPay(
+                                      widget.amount,
+                                      widget.payeeId,
+                                      profileapiController.pinnumbers);
+                                },
+                                child: Container(
+                                  height: 55,
+                                  width: MediaQuery.of(context).size.width * 0.6,
+                                  decoration: BoxDecoration(
+                                      color: yindigo,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Center(
+                                    child: Text(
+                                      'Pay now',
+                                      style: primaryFontmedium.copyWith(
+                                          fontSize: 22, color: ywhite),
+                                    ),
                                   ),
                                 ),
                               ),
