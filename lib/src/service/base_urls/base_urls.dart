@@ -6,10 +6,9 @@ abstract class BaseApiService {
   //login url
   final String loginURL = "https://yourchoice.batechnology.in/api/user/login";
 
-
   //otpVerifyURL
-  final String otpVerifyURL = "https://yourchoice.batechnology.in/api/user/login";
-
+  final String otpVerifyURL =
+      "https://yourchoice.batechnology.in/api/user/verify-otp";
 
   //profile
   final String getProfileURL =
@@ -28,7 +27,6 @@ abstract class BaseApiService {
   //p to p create order url
   final String createPtoPOrder =
       "https://yourchoice.batechnology.in/api/create-ptop-order";
-
 
   //create payment link url
   final String createPaymentLink =
@@ -62,33 +60,36 @@ abstract class BaseApiService {
   final String createpinURL =
       'https://yourchoice.batechnology.in/api/create-pin';
 
-   //getpay
-   final String getpayUrl ='https://yourchoice.batechnology.in/api/get-payee';
-   //deletepay
-   final String  paydeleteURL = 'https://yourchoice.batechnology.in/api/delete-payee';
+  //getpay
+  final String getpayUrl = 'https://yourchoice.batechnology.in/api/get-payee';
+  //deletepay
+  final String paydeleteURL =
+      'https://yourchoice.batechnology.in/api/delete-payee';
   //addnewpay
   final String addnewpayURL =
       'https://yourchoice.batechnology.in/api/add-payee';
 
+  final String payeeSendURL =
+      "https://yourchoice.batechnology.in/api/payee-send";
 
-   final String payeeSendURL = "https://yourchoice.batechnology.in/api/payee-send";
+  final String checkPinAvailability =
+      "https://yourchoice.batechnology.in/api/pin-valid";
 
+  final String resetPinUrl = "https://yourchoice.batechnology.in/api/reset-pin";
 
+  //wallet history
+  final String walletHistoryApiUrl =
+      "https://yourchoice.batechnology.in/api/transaction-history";
 
-   final String checkPinAvailability = "https://yourchoice.batechnology.in/api/pin-valid";
+  //admin support details
+  final String adminSupportDetailApiUrl =
+      "https://yourchoice.batechnology.in/api/admin-support-details";
 
-  
-    final String resetPinUrl = "https://yourchoice.batechnology.in/api/reset-pin";
+  //search bank
+  final String searchbankURL =
+      "https://yourchoice.batechnology.in/api/bank-details";
 
-   //wallet history
-   final String walletHistoryApiUrl = "https://yourchoice.batechnology.in/api/transaction-history";
-
-   //admin support details
-   final String adminSupportDetailApiUrl = "https://yourchoice.batechnology.in/api/admin-support-details"; 
-
-   //search bank
-   final String searchbankURL = "https://yourchoice.batechnology.in/api/bank-details";
-
-   //easebuzz status 
-   final String easebuzzStsApiUrl = "https://yourchoice.batechnology.in/api/easebuzz-order-status";
+  //easebuzz status
+  final String easebuzzStsApiUrl =
+      "https://yourchoice.batechnology.in/api/easebuzz-order-status";
 }

@@ -35,7 +35,7 @@ class PasswordApiService extends BaseApiService{
       data: {
         "password":password,
         "confirm_password":confirm_password,
-         "userId":id,          
+        "userId":id,          
       }
      
      );

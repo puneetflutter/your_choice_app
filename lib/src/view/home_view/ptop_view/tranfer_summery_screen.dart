@@ -184,7 +184,7 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                                                       style: primaryFontmedium
                                                           .copyWith(
                                                               fontSize: 14,
-                                                              color: Color(
+                                                              color: const Color(
                                                                   0xff174885)),
                                                     ),
                                                   ],
@@ -192,7 +192,7 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                                                 Container(
                                                     width: 65,
                                                     child: Text(
-                                                        '₹ ${widget.data.amount}'))
+                                                        '₹ ${widget.data.subTotal}'))
                                               ],
                                             ),
                                             Row(
@@ -268,7 +268,7 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                                                 Container(
                                                   width: 65,
                                                   child: Text(
-                                                    '₹ ${widget.data.amount}',
+                                                    '₹ ${widget.data.subTotal}',
                                                     style: primaryFontsemiBold
                                                         .copyWith(
                                                             fontSize: 14,
@@ -285,18 +285,19 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                                   ysizedbox40,
                                   ysizedbox40,
                                   ysizedbox20,
-                                   Padding(
+                                  Padding(
                                     padding: const EdgeInsets.only(right: 15),
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                            minimumSize:  Size(size.width, 50),
+                                            minimumSize: Size(size.width, 50),
                                             backgroundColor: yindigo,
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8))),
                                         onPressed: () async {
-                                          var paymentLink = await topupController
-                                              .createLink(widget.data.id);
+                                          var paymentLink =
+                                              await topupController
+                                                  .createLink(widget.data.id);
                                           showGeneratedLink(paymentLink);
                                           //Navigator.of(context).pushNamed( '/transfersummery');
                                         },
@@ -378,12 +379,14 @@ class _TransferSummeryScreenState extends State<TransferSummeryScreen> {
                     children: [
                       Expanded(
                         child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: Text(paymentLink,style: const TextStyle(
-                              overflow: TextOverflow.ellipsis
-                            ),),
-                          )),
+                            child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: Text(
+                            paymentLink,
+                            style: const TextStyle(
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                        )),
                       ),
                       InkWell(
                         onTap: () async {

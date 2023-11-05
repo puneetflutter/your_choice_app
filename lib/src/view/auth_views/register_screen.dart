@@ -30,7 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   DateTime selectedDate = DateTime(2005);
 
   Future<void> _selectDate(BuildContext context) async {
-    DateTime date =  DateTime(2005);
+    DateTime date = DateTime(2005);
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
@@ -48,6 +48,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   final authController = Get.find<AuthController>();
+
+  bool isPasswordVisible = true;
+  bool isConfirmPasswordVisible = true;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -102,6 +106,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         return null;
                       }
                     },
+                    textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(
                         labelText: 'Company Name',
                         contentPadding:
@@ -124,6 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         return null;
                       }
                     },
+                    textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(
                       labelText: 'Full Name',
                       contentPadding:
@@ -261,6 +267,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextFormField(
                     controller: passwordController,
+                    obscureText: isPasswordVisible,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Password can't be Empty";
@@ -270,6 +277,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     decoration: InputDecoration(
                         labelText: 'Password',
+                        suffixIcon: IconButton(
+                          icon: isPasswordVisible
+                              ? const Icon(Icons.visibility)
+                              : const Icon(Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              isPasswordVisible = !isPasswordVisible;
+                            });
+                          },
+                        ),
                         contentPadding:
                             const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
                         border: OutlineInputBorder(
@@ -283,6 +300,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextFormField(
                     controller: confirmPasswordController,
+                    obscureText: isConfirmPasswordVisible,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Confirm Password can't be Empty";
@@ -292,6 +310,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     decoration: InputDecoration(
                         labelText: 'Confirm Password',
+                        suffixIcon: IconButton(
+                          icon: isConfirmPasswordVisible
+                              ? const Icon(Icons.visibility)
+                              : const Icon(Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              isConfirmPasswordVisible =
+                                  !isConfirmPasswordVisible;
+                            });
+                          },
+                        ),
                         contentPadding:
                             const EdgeInsets.fromLTRB(17.0, 2.0, 17.0, 16.0),
                         border: OutlineInputBorder(
@@ -313,50 +342,69 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 ysizedbox40,
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(290, 50),
-                      backgroundColor: yindigo,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8))),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      if (passwordController.text ==
-                          confirmPasswordController.text) {
-                        RegisterModel registerModel = RegisterModel(
-                          name: fullnameController.text,
-                          email: emaiController.text,
-                          mobile: mobilenumberController.text,
-                          dob: dateofbirthController.text,
-                          adharno: adharController.text,
-                          password: passwordController.text,
-                          username: companynameController.text,
-                        );
-                        authController.registerUser(registerModel);
-                      }
-                      // Navigator.of(context)
-                      //  .pushReplacementNamed('/registeredscreen');
-                      else {
-                        Get.rawSnackbar(
-                          messageText: const Text(
-                            "Confirm password must match the new password.",
-                            style: TextStyle(color: Colors.white),
+                Obx(
+                  () => AnimatedContainer(
+                    curve: Curves.bounceOut,
+                    duration: const Duration(seconds: 2),
+                    child: authController.isLoading.isTrue
+                        ? Container(
+                            height: 55,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                color: yindigo),
+                            child: const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        : ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(290, 50),
+                                backgroundColor: yindigo,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                if (passwordController.text ==
+                                    confirmPasswordController.text) {
+                                  RegisterModel registerModel = RegisterModel(
+                                    name: fullnameController.text,
+                                    email: emaiController.text,
+                                    mobile: mobilenumberController.text,
+                                    dob: dateofbirthController.text,
+                                    adharno: adharController.text,
+                                    password: passwordController.text,
+                                    username: companynameController.text,
+                                  );
+                                  authController.registerUser(registerModel);
+                                }
+                                // Navigator.of(context)
+                                //  .pushReplacementNamed('/registeredscreen');
+                                else {
+                                  Get.rawSnackbar(
+                                    messageText: const Text(
+                                      "Confirm password must match the new password.",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  );
+                                }
+                              }
+                            },
+                            child: const Text(
+                              'Register Account',
+                              style: TextStyle(fontSize: 17),
+                            ),
                           ),
-                          backgroundColor: Colors.red,
-                        );
-                      }
-                    }
-                  },
-                  child: const Text(
-                    'Register Account',
-                    style: TextStyle(fontSize: 17),
                   ),
                 ),
                 ysizedbox20,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'or',
                       style: TextStyle(fontSize: 16),
                     ),
@@ -369,7 +417,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(fontSize: 16, color: yindigo),
                       ),
                     ),
-                    Text(
+                    const Text(
                       ' with your account',
                       style: TextStyle(fontSize: 15),
                     )
