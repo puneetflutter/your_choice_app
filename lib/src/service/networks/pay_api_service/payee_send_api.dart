@@ -22,7 +22,7 @@ class PayeePaymentApi extends BaseApiService {
               }),
           data: {"amount": amount, "payeeId": payeeId, "userPin": userPin});
       print(
-          ":::::::<payee payment>:::::::::status code:::::::<send payement>:::::::");
+          ":::::::<payee payment>:::::::::status code:::::::<amt:$amount,id:$payeeId,pin:$userPin>:::::::");
       print(response.statusCode);
       responseJson = response.data;
     } on SocketException {

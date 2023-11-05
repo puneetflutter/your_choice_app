@@ -42,7 +42,11 @@ class PtoPModelData {
   String customerPhone;
   String customerEmail;
   dynamic serviceCharge;
+<<<<<<< HEAD
   dynamic fundTransferFee;
+=======
+  String fundTransferFee;
+>>>>>>> c5e99f28caf531a565bd7c1d7169b6c50ec1691c
   String serviceName;
   dynamic refId;
   String orderNo;
